@@ -6,7 +6,7 @@
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
-import Foundation
+import CommonCrypto
 
 public class SurveyonPartners {
     

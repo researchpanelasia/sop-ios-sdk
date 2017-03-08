@@ -16,16 +16,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>SurveyonPartnersUniversal.xcscheme</key>
+		<key>SurveyonPartnersTests.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>5E142E4E1E6FD866002804A3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>5E15B61B1E5EBA5C00FE0671</key>
 		<dict>
 			<key>primary</key>
