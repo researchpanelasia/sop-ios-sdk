@@ -10,10 +10,17 @@ import CommonCrypto
 
 public class SurveyonPartners {
     
+    class var sharedInstance: SurveyonPartners {
+        struct Static {
+            static let instance: SurveyonPartners = SurveyonPartners()
+        }
+        return Static.instance
+    }
+    
     public class func setUp() {
         print("Start setUp func.")
     }
-    
+  
     public class func showSurveyList() {
         print("Start showSurveyList func.")
     }

@@ -1,0 +1,22 @@
+//
+//  PreferencesManager.swift
+//  SurveyonPartners
+//
+//  Created by Choi Jiseon on 2017/03/09.
+//  Copyright © 2017年 d8aspring. All rights reserved.
+//
+
+public class PreferencesManager {
+    
+    static public func readIntPreferences(forKey: String) -> Int64 {
+        let preferences = UserDefaults.standard
+        return Int64(preferences.integer(forKey: forKey))
+    }
+    
+    static public func writePreferences(value: Int64, forKey: String) {
+        let preferences = UserDefaults.standard
+        preferences.set(value, forKey: forKey)
+        preferences.synchronize()
+    }
+    
+}

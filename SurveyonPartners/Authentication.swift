@@ -23,7 +23,7 @@ class Authentication {
         var strArray = ""
         
         for (key, value) in sortedParameters {
-            if key.hasPrefix("sop_") {
+            if key.hasPrefix(PREFIX_SOP_) {
                 continue
             }
             strArray += key + "=" + value + "&"
@@ -56,5 +56,3 @@ class Authentication {
     }
     
 }
-
-
