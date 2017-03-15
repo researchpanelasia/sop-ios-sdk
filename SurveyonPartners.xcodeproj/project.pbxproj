@@ -18,6 +18,9 @@
 		5E142E6B1E727994002804A3 /* SurveyonPartnersCommonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E691E727994002804A3 /* SurveyonPartnersCommonTests.swift */; };
 		5E142E6D1E728C93002804A3 /* PreferencesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E6C1E728C93002804A3 /* PreferencesManagerTests.swift */; };
 		5E142E6F1E728DEA002804A3 /* AdvertisingIdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E6E1E728DEA002804A3 /* AdvertisingIdTests.swift */; };
+		5E142E711E791CB9002804A3 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E701E791CB9002804A3 /* Response.swift */; };
+		5E142E751E791E59002804A3 /* SetupInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E741E791E59002804A3 /* SetupInfo.swift */; };
+		5E142E771E792751002804A3 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E761E792751002804A3 /* Request.swift */; };
 		5E15B6261E5EBA5C00FE0671 /* SurveyonPartners.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E15B61C1E5EBA5C00FE0671 /* SurveyonPartners.framework */; };
 		5E15B62D1E5EBA5C00FE0671 /* SurveyonPartners.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E15B61F1E5EBA5C00FE0671 /* SurveyonPartners.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5E15B63D1E5EBC9E00FE0671 /* SurveyonPartners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E15B63C1E5EBC9E00FE0671 /* SurveyonPartners.swift */; };
@@ -44,6 +47,9 @@
 		5E142E691E727994002804A3 /* SurveyonPartnersCommonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyonPartnersCommonTests.swift; sourceTree = "<group>"; };
 		5E142E6C1E728C93002804A3 /* PreferencesManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesManagerTests.swift; sourceTree = "<group>"; };
 		5E142E6E1E728DEA002804A3 /* AdvertisingIdTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvertisingIdTests.swift; sourceTree = "<group>"; };
+		5E142E701E791CB9002804A3 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		5E142E741E791E59002804A3 /* SetupInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupInfo.swift; sourceTree = "<group>"; };
+		5E142E761E792751002804A3 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		5E15B61C1E5EBA5C00FE0671 /* SurveyonPartners.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SurveyonPartners.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E15B61F1E5EBA5C00FE0671 /* SurveyonPartners.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SurveyonPartners.h; sourceTree = "<group>"; };
 		5E15B6201E5EBA5C00FE0671 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -73,6 +79,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E142E731E791E46002804A3 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				5E142E741E791E59002804A3 /* SetupInfo.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
 		5E15B6121E5EBA5C00FE0671 = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +108,7 @@
 		5E15B61E1E5EBA5C00FE0671 /* SurveyonPartners */ = {
 			isa = PBXGroup;
 			children = (
+				5E142E731E791E46002804A3 /* models */,
 				5E142E3C1E6E9ADF002804A3 /* module.modulemap */,
 				5E15B6201E5EBA5C00FE0671 /* Info.plist */,
 				5E142E5E1E71427A002804A3 /* Constants.swift */,
@@ -104,6 +119,8 @@
 				5E142E5A1E70F9F0002804A3 /* AdvertisingId.swift */,
 				5E142E421E6F9F06002804A3 /* Authentication.swift */,
 				5E142E601E714532002804A3 /* PreferencesManager.swift */,
+				5E142E701E791CB9002804A3 /* Response.swift */,
+				5E142E761E792751002804A3 /* Request.swift */,
 			);
 			path = SurveyonPartners;
 			sourceTree = "<group>";
@@ -240,6 +257,9 @@
 				5E15B63D1E5EBC9E00FE0671 /* SurveyonPartners.swift in Sources */,
 				5E142E651E725658002804A3 /* SurveyonPartnersCommon.swift in Sources */,
 				5E142E431E6F9F06002804A3 /* Authentication.swift in Sources */,
+				5E142E711E791CB9002804A3 /* Response.swift in Sources */,
+				5E142E771E792751002804A3 /* Request.swift in Sources */,
+				5E142E751E791E59002804A3 /* SetupInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
