@@ -10,17 +10,17 @@ import AdSupport
 
 public class AdvertisingId {
     
-    static private var advertisingIdentifier: String?
-    static private var isAdvertisingTrackingEnabled: Bool?
+    private static var advertisingIdentifier: String!
+    private static var isAdvertisingTrackingEnabled: Bool!
     
-    static public func getAdvertisingIdentifier() -> String? {
+    public static func getAdvertisingIdentifier() -> String! {
         if (advertisingIdentifier == nil) {
             self.advertisingIdentifier = ASIdentifierManager().advertisingIdentifier.uuidString
         }
         return self.advertisingIdentifier
     }
     
-    static public func getIsAdvertisingTrackingEnabled() -> Bool? {
+    public static func getIsAdvertisingTrackingEnabled() -> Bool! {
         if (isAdvertisingTrackingEnabled == nil) {
             isAdvertisingTrackingEnabled = ASIdentifierManager().isAdvertisingTrackingEnabled
         }

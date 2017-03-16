@@ -10,12 +10,7 @@ import Foundation
 
 class Request {
     
-    func post(url: URL, requestBody: String) {
-//        var request = URLRequest(url: URL(string: "http://www.thisismylink.com/postName.php")!)
-        var request = URLRequest(url: url)
-        request.httpMethod = POST
-        let postString = "id=13&name=Jack"
-        request.httpBody = postString.data(using: .utf8)
+    func send(request: URLRequest) {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
                 // check for fundamental networking error
@@ -35,18 +30,22 @@ class Request {
         task.resume()
     }
     
+    func post(url: URL, requestBody: String) {
+//        var request = URLRequest(url: URL(string: "http://aaaa.com")!)
+//        let postString = "id=13&name=Jack"
+        var request = URLRequest(url: url)
+        request.httpMethod = MethodType.POST
+        request.httpBody = requestBody.data(using: .utf8)
+        
+        send(request: request)
+    }
+    
     func get(url: URL, requestBody: String) {
         var request = URLRequest(url: url)
+        request.httpMethod = MethodType.GET
         request.httpBody = requestBody.data(using: .utf8)
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if error != nil {
-                print("error = \(error)")
-                return
-            } else {
-                print("data = \(data)")
-            }
-        }
-        task.resume()
+        
+        send(request: request)
     }
     
 }

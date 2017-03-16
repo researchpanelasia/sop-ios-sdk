@@ -13,13 +13,18 @@ class SurveyonPartnersCommom {
         return Int64(sec * 1000)
     }
     
-    static func adIdUpdatedAt(currentTimeMilles: Int64) {
-        PreferencesManager.writePreferences(value: currentTimeMilles, forKey: SURVEYON_PARTNERS)
+    static func getPosixTime() -> String {
+        let sec = Date().timeIntervalSince1970
+        return String(sec / 1000) + ""
     }
     
-    static func isNeedAdIdUpdated(currentTimeMilles: Int64) -> Bool? {
-        let previousTimeMilles: Int64 = PreferencesManager.readIntPreferences(forKey: SURVEYON_PARTNERS)
-        return DEFAULT_ADID_UPDATE_SPAN <= (currentTimeMilles - previousTimeMilles)
+    static func adIdUpdatedAt(currentTimeMilles: Int64) {
+        PreferencesManager.writePreferences(value: currentTimeMilles, forKey: Constants.SURVEYON_PARTNERS)
+    }
+    
+    static func isNeedAdIdUpdated(currentTimeMilles: Int64) -> Bool {
+        let previousTimeMilles: Int64 = PreferencesManager.readIntPreferences(forKey: Constants.SURVEYON_PARTNERS)
+        return Constants.DEFAULT_ADID_UPDATE_SPAN <= (currentTimeMilles - previousTimeMilles)
     }
     
 }

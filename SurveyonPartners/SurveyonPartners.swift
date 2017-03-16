@@ -6,9 +6,13 @@
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
-import CommonCrypto
-
-public class SurveyonPartners {
+final public class SurveyonPartners {
+    
+    var setupInfo: SetupInfo
+    
+    init() {
+        self.setupInfo = SetupInfo()
+    }
     
     class var sharedInstance: SurveyonPartners {
         struct Static {
@@ -17,12 +21,27 @@ public class SurveyonPartners {
         return Static.instance
     }
     
-    public class func setUp() {
-        print("Start setUp func.")
+    public static func setUp(appId: String, appMid: String, secretKry: String) {
+        self.sharedInstance.setupInfo.setAllInfo(appId: appId, appMid: appMid, secretKey: secretKry)
+        
+        if (SurveyonPartnersCommom.isNeedAdIdUpdated(currentTimeMilles: SurveyonPartnersCommom.currentTimeMillis())) {
+            updateAdid()
+        }
     }
   
-    public class func showSurveyList() {
+    public static func showSurveyList() {
         print("Start showSurveyList func.")
+    }
+    
+    private static func updateAdid() {
+        HttpClient.postIdfa(Idfa: "", isLimitAdTrackingEnabled: true, completion: { (isSuccess) -> Void in
+            if isSuccess {
+                // OK
+                SurveyonPartnersCommom.adIdUpdatedAt(currentTimeMilles: SurveyonPartnersCommom.currentTimeMillis())
+            } else {
+                // NG
+            }
+        })
     }
     
 }
