@@ -6,33 +6,22 @@
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
-public class SetupInfo {
-    private var appId: String
-    private var appMid: String
-    private var secretKey: String
+final public class SetupInfo {
     
-    init() {
-        self.appId = ""
-        self.appMid = ""
-        self.secretKey = ""
-    }
+    private var appId: String = ""
+    private var appMid: String = ""
+    private var secretKey: String = ""
     
-    func setAllInfo(appId: String, appMid: String, secretKey: String) {
+    public func setAllInfo(appId: String, appMid: String, secretKey: String) {
         self.appId = appId
         self.appMid = appMid
         self.secretKey = secretKey
     }
     
-    func getAppId() -> String {
-        return appId;
-    }
+    public func getAppId() -> String { return appId }
     
-    func getAppMid() -> String{
-        return appMid;
-    }
+    public func getAppMid() -> String{ return appMid }
     
-    func getSecretKey() -> String {
-        return secretKey;
-    }
+    public func getSecretKey() -> String { return secretKey }
     
 }

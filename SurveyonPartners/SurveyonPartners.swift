@@ -8,24 +8,21 @@
 
 final public class SurveyonPartners {
     
-    var setupInfo: SetupInfo
+    private static let sharedInstance: SurveyonPartners = SurveyonPartners()
+    let setupInfo: SetupInfo = SetupInfo()
     
-    init() {
-        self.setupInfo = SetupInfo()
-    }
-    
-    class var sharedInstance: SurveyonPartners {
-        struct Static {
-            static let instance: SurveyonPartners = SurveyonPartners()
-        }
-        return Static.instance
-    }
+//    class var sharedInstance: SurveyonPartners {
+//        struct Static {
+//            static let instance: SurveyonPartners = SurveyonPartners()
+//        }
+//        return Static.instance
+//    }
     
     public static func setUp(appId: String, appMid: String, secretKry: String) {
         self.sharedInstance.setupInfo.setAllInfo(appId: appId, appMid: appMid, secretKey: secretKry)
         
         if (SurveyonPartnersCommom.isNeedAdIdUpdated(currentTimeMilles: SurveyonPartnersCommom.currentTimeMillis())) {
-            updateAdid()
+            self.sharedInstance.updateIdfa()
         }
     }
   
@@ -33,15 +30,31 @@ final public class SurveyonPartners {
         print("Start showSurveyList func.")
     }
     
-    private static func updateAdid() {
-        HttpClient.postIdfa(Idfa: "", isLimitAdTrackingEnabled: true, completion: { (isSuccess) -> Void in
-            if isSuccess {
-                // OK
-                SurveyonPartnersCommom.adIdUpdatedAt(currentTimeMilles: SurveyonPartnersCommom.currentTimeMillis())
-            } else {
-                // NG
-            }
+    private func updateIdfa() {
+        HttpClient.postIdfa(Idfa: AdvertisingId.getAdvertisingIdentifier(),
+                            isLimitAdTrackingEnabled: AdvertisingId.getIsAdvertisingTrackingEnabled(),
+                            completion: { (isSuccess) -> Void in
+                                if isSuccess {
+                                    SurveyonPartnersCommom.adIdUpdatedAt(currentTimeMilles: SurveyonPartnersCommom.currentTimeMillis())
+                                } else {
+                                    //do nothing
+                                }
         })
     }
     
+    private static func postIdfa(Idfa: String, isLimitAdTrackingEnabled: String) {
+        
+        if !Utility.isOnline() { return }
+        
+        
+        
+    }
+    
+    private static func setPostIdfaData() {
+        HttpClient.Builder.appId = AdvertisingId.getAdvertisingIdentifier()
+        HttpClient.Builder.appMid = self.sharedInstance.setupInfo.getAppMid()
+        HttpClient.Builder.secretKey = self.sharedInstance.setupInfo.getSecretKey()
+        HttpClient.Builder.host = ""
+        HttpClient.Builder.userAgent = ""
+    }
 }

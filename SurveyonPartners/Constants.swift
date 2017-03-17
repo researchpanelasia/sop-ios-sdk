@@ -7,6 +7,7 @@
 //
 
 class Constants {
+    
     // Preferences
     static let SURVEYON_PARTNERS: String = "surveyonPartners"
     
@@ -59,6 +60,7 @@ class Constants {
     static let KEY_PC = "PC"
     static let KEY_MOBILE = "MOBILE"
     static let KEY_TABLET = "TABLET"
+    
 }
 
 enum MethodType {

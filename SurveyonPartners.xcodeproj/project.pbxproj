@@ -24,6 +24,7 @@
 		5E142E791E7A3733002804A3 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E781E7A3733002804A3 /* HttpClient.swift */; };
 		5E142E7B1E7A5751002804A3 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E7A1E7A5751002804A3 /* Utility.swift */; };
 		5E142E831E7A767A002804A3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E142E821E7A767A002804A3 /* SystemConfiguration.framework */; };
+		5E142E891E7BD343002804A3 /* HttpClientInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E881E7BD343002804A3 /* HttpClientInfo.swift */; };
 		5E15B6261E5EBA5C00FE0671 /* SurveyonPartners.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E15B61C1E5EBA5C00FE0671 /* SurveyonPartners.framework */; };
 		5E15B62D1E5EBA5C00FE0671 /* SurveyonPartners.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E15B61F1E5EBA5C00FE0671 /* SurveyonPartners.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5E15B63D1E5EBC9E00FE0671 /* SurveyonPartners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E15B63C1E5EBC9E00FE0671 /* SurveyonPartners.swift */; };
@@ -56,6 +57,7 @@
 		5E142E781E7A3733002804A3 /* HttpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		5E142E7A1E7A5751002804A3 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		5E142E821E7A767A002804A3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		5E142E881E7BD343002804A3 /* HttpClientInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpClientInfo.swift; sourceTree = "<group>"; };
 		5E15B61C1E5EBA5C00FE0671 /* SurveyonPartners.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SurveyonPartners.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E15B61F1E5EBA5C00FE0671 /* SurveyonPartners.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SurveyonPartners.h; sourceTree = "<group>"; };
 		5E15B6201E5EBA5C00FE0671 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				5E142E741E791E59002804A3 /* SetupInfo.swift */,
+				5E142E881E7BD343002804A3 /* HttpClientInfo.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				5E142E711E791CB9002804A3 /* Response.swift in Sources */,
 				5E142E771E792751002804A3 /* Request.swift in Sources */,
 				5E142E751E791E59002804A3 /* SetupInfo.swift in Sources */,
+				5E142E891E7BD343002804A3 /* HttpClientInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
