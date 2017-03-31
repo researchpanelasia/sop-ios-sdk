@@ -11,22 +11,9 @@ class Constants {
     // Preferences
     static let SURVEYON_PARTNERS: String = "surveyonPartners"
     
-    // after 14 days, update idfa
-    static let DEFAULT_ADID_UPDATE_SPAN: Int64 = 60 * 60 * 24 * 14 * 1000
-    
     // frefix sop_
     static let PREFIX_SOP_ = "sop_"
-    
-    // HTTPCLIENT
-    static let HTTPS = "https://"
-    static let HTTP = "http://"
-    static let DEFAULT_SOP_HOST = "partners.surveyon.com"
-    static let DEFAULT_SOP_CONSOLE_HOST = "console.partners.surveyon.com"
-    static let PATH_GET_SURVEY = "/api/v1_1/surveys/json"
-    static let PATH_POST_IDFA = "/api/v1_1/resource/app/member/identifier/apple_idfa"
-    
-    // IDFA
-    
+  
     // Request
     static let CONNECT_TIMEOUT = 10000
     static let READ_TIMEOUT = 10000
@@ -57,13 +44,4 @@ class Constants {
     static let KEY_SCREENOUT = "screenout"
     static let KEY_QUOTAFULL = "quotafull"
     
-    static let KEY_PC = "PC"
-    static let KEY_MOBILE = "MOBILE"
-    static let KEY_TABLET = "TABLET"
-    
-}
-
-enum MethodType {
-    static let POST = "POST"
-    static let GET = "GET"
 }

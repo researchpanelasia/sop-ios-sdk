@@ -6,22 +6,22 @@
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
-final public class SetupInfo {
-    
-    private var appId: String = ""
-    private var appMid: String = ""
-    private var secretKey: String = ""
-    
-    public func setAllInfo(appId: String, appMid: String, secretKey: String) {
-        self.appId = appId
-        self.appMid = appMid
-        self.secretKey = secretKey
-    }
-    
-    public func getAppId() -> String { return appId }
-    
-    public func getAppMid() -> String{ return appMid }
-    
-    public func getSecretKey() -> String { return secretKey }
-    
+class SetupInfo {
+  
+  static var appId: String?
+  
+  static var appMid: String?
+  
+  static var secretKey: String?
+  
+  static var sopHost: String?
+  
+  static var sopConsoleHost: String?
+  
+  static var idfaUpdateSpan: Int64?
+  
+  static var useHttps: Bool?
+  
+  static var verifyHost: Bool?
+  
 }

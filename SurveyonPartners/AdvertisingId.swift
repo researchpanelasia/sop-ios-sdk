@@ -11,6 +11,7 @@ import AdSupport
 public class AdvertisingId {
     
     private static var advertisingIdentifier: String!
+  
     private static var isAdvertisingTrackingEnabled: Bool!
     
     public static func getAdvertisingIdentifier() -> String! {

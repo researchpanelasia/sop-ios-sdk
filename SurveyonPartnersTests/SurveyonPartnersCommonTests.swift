@@ -28,8 +28,8 @@ class SurveyonPartnersCommonTests: XCTestCase {
         let date = dateFormatter.date(from: "2017-01-01 12:01:00")
         let sec = date!.timeIntervalSince1970
         
-        SurveyonPartnersCommom.adIdUpdatedAt(currentTimeMilles: Int64(0))
-        XCTAssert(SurveyonPartnersCommom.isNeedAdIdUpdated(currentTimeMilles: Int64(sec * 1000)) == true)
+        SurveyonPartners.adIdUpdatedAt(currentTimeMilles: Int64(0))
+        XCTAssert(SurveyonPartners.isNeedAdIdUpdated(currentTimeMilles: Int64(sec * 1000)) == true)
     }
     
     func testAdidUpdatedWithinSpan() {
@@ -42,8 +42,8 @@ class SurveyonPartnersCommonTests: XCTestCase {
         let date2 = dateFormatter.date(from: "2017-01-15 11:59:59")
         let sec2 = date2!.timeIntervalSince1970
         
-        SurveyonPartnersCommom.adIdUpdatedAt(currentTimeMilles: Int64(sec1 * 1000))
-        XCTAssert(SurveyonPartnersCommom.isNeedAdIdUpdated(currentTimeMilles: Int64(sec2 * 1000)) == false)
+        SurveyonPartners.adIdUpdatedAt(currentTimeMilles: Int64(sec1 * 1000))
+        XCTAssert(SurveyonPartners.isNeedAdIdUpdated(currentTimeMilles: Int64(sec2 * 1000)) == false)
     }
     
     func testAdidUpdatedOverSpan() {
@@ -56,7 +56,7 @@ class SurveyonPartnersCommonTests: XCTestCase {
         let date2 = dateFormatter.date(from: "2017-01-15 12:00:00")
         let sec2 = date2!.timeIntervalSince1970
         
-        SurveyonPartnersCommom.adIdUpdatedAt(currentTimeMilles: Int64(sec1 * 1000))
-        XCTAssert(SurveyonPartnersCommom.isNeedAdIdUpdated(currentTimeMilles: Int64(sec2 * 1000)) == true)
+        SurveyonPartners.adIdUpdatedAt(currentTimeMilles: Int64(sec1 * 1000))
+        XCTAssert(SurveyonPartners.isNeedAdIdUpdated(currentTimeMilles: Int64(sec2 * 1000)) == true)
     }
 }
