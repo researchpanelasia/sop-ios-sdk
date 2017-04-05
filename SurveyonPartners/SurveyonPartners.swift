@@ -27,6 +27,7 @@ extension SurveyonPartners {
                            updateSpan: Int64 = SurveyonPartners.DEFAULT_IDFA_UPDATE_SPAN,
                            useHttps: Bool = true,
                            verifyHost: Bool = true) {
+    
     let httpClient = HttpClient(appId: appId,
                                 appMid: appMid,
                                 secretKey: secretKey,
@@ -35,12 +36,11 @@ extension SurveyonPartners {
                                 updateSpan: updateSpan,
                                 useHttps: useHttps,
                                 verifyHost: verifyHost)
-    
-    if (isNeedAdIdUpdated(currentTimeMilles: currentTimeMillis())) {
+    if (isNeedAdIdUpdated(currentTimeMilles: Utility.currentTimeMillis())) {
       httpClient.updateIdfa(completion: { (isSuccess) -> Void in
         if isSuccess {
           print("@@@@@ Success @@@@@")
-          SurveyonPartners.adIdUpdatedAt(currentTimeMilles: SurveyonPartners.currentTimeMillis())
+          SurveyonPartners.adIdUpdatedAt(currentTimeMilles: Utility.currentTimeMillis())
         } else {
           print("@@@@@ Failure @@@@@")
           //do nothing
@@ -55,6 +55,15 @@ extension SurveyonPartners {
     HttpClient.getHttpClient().getSurveyList(completion: { (isSuccess) -> Void in
       if isSuccess {
         print("##### Success #####")
+        if SurveyListItemFactory.SurveyListArray.count > 0 {
+          for index in 0...SurveyListItemFactory.SurveyListArray.count - 1 {
+            print("index = \(index)")
+            print("surveyList.title = \(SurveyListItemFactory.SurveyListArray[index].title!)")
+            print("surveyList.surveyId = \(SurveyListItemFactory.SurveyListArray[index].surveyId!)")
+            print("surveyList.loi = \(SurveyListItemFactory.SurveyListArray[index].loi!)")
+            print("surveyList.url = \(SurveyListItemFactory.SurveyListArray[index].url!)")
+          }
+        }
       } else {
         print("##### Failure #####")
         //do nothing
@@ -65,16 +74,6 @@ extension SurveyonPartners {
 }
 
 extension SurveyonPartners {
-  
-  static func currentTimeMillis() -> Int64 {
-    let sec = Date().timeIntervalSince1970
-    return Int64(sec * 1000)
-  }
-  
-  static func getPosixTime() -> String {
-    let sec = UInt64(Date().timeIntervalSince1970)
-    return String(sec)
-  }
   
   static func adIdUpdatedAt(currentTimeMilles: Int64) {
     PreferencesManager.writePreferences(value: currentTimeMilles, forKey: Constants.SURVEYON_PARTNERS)

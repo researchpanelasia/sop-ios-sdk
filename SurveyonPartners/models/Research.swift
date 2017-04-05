@@ -10,8 +10,6 @@ class Research: SurveyListItemProtocol {
   
   static let MOBILE_BLOCKED = "MOBILE"
   
-  var jsonObject: Data?
-  
   var surveyId: String?
   
   var quotaId: String?
@@ -40,39 +38,34 @@ class Research: SurveyListItemProtocol {
   
   var extraInfo: String?
   
-  init(jsonObject: Data?) {
-    
-    self.jsonObject = jsonObject
-    
-    if let json = try? JSONSerialization.jsonObject(with: jsonObject!) as? [String:Any],
-      let research = json?["research"] as? [String:Any],
-      let surveyId = research["survey_id"] as? String,
-      let quotaId = research["quota_id"] as? String,
-      let cpi = research["cpi"] as? String,
-      let ir = research["ir"] as? String,
-      let loi = research["loi"] as? String,
-      let isAnswered = research["is_answered"] as? String,
-      let isClosed = research["is_closed"] as? String,
-      let title = research["title"] as? String,
-      let url = research["url"] as? String,
-      let isFixedLoi = research["is_fixed_loi"] as? String,
-      let isNotifiable = research["is_notifiable"] as? String,
-      let date = research["date"] as? String {
-      self.surveyId = surveyId
-      self.quotaId = quotaId
-      self.cpi = cpi
-      self.ir = ir
-      self.loi = loi
-      self.isAnswered = isAnswered
-      self.isClosed = isClosed
-      self.title = title
-      self.url = url
-      self.isFixedLoi = isFixedLoi
-      self.isNotifiable = isNotifiable
-      self.date = date
-    } else {
-      SOPLog.error(message: "bad json")
-    }
+  init(surveyId: String?,
+       quotaId: String?,
+       cpi: String?,
+       ir: String?,
+       loi: String?,
+       isAnswered: String?,
+       isClosed: String?,
+       title: String?,
+       url: String?,
+       isFixedLoi: String?,
+       isNotifiable: String?,
+       date: String?,
+       blockedDevices: String?,
+       extraInfo: String?) {
+    self.surveyId = surveyId
+    self.quotaId = quotaId
+    self.cpi = cpi
+    self.ir = ir
+    self.loi = loi
+    self.isAnswered = isAnswered
+    self.isClosed = isClosed
+    self.title = title
+    self.url = url
+    self.isFixedLoi = isFixedLoi
+    self.isNotifiable = isNotifiable
+    self.date = date
+    self.blockedDevices = blockedDevices
+    self.extraInfo = extraInfo
   }
   
 }

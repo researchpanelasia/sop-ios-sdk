@@ -35,16 +35,16 @@ class Request: RequestProtocol {
   }
   
   func send(requestUrl: URLRequest, completion: ((Bool) -> Void)?) {
+    
     let operationQueue = OperationQueue()
     let configuration = URLSessionConfiguration.default
     //      let session = URLSession(configuration: configuration)
     let session = URLSession(configuration: configuration, delegate: NSURLSessionPinningDelegate(), delegateQueue: operationQueue)
     let task = session.dataTask(with: requestUrl) { data, response, error in
-      //        let task = URLSession.shared.dataTask(with: requestUrl) { data, response, error in
-      
       guard let data = data, error == nil else {
+        // check for fundamental networking error
+        SOPLog.error(message: "network error")
         if let completion = completion {
-          // check for fundamental networking error
           completion(false)
         }
         return
@@ -52,31 +52,32 @@ class Request: RequestProtocol {
       
       if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode < 200, httpStatus.statusCode >= 300 {
         // check for http errors
-        SOPLog.error(message: "response = \(response)")
-        SOPLog.error(message: "httpStatus.statusCode = \(httpStatus.statusCode)")
         let errorString = String(data: data, encoding: .utf8)
-        SOPLog.error(message: "errorString = \(errorString)")
-        
+        SOPLog.error(message: "response = \(response), statusCode = \(httpStatus.statusCode), errorString = \(errorString)")
         if let completion = completion {
           completion(false)
         }
         return
       }
       
-      let responseString = String(data: data, encoding: .utf8)
       if let json = try? JSONSerialization.jsonObject(with: data) as? [String:Any],
         let meta = json?["meta"] as? [String:Any],
         let code = meta["code"] as? Int,
         let message = meta["message"] as? String {
-        SOPLog.debug(message: "code = \(code)")
-        SOPLog.debug(message: "message = \(message)")
+        SurveyListItemFactory.create(data: data)
+        let responseString = String(data: data, encoding: .utf8)
+        SOPLog.debug(message: "responseString = \(responseString)")
+        SOPLog.debug(message: "code = \(code), message = \(message)")
+        if let completion = completion {
+          completion(true)
+        }
+        return
       } else {
         SOPLog.error(message: "bad json")
-      }
-      
-      SOPLog.debug(message: "responseString = \(responseString)")
-      if let completion = completion {
-        completion(true)
+        if let completion = completion {
+          completion(false)
+        }
+        return
       }
     }
     task.resume()
@@ -110,7 +111,7 @@ class Request: RequestProtocol {
       return "GET"
     }
   }
-
+  
 }
 
 extension Request {
@@ -131,7 +132,6 @@ extension Request {
     request.httpMethod = getHttpMethod()
     
     send(requestUrl: request, completion: completion)
-    
   }
   
 }

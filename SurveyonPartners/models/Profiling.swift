@@ -8,8 +8,6 @@
 
 class Profiling: SurveyListItemProtocol {
   
-  var jsonObject: Data?
-  
   var surveyId: String?
   
   var title: String?
@@ -18,21 +16,14 @@ class Profiling: SurveyListItemProtocol {
   
   var url: String?
   
-  init(jsonObject: Data?) {
-    
-    self.jsonObject = jsonObject
-    
-    if let json = try? JSONSerialization.jsonObject(with: jsonObject!) as? [String:Any],
-      let profiling = json?["profiling"] as? [String:Any],
-      let name = profiling["name"] as? String,
-      let title = profiling["title"] as? String,
-      let url = profiling["url"] as? String {
-      self.surveyId = name
-      self.title = title
-      self.url = url
-    } else {
-      SOPLog.error(message: "bad json")
-    }
+  init(surveyId: String?,
+       title: String?,
+       url: String?,
+       loi: String? = "") {
+    self.surveyId = surveyId
+    self.title = title
+    self.url = url
+    self.loi = loi
   }
   
 }

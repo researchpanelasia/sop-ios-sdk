@@ -34,6 +34,15 @@
 
 
 public struct Response: ResponseProtocol {
+  /*
+  var statusCode: Int
+  var rawBody: String
+  
+  init(statusCode: Int, rawBody: String, rawResponse: Any?) {
+    self.statusCode = statusCode
+    self.rawBody = rawBody
+  }
+  */
     fileprivate let rawResponse: Any?
     
     /**
@@ -41,11 +50,11 @@ public struct Response: ResponseProtocol {
      
      - parameter rawResponse: Raw response received from a server.
      Usually is represented by either a `Dictionary` or `Array`.
-     */
+ */
     public init(rawResponse: Any?) {
         self.rawResponse = rawResponse
     }
-    
+ 
     /**
      Converts and returns a response in a form of `Dictionary<String, Any>`.
      If the conversion fails or there is was response - returns `nil`.

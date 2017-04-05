@@ -7,8 +7,6 @@
 //
 
 public protocol RequestProtocol {
-//  associatedtype Response: ResponseProtocol
-  
   
   var url: URL { get }
   
@@ -16,10 +14,6 @@ public protocol RequestProtocol {
   
   var httpMethod: RequestHTTPMethod { get }
   
-}
-
-extension RequestProtocol {
-    
 }
 
 /**

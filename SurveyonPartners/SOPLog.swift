@@ -50,7 +50,7 @@ class SOPLog{
     if let match = filename.range(of: "[^/]*$") {
       filename = filename.substring(with: match)
     }
-    print("\(loglevel) => \"\(message)\" \(nowdate) L\(line) \(function) @\(filename)")
+    print("\(loglevel) \"\(message)\" \(nowdate) L\(line) \(function) @\(filename)")
   }
   
 }
