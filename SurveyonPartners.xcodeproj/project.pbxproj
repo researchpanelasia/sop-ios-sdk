@@ -34,6 +34,8 @@
 		5E38D3FB1E8E3E4600D00DB8 /* SurveyListItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E38D3FA1E8E3E4600D00DB8 /* SurveyListItemProtocol.swift */; };
 		5E38D3FD1E8E441300D00DB8 /* SOPLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E38D3FC1E8E441300D00DB8 /* SOPLog.swift */; };
 		5E38D3FF1E8E4D8400D00DB8 /* SurveyListItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E38D3FE1E8E4D8400D00DB8 /* SurveyListItemFactory.swift */; };
+		5E3D9A221E9760F900AE9F88 /* ProfilingPointRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3D9A211E9760F900AE9F88 /* ProfilingPointRule.swift */; };
+		5E3D9A241E97611300AE9F88 /* ResearchPointRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3D9A231E97611300AE9F88 /* ResearchPointRule.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,8 @@
 		5E38D3FA1E8E3E4600D00DB8 /* SurveyListItemProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyListItemProtocol.swift; sourceTree = "<group>"; };
 		5E38D3FC1E8E441300D00DB8 /* SOPLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOPLog.swift; sourceTree = "<group>"; };
 		5E38D3FE1E8E4D8400D00DB8 /* SurveyListItemFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SurveyListItemFactory.swift; path = SurveyonPartners/Models/SurveyListItemFactory.swift; sourceTree = SOURCE_ROOT; };
+		5E3D9A211E9760F900AE9F88 /* ProfilingPointRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilingPointRule.swift; sourceTree = "<group>"; };
+		5E3D9A231E97611300AE9F88 /* ResearchPointRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResearchPointRule.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,8 @@
 				5E38D3F61E8E370C00D00DB8 /* Research.swift */,
 				5E38D3FA1E8E3E4600D00DB8 /* SurveyListItemProtocol.swift */,
 				5E38D3FE1E8E4D8400D00DB8 /* SurveyListItemFactory.swift */,
+				5E3D9A211E9760F900AE9F88 /* ProfilingPointRule.swift */,
+				5E3D9A231E97611300AE9F88 /* ResearchPointRule.swift */,
 			);
 			name = Models;
 			path = models;
@@ -300,9 +306,11 @@
 				5E142E5F1E71427A002804A3 /* Constants.swift in Sources */,
 				5E142E7B1E7A5751002804A3 /* Utility.swift in Sources */,
 				5E38D3F91E8E3D4600D00DB8 /* Profiling.swift in Sources */,
+				5E3D9A241E97611300AE9F88 /* ResearchPointRule.swift in Sources */,
 				5E142E5B1E70F9F0002804A3 /* AdvertisingId.swift in Sources */,
 				5E142EA31E821DFB002804A3 /* ResponseProtocol.swift in Sources */,
 				5E15B63D1E5EBC9E00FE0671 /* SurveyonPartners.swift in Sources */,
+				5E3D9A221E9760F900AE9F88 /* ProfilingPointRule.swift in Sources */,
 				5E142E431E6F9F06002804A3 /* Authentication.swift in Sources */,
 				5E142EAA1E82442B002804A3 /* RequestProtocol.swift in Sources */,
 				5E142E711E791CB9002804A3 /* Response.swift in Sources */,

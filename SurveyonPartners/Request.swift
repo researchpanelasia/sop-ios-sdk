@@ -41,6 +41,7 @@ class Request: RequestProtocol {
     //      let session = URLSession(configuration: configuration)
     let session = URLSession(configuration: configuration, delegate: NSURLSessionPinningDelegate(), delegateQueue: operationQueue)
     let task = session.dataTask(with: requestUrl) { data, response, error in
+      
       guard let data = data, error == nil else {
         // check for fundamental networking error
         SOPLog.error(message: "network error")
@@ -128,6 +129,7 @@ extension Request {
   }
   
   func get(completion: ((Bool) -> Void)?) {
+    
     var request = URLRequest(url: url)
     request.httpMethod = getHttpMethod()
     

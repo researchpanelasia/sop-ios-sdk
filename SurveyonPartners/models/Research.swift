@@ -6,11 +6,17 @@
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
-class Research: SurveyListItemProtocol {
+public class Research: SurveyListItemProtocol {
   
   static let MOBILE_BLOCKED = "MOBILE"
   
-  var surveyId: String?
+  public var surveyId: String?
+  
+  public var title: String?
+  
+  public var loi: String?
+  
+  public var url: String?
   
   var quotaId: String?
   
@@ -18,15 +24,9 @@ class Research: SurveyListItemProtocol {
   
   var ir: String?
   
-  var loi: String?
-  
   var isAnswered: String?
   
   var isClosed: String?
-  
-  var title: String?
-  
-  var url: String?
   
   var isFixedLoi: String?
   

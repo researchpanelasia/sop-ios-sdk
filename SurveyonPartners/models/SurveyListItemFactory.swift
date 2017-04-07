@@ -10,7 +10,7 @@ import Foundation
 
 class SurveyListItemFactory {
   
-  static var SurveyListArray: [SurveyListItemProtocol] = []
+  static var SurveyListArray: [Any] = []
   
   static func create(data: Data) {
     
@@ -20,7 +20,7 @@ class SurveyListItemFactory {
       let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? NSDictionary
       if let dataJson = json!["data"] as? [String: Any] {
         if let profiling = dataJson["profiling"] as? [[String: Any]] {
-          for index in 0...profiling.count - 1 {
+          for index in 0..<profiling.count {
             let profilingData = Profiling(surveyId: profiling[index]["name"] as? String,
                                           title: profiling[index]["title"] as? String,
                                           url: profiling[index]["url"] as? String)
@@ -36,7 +36,7 @@ class SurveyListItemFactory {
       let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? NSDictionary
       if let dataJson = json!["data"] as? [String: Any] {
         if let research = dataJson["research"] as? [[String: Any]] {
-          for index in 0...research.count - 1 {
+          for index in 0..<research.count {
             let researchData = Research(surveyId: research[index]["survey_id"] as? String,
                                         quotaId: research[index]["quota_id"] as? String,
                                         cpi: research[index]["cpi"] as? String,

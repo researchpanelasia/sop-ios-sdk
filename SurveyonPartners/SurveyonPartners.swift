@@ -50,18 +50,18 @@ extension SurveyonPartners {
     
   }
   
-  public static func showSurveyList() {
+  public static func showSurveyList<T,R>(profilingPointRule: T, researchPointRule: R) {
     
     HttpClient.getHttpClient().getSurveyList(completion: { (isSuccess) -> Void in
       if isSuccess {
         print("##### Success #####")
+        
         if SurveyListItemFactory.SurveyListArray.count > 0 {
-          for index in 0...SurveyListItemFactory.SurveyListArray.count - 1 {
-            print("index = \(index)")
-            print("surveyList.title = \(SurveyListItemFactory.SurveyListArray[index].title!)")
-            print("surveyList.surveyId = \(SurveyListItemFactory.SurveyListArray[index].surveyId!)")
-            print("surveyList.loi = \(SurveyListItemFactory.SurveyListArray[index].loi!)")
-            print("surveyList.url = \(SurveyListItemFactory.SurveyListArray[index].url!)")
+          for index in 0..<SurveyListItemFactory.SurveyListArray.count {
+            print("surveyList.title = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).title!)")
+            print("surveyList.surveyId = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).surveyId!)")
+            print("surveyList.loi = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).loi!)")
+            print("surveyList.url = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).url!)")
           }
         }
       } else {
