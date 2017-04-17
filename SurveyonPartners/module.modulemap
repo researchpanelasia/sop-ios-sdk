@@ -1,0 +1,5 @@
+// for commoncrypto/commoncrypto.h
+module CommonCrypto {
+    header "/usr/include/CommonCrypto/CommonCrypto.h"
+    export *
+}
