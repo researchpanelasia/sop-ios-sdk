@@ -10,7 +10,7 @@ import CommonCrypto
 
 class Authentication {
     
-    func createSignature(parameters: Dictionary<String,String>, key: String) -> String {
+    func createSignature(parameters: [String: String], key: String) -> String {
         return createHmacSHA256(message: createCombinedParameter(parameters: parameters), key: key)
     }
     
@@ -18,7 +18,7 @@ class Authentication {
         return createHmacSHA256(message: message, key: key)
     }
     
-    private func createCombinedParameter(parameters: Dictionary<String,String>) -> String {
+    private func createCombinedParameter(parameters: [String: String]) -> String {
         let sortedParameters = parameters.sorted(by: {$0.0 < $1.0})
         var strArray = ""
         
