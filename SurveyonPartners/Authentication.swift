@@ -19,17 +19,11 @@ class Authentication {
     }
     
     private func createCombinedParameter(parameters: [String: String]) -> String {
-        let sortedParameters = parameters.sorted(by: {$0.0 < $1.0})
-        var strArray = ""
+        let str = parameters.sorted(by: {$0.0 < $1.0})
+            .filter({!$0.0.hasPrefix("sop_")})
+            .reduce("", {result, element in result + "&" + element.key + "=" + element.value })
         
-        for (key, value) in sortedParameters {
-            if key.hasPrefix("sop_") {
-                continue
-            }
-            strArray += key + "=" + value + "&"
-        }
-        
-        return strArray.substring(to: strArray.index(before: strArray.endIndex))
+        return str.substring(from: str.index(str.startIndex, offsetBy: 1))
     }
     
     private func createHmacSHA256(message: String, key: String) -> String {
