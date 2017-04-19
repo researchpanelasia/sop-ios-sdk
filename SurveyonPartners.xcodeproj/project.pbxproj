@@ -11,6 +11,13 @@
 		5E142E451E6F9F98002804A3 /* AuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E441E6F9F98002804A3 /* AuthenticationTests.swift */; };
 		5E142E461E6FB354002804A3 /* SurveyonPartners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E15B63C1E5EBC9E00FE0671 /* SurveyonPartners.swift */; };
 		5E142E481E6FB89A002804A3 /* SurveyonPartnersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E15B62A1E5EBA5C00FE0671 /* SurveyonPartnersTests.swift */; };
+		5E142E5B1E70F9F0002804A3 /* AdvertisingId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E5A1E70F9F0002804A3 /* AdvertisingId.swift */; };
+		5E142E5F1E71427A002804A3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E5E1E71427A002804A3 /* Constants.swift */; };
+		5E142E611E714532002804A3 /* PreferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E601E714532002804A3 /* PreferencesManager.swift */; };
+		5E142E651E725658002804A3 /* SurveyonPartnersCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E641E725658002804A3 /* SurveyonPartnersCommon.swift */; };
+		5E142E6B1E727994002804A3 /* SurveyonPartnersCommonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E691E727994002804A3 /* SurveyonPartnersCommonTests.swift */; };
+		5E142E6D1E728C93002804A3 /* PreferencesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E6C1E728C93002804A3 /* PreferencesManagerTests.swift */; };
+		5E142E6F1E728DEA002804A3 /* AdvertisingIdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E6E1E728DEA002804A3 /* AdvertisingIdTests.swift */; };
 		5E15B6261E5EBA5C00FE0671 /* SurveyonPartners.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E15B61C1E5EBA5C00FE0671 /* SurveyonPartners.framework */; };
 		5E15B62D1E5EBA5C00FE0671 /* SurveyonPartners.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E15B61F1E5EBA5C00FE0671 /* SurveyonPartners.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5E15B63D1E5EBC9E00FE0671 /* SurveyonPartners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E15B63C1E5EBC9E00FE0671 /* SurveyonPartners.swift */; };
@@ -30,6 +37,13 @@
 		5E142E3C1E6E9ADF002804A3 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		5E142E421E6F9F06002804A3 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		5E142E441E6F9F98002804A3 /* AuthenticationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationTests.swift; sourceTree = "<group>"; };
+		5E142E5A1E70F9F0002804A3 /* AdvertisingId.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvertisingId.swift; sourceTree = "<group>"; };
+		5E142E5E1E71427A002804A3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5E142E601E714532002804A3 /* PreferencesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesManager.swift; sourceTree = "<group>"; };
+		5E142E641E725658002804A3 /* SurveyonPartnersCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyonPartnersCommon.swift; sourceTree = "<group>"; };
+		5E142E691E727994002804A3 /* SurveyonPartnersCommonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyonPartnersCommonTests.swift; sourceTree = "<group>"; };
+		5E142E6C1E728C93002804A3 /* PreferencesManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesManagerTests.swift; sourceTree = "<group>"; };
+		5E142E6E1E728DEA002804A3 /* AdvertisingIdTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvertisingIdTests.swift; sourceTree = "<group>"; };
 		5E15B61C1E5EBA5C00FE0671 /* SurveyonPartners.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SurveyonPartners.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E15B61F1E5EBA5C00FE0671 /* SurveyonPartners.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SurveyonPartners.h; sourceTree = "<group>"; };
 		5E15B6201E5EBA5C00FE0671 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -82,10 +96,14 @@
 			children = (
 				5E142E3C1E6E9ADF002804A3 /* module.modulemap */,
 				5E15B6201E5EBA5C00FE0671 /* Info.plist */,
+				5E142E5E1E71427A002804A3 /* Constants.swift */,
 				5E15B61F1E5EBA5C00FE0671 /* SurveyonPartners.h */,
 				5E15B63C1E5EBC9E00FE0671 /* SurveyonPartners.swift */,
+				5E142E641E725658002804A3 /* SurveyonPartnersCommon.swift */,
 				5E15B63B1E5EBC9E00FE0671 /* SurveyonPartnersUniversal-Bridging-Header.h */,
+				5E142E5A1E70F9F0002804A3 /* AdvertisingId.swift */,
 				5E142E421E6F9F06002804A3 /* Authentication.swift */,
+				5E142E601E714532002804A3 /* PreferencesManager.swift */,
 			);
 			path = SurveyonPartners;
 			sourceTree = "<group>";
@@ -94,7 +112,10 @@
 			isa = PBXGroup;
 			children = (
 				5E15B62A1E5EBA5C00FE0671 /* SurveyonPartnersTests.swift */,
+				5E142E691E727994002804A3 /* SurveyonPartnersCommonTests.swift */,
+				5E142E6E1E728DEA002804A3 /* AdvertisingIdTests.swift */,
 				5E142E441E6F9F98002804A3 /* AuthenticationTests.swift */,
+				5E142E6C1E728C93002804A3 /* PreferencesManagerTests.swift */,
 				5E15B62C1E5EBA5C00FE0671 /* Info.plist */,
 			);
 			path = SurveyonPartnersTests;
@@ -213,7 +234,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E142E611E714532002804A3 /* PreferencesManager.swift in Sources */,
+				5E142E5F1E71427A002804A3 /* Constants.swift in Sources */,
+				5E142E5B1E70F9F0002804A3 /* AdvertisingId.swift in Sources */,
 				5E15B63D1E5EBC9E00FE0671 /* SurveyonPartners.swift in Sources */,
+				5E142E651E725658002804A3 /* SurveyonPartnersCommon.swift in Sources */,
 				5E142E431E6F9F06002804A3 /* Authentication.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,8 +247,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E142E6B1E727994002804A3 /* SurveyonPartnersCommonTests.swift in Sources */,
+				5E142E6F1E728DEA002804A3 /* AdvertisingIdTests.swift in Sources */,
 				5E142E451E6F9F98002804A3 /* AuthenticationTests.swift in Sources */,
 				5E142E481E6FB89A002804A3 /* SurveyonPartnersTests.swift in Sources */,
+				5E142E6D1E728C93002804A3 /* PreferencesManagerTests.swift in Sources */,
 				5E142E461E6FB354002804A3 /* SurveyonPartners.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
