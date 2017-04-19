@@ -23,7 +23,6 @@
 		5E142E7B1E7A5751002804A3 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E7A1E7A5751002804A3 /* Utility.swift */; };
 		5E142E831E7A767A002804A3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E142E821E7A767A002804A3 /* SystemConfiguration.framework */; };
 		5E142EAA1E82442B002804A3 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142EA91E82442B002804A3 /* RequestProtocol.swift */; };
-		5E142EB61E827C83002804A3 /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142EB51E827C83002804A3 /* RequestResult.swift */; };
 		5E15B6261E5EBA5C00FE0671 /* SurveyonPartners.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E15B61C1E5EBA5C00FE0671 /* SurveyonPartners.framework */; };
 		5E15B62D1E5EBA5C00FE0671 /* SurveyonPartners.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E15B61F1E5EBA5C00FE0671 /* SurveyonPartners.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5E15B63D1E5EBC9E00FE0671 /* SurveyonPartners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E15B63C1E5EBC9E00FE0671 /* SurveyonPartners.swift */; };
@@ -60,7 +59,6 @@
 		5E142E7A1E7A5751002804A3 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		5E142E821E7A767A002804A3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		5E142EA91E82442B002804A3 /* RequestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
-		5E142EB51E827C83002804A3 /* RequestResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
 		5E15B61C1E5EBA5C00FE0671 /* SurveyonPartners.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SurveyonPartners.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E15B61F1E5EBA5C00FE0671 /* SurveyonPartners.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SurveyonPartners.h; sourceTree = "<group>"; };
 		5E15B6201E5EBA5C00FE0671 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -153,7 +151,6 @@
 				5E142E761E792751002804A3 /* Request.swift */,
 				5E142EA91E82442B002804A3 /* RequestProtocol.swift */,
 				5E142E7A1E7A5751002804A3 /* Utility.swift */,
-				5E142EB51E827C83002804A3 /* RequestResult.swift */,
 				5E38D3FC1E8E441300D00DB8 /* SOPLog.swift */,
 			);
 			path = SurveyonPartners;
@@ -290,7 +287,6 @@
 				5E142E611E714532002804A3 /* PreferencesManager.swift in Sources */,
 				5E38D3FB1E8E3E4600D00DB8 /* SurveyListItemProtocol.swift in Sources */,
 				5E38D3F71E8E370C00D00DB8 /* Research.swift in Sources */,
-				5E142EB61E827C83002804A3 /* RequestResult.swift in Sources */,
 				5E142E5F1E71427A002804A3 /* Constants.swift in Sources */,
 				5E142E7B1E7A5751002804A3 /* Utility.swift in Sources */,
 				5E38D3F91E8E3D4600D00DB8 /* Profiling.swift in Sources */,

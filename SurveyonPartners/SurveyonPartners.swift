@@ -27,7 +27,7 @@ extension SurveyonPartners {
                            updateSpan: Int64 = SurveyonPartners.DEFAULT_IDFA_UPDATE_SPAN,
                            useHttps: Bool = true,
                            verifyHost: Bool = true) {
-    
+ 
     let httpClient = HttpClient(appId: appId,
                                 appMid: appMid,
                                 secretKey: secretKey,
