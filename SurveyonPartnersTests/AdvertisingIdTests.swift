@@ -26,13 +26,6 @@ class AdvertisingIdTests: XCTestCase {
         XCTAssertNotNil(adid)
     }
     
-    func testAdvertisingIdSameValue() {
-        let firstAdid = AdvertisingId.getAdvertisingIdentifier()
-        let secondAdid = AdvertisingId.getAdvertisingIdentifier()
-        
-        XCTAssert(firstAdid == secondAdid)
-    }
-    
     func testAdvertisingIdSameLimit() {
         let firstLimit = AdvertisingId.getIsAdvertisingTrackingEnabled()
         let secondLimit = AdvertisingId.getIsAdvertisingTrackingEnabled()
