@@ -67,6 +67,7 @@ class Request: RequestProtocol {
         let code = meta?["code"] as? Int
         let message = meta?["message"] as? String
         let surveyList = SurveyListItemFactory.create(data: data)
+        
         let responseString = String(data: data, encoding: .utf8)
         SOPLog.debug(message: "responseString = \(responseString)")
         SOPLog.debug(message: "code = \(code), message = \(message)")

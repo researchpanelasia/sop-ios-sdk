@@ -6,20 +6,12 @@
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
-public class Profiling: ProfilingProtocol {
+public protocol Profiling {
   
-  public var name: String?
+  var name: String? { get }
   
-  public var title: String?
+  var title: String? { get }
   
-  public var url: String?
-  
-  init(name: String?,
-       title: String?,
-       url: String?) {
-    self.name = name
-    self.title = title
-    self.url = url
-  }
+  var url: String? { get }
   
 }

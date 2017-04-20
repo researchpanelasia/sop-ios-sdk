@@ -28,13 +28,14 @@
 		5E15B63D1E5EBC9E00FE0671 /* SurveyonPartners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E15B63C1E5EBC9E00FE0671 /* SurveyonPartners.swift */; };
 		5E38D3F71E8E370C00D00DB8 /* Research.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E38D3F61E8E370C00D00DB8 /* Research.swift */; };
 		5E38D3F91E8E3D4600D00DB8 /* Profiling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E38D3F81E8E3D4600D00DB8 /* Profiling.swift */; };
-		5E38D3FB1E8E3E4600D00DB8 /* SurveyListItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E38D3FA1E8E3E4600D00DB8 /* SurveyListItemProtocol.swift */; };
 		5E38D3FD1E8E441300D00DB8 /* SOPLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E38D3FC1E8E441300D00DB8 /* SOPLog.swift */; };
 		5E38D3FF1E8E4D8400D00DB8 /* SurveyListItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E38D3FE1E8E4D8400D00DB8 /* SurveyListItemFactory.swift */; };
 		5E3D9A221E9760F900AE9F88 /* ProfilingPointRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3D9A211E9760F900AE9F88 /* ProfilingPointRule.swift */; };
 		5E3D9A241E97611300AE9F88 /* ResearchPointRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3D9A231E97611300AE9F88 /* ResearchPointRule.swift */; };
 		5E6CC6B11EA74FCE0098BEF1 /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6CC6B01EA74FCE0098BEF1 /* RequestResult.swift */; };
-		5EE33C471EA896810051A341 /* ProfilingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE33C461EA896810051A341 /* ProfilingProtocol.swift */; };
+		5EE33C651EA8A69D0051A341 /* SurveyListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE33C641EA8A69D0051A341 /* SurveyListItem.swift */; };
+		5EE33C691EA8B7680051A341 /* ImplProfiling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE33C681EA8B7680051A341 /* ImplProfiling.swift */; };
+		5EE33C6B1EA8B8850051A341 /* ImplResearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE33C6A1EA8B8850051A341 /* ImplResearch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,13 +74,14 @@
 		5E15B63C1E5EBC9E00FE0671 /* SurveyonPartners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyonPartners.swift; sourceTree = "<group>"; };
 		5E38D3F61E8E370C00D00DB8 /* Research.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Research.swift; path = SurveyonPartners/Models/Research.swift; sourceTree = SOURCE_ROOT; };
 		5E38D3F81E8E3D4600D00DB8 /* Profiling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profiling.swift; sourceTree = "<group>"; };
-		5E38D3FA1E8E3E4600D00DB8 /* SurveyListItemProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyListItemProtocol.swift; sourceTree = "<group>"; };
 		5E38D3FC1E8E441300D00DB8 /* SOPLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOPLog.swift; sourceTree = "<group>"; };
 		5E38D3FE1E8E4D8400D00DB8 /* SurveyListItemFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SurveyListItemFactory.swift; path = SurveyonPartners/Models/SurveyListItemFactory.swift; sourceTree = SOURCE_ROOT; };
 		5E3D9A211E9760F900AE9F88 /* ProfilingPointRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilingPointRule.swift; sourceTree = "<group>"; };
 		5E3D9A231E97611300AE9F88 /* ResearchPointRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResearchPointRule.swift; sourceTree = "<group>"; };
 		5E6CC6B01EA74FCE0098BEF1 /* RequestResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
-		5EE33C461EA896810051A341 /* ProfilingProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilingProtocol.swift; sourceTree = "<group>"; };
+		5EE33C641EA8A69D0051A341 /* SurveyListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyListItem.swift; sourceTree = "<group>"; };
+		5EE33C681EA8B7680051A341 /* ImplProfiling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImplProfiling.swift; sourceTree = "<group>"; };
+		5EE33C6A1EA8B8850051A341 /* ImplResearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImplResearch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,9 +109,10 @@
 			children = (
 				5E142E741E791E59002804A3 /* SetupInfo.swift */,
 				5E38D3F81E8E3D4600D00DB8 /* Profiling.swift */,
-				5EE33C461EA896810051A341 /* ProfilingProtocol.swift */,
 				5E38D3F61E8E370C00D00DB8 /* Research.swift */,
-				5E38D3FA1E8E3E4600D00DB8 /* SurveyListItemProtocol.swift */,
+				5EE33C641EA8A69D0051A341 /* SurveyListItem.swift */,
+				5EE33C681EA8B7680051A341 /* ImplProfiling.swift */,
+				5EE33C6A1EA8B8850051A341 /* ImplResearch.swift */,
 				5E38D3FE1E8E4D8400D00DB8 /* SurveyListItemFactory.swift */,
 				5E3D9A211E9760F900AE9F88 /* ProfilingPointRule.swift */,
 				5E3D9A231E97611300AE9F88 /* ResearchPointRule.swift */,
@@ -297,11 +300,11 @@
 				5E142E791E7A3733002804A3 /* HttpClient.swift in Sources */,
 				5E38D3FF1E8E4D8400D00DB8 /* SurveyListItemFactory.swift in Sources */,
 				5E142E611E714532002804A3 /* PreferencesManager.swift in Sources */,
-				5E38D3FB1E8E3E4600D00DB8 /* SurveyListItemProtocol.swift in Sources */,
 				5E38D3F71E8E370C00D00DB8 /* Research.swift in Sources */,
 				5E142E5F1E71427A002804A3 /* Constants.swift in Sources */,
 				5E6CC6B11EA74FCE0098BEF1 /* RequestResult.swift in Sources */,
 				5E142E7B1E7A5751002804A3 /* Utility.swift in Sources */,
+				5EE33C691EA8B7680051A341 /* ImplProfiling.swift in Sources */,
 				5E38D3F91E8E3D4600D00DB8 /* Profiling.swift in Sources */,
 				5E3D9A241E97611300AE9F88 /* ResearchPointRule.swift in Sources */,
 				5E142E5B1E70F9F0002804A3 /* AdvertisingId.swift in Sources */,
@@ -309,8 +312,9 @@
 				5E3D9A221E9760F900AE9F88 /* ProfilingPointRule.swift in Sources */,
 				5E142E431E6F9F06002804A3 /* Authentication.swift in Sources */,
 				5E142EAA1E82442B002804A3 /* RequestProtocol.swift in Sources */,
+				5EE33C6B1EA8B8850051A341 /* ImplResearch.swift in Sources */,
 				5E142E771E792751002804A3 /* Request.swift in Sources */,
-				5EE33C471EA896810051A341 /* ProfilingProtocol.swift in Sources */,
+				5EE33C651EA8A69D0051A341 /* SurveyListItem.swift in Sources */,
 				5E38D3FD1E8E441300D00DB8 /* SOPLog.swift in Sources */,
 				5E142E751E791E59002804A3 /* SetupInfo.swift in Sources */,
 			);
