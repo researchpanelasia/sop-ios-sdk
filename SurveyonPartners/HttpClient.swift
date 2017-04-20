@@ -72,8 +72,6 @@ extension HttpClient {
   
   func updateIdfa(completion: @escaping (Bool) -> Void) {
     
-//  func updateIdfa(_ completion: httpResponse: HTTPURLResponse?, _ result: RequestResult<T>) -> Void {
-  
     if !Utility.isOnline() { return }
     
     let url = URL(string: getProtocol() + self.sopConsoleHost + HttpClient.PATH_POST_IDFA)!
@@ -98,11 +96,6 @@ extension HttpClient {
         case .failed(let error):
           print("error = \(error)")
         }
-//        if isSuccess {
-//          completion(true)
-//        } else {
-//          completion(false)
-//        }
       })
     }
     
