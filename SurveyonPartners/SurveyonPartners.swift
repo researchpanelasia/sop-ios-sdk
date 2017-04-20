@@ -15,6 +15,8 @@ public struct SurveyonPartners {
   
   static let DEFAULT_SOP_CONSOLE_HOST = "console.partners.surveyon.com"
   
+  static var setupInfo: SetupInfo?
+  
 }
 
 extension SurveyonPartners {
@@ -27,6 +29,15 @@ extension SurveyonPartners {
                            updateSpan: Int64 = SurveyonPartners.DEFAULT_IDFA_UPDATE_SPAN,
                            useHttps: Bool = true,
                            verifyHost: Bool = true) {
+    
+    setupInfo = SetupInfo(appId: appId,
+                         appMid: appMid,
+                         secretKey: secretKey,
+                         sopHost: sopHost,
+                         sopConsoleHost: sopConsoleHost,
+                         idfaUpdateSpan: updateSpan,
+                         useHttps: useHttps,
+                         verifyHost: verifyHost)
     
     let httpClient = HttpClient(appId: appId,
                                 appMid: appMid,
@@ -52,7 +63,16 @@ extension SurveyonPartners {
   
   public static func showSurveyList<T,R>(profilingPointRule: T, researchPointRule: R) {
     
-    HttpClient.getHttpClient().getSurveyList(completion: { (isSuccess) -> Void in
+    let httpClient = HttpClient(appId: setupInfo!.appId!,
+                                appMid: setupInfo!.appMid!,
+                                secretKey: setupInfo!.secretKey!,
+                                sopHost: setupInfo!.sopHost!,
+                                sopConsoleHost: setupInfo!.sopConsoleHost!,
+                                updateSpan: setupInfo!.idfaUpdateSpan!,
+                                useHttps: setupInfo!.useHttps!,
+                                verifyHost: setupInfo!.verifyHost!)
+    
+    httpClient.getSurveyList(completion: { (isSuccess) -> Void in
       if isSuccess {
         print("##### Success #####")
         
@@ -81,7 +101,7 @@ extension SurveyonPartners {
   
   static func isNeedAdIdUpdated(currentTimeMilles: Int64) -> Bool {
     let previousTimeMilles: Int64 = PreferencesManager.readIntPreferences(forKey: Constants.SURVEYON_PARTNERS)
-    return SetupInfo.idfaUpdateSpan! <= (currentTimeMilles - previousTimeMilles)
+    return setupInfo!.idfaUpdateSpan! <= (currentTimeMilles - previousTimeMilles)
   }
   
 }
