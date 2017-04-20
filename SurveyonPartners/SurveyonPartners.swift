@@ -76,14 +76,15 @@ extension SurveyonPartners {
       if isSuccess {
         print("##### Success #####")
         
-        if SurveyListItemFactory.SurveyListArray.count > 0 {
-          for index in 0..<SurveyListItemFactory.SurveyListArray.count {
-            print("surveyList.title = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).title!)")
-            print("surveyList.surveyId = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).surveyId!)")
-            print("surveyList.loi = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).loi!)")
-            print("surveyList.url = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).url!)")
-          }
-        }
+//        if SurveyListItemFactory.SurveyListArray.count > 0 {
+//          for index in 0..<SurveyListItemFactory.SurveyListArray.count {
+//            print("surveyList.title = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).title!)")
+//            print("surveyList.surveyId = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).surveyId!)")
+//            print("surveyList.loi = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).loi!)")
+//            print("surveyList.url = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).url!)")
+//          }
+//        }
+        
       } else {
         print("##### Failure #####")
         //do nothing

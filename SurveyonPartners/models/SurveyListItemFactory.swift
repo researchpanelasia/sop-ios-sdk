@@ -10,18 +10,16 @@ import Foundation
 
 class SurveyListItemFactory {
   
-  static var SurveyListArray: [Any] = []
-  
-  static func create(data: Data) {
+  static func create(data: Data) -> [Any] {
     
-    SurveyListArray = []
+    var SurveyListArray: [Any] = []
     
     do {
       let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? NSDictionary
       if let dataJson = json!["data"] as? [String: Any] {
         if let profiling = dataJson["profiling"] as? [[String: Any]] {
           for index in 0..<profiling.count {
-            let profilingData = Profiling(surveyId: profiling[index]["name"] as? String,
+            let profilingData = Profiling(name: profiling[index]["name"] as? String,
                                           title: profiling[index]["title"] as? String,
                                           url: profiling[index]["url"] as? String)
             SurveyListArray.append(profilingData)
@@ -58,7 +56,8 @@ class SurveyListItemFactory {
     } catch let error as NSError {
       SOPLog.error(message: error.localizedDescription)
     }
-    
+   
+    return SurveyListArray
   }
   
 }

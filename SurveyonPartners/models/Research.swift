@@ -18,25 +18,25 @@ public class Research: SurveyListItemProtocol {
   
   public var url: String?
   
-  var quotaId: String?
+  public var quotaId: String?
   
-  var cpi: String?
+  public var cpi: String?
   
-  var ir: String?
+  public var ir: String?
   
-  var isAnswered: String?
+  public var isAnswered: String?
   
-  var isClosed: String?
+  public var isClosed: String?
   
-  var isFixedLoi: String?
+  public var isFixedLoi: String?
   
-  var isNotifiable: String?
+  public var isNotifiable: String?
   
-  var date: String?
+  public var date: String?
   
-  var blockedDevices: String?
+  public var blockedDevices: String?
   
-  var extraInfo: String?
+  public var extraInfo: String?
   
   init(surveyId: String?,
        quotaId: String?,

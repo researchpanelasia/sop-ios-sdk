@@ -6,24 +6,20 @@
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
-public class Profiling: SurveyListItemProtocol {
+public class Profiling: ProfilingProtocol {
   
-  public var surveyId: String?
+  public var name: String?
   
   public var title: String?
   
-  public var loi: String?
-  
   public var url: String?
   
-  init(surveyId: String?,
+  init(name: String?,
        title: String?,
-       url: String?,
-       loi: String? = "") {
-    self.surveyId = surveyId
+       url: String?) {
+    self.name = name
     self.title = title
     self.url = url
-    self.loi = loi
   }
   
 }
