@@ -20,7 +20,7 @@ class Authentication {
     
     private func createCombinedParameter(parameters: [String: String]) -> String {
         let str = parameters.sorted(by: {$0.0 < $1.0})
-            .filter({!$0.0.hasPrefix(PREFIX_SOP_)})
+            .filter({!$0.0.hasPrefix(Constants.PREFIX_SOP_)})
             .reduce("", {result, element in result + "&" + element.key + "=" + element.value })
         
         return str.substring(from: str.index(str.startIndex, offsetBy: 1))
