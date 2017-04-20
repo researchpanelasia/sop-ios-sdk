@@ -6,22 +6,40 @@
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
-class SetupInfo {
+struct SetupInfo {
   
-  static var appId: String?
+  let appId: String?
   
-  static var appMid: String?
+  var appMid: String?
   
-  static var secretKey: String?
+  var secretKey: String?
   
-  static var sopHost: String?
+  var sopHost: String?
   
-  static var sopConsoleHost: String?
+  var sopConsoleHost: String?
   
-  static var idfaUpdateSpan: Int64?
+  var idfaUpdateSpan: Int64?
   
-  static var useHttps: Bool?
+  var useHttps: Bool?
   
-  static var verifyHost: Bool?
+  var verifyHost: Bool?
+  
+  init(appId: String,
+       appMid: String,
+       secretKey: String,
+       sopHost: String,
+       sopConsoleHost: String,
+       idfaUpdateSpan: Int64,
+       useHttps: Bool,
+       verifyHost: Bool) {
+    self.appId = appId
+    self.appMid = appMid
+    self.secretKey = secretKey
+    self.sopHost = sopHost
+    self.sopConsoleHost = sopConsoleHost
+    self.idfaUpdateSpan = idfaUpdateSpan
+    self.useHttps = useHttps
+    self.verifyHost = verifyHost
+  }
   
 }

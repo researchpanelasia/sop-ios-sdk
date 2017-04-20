@@ -33,50 +33,49 @@ class Request: RequestProtocol {
     self.requestBody = requestBody
     self.httpMethod = httpMethod
   }
-  
-  func send(requestUrl: URLRequest, completion: ((Bool) -> Void)?) {
+  //@escaping (Data?, URLResponse?, Error?)
+  func send(requestUrl: URLRequest, completion: ((RequestResult) -> Void)?) {
     
     let operationQueue = OperationQueue()
     let configuration = URLSessionConfiguration.default
     //      let session = URLSession(configuration: configuration)
     let session = URLSession(configuration: configuration, delegate: NSURLSessionPinningDelegate(), delegateQueue: operationQueue)
     let task = session.dataTask(with: requestUrl) { data, response, error in
+      
       guard let data = data, error == nil else {
         // check for fundamental networking error
         SOPLog.error(message: "network error")
         if let completion = completion {
-          completion(false)
+          completion(RequestResult.failed(error: error!))
         }
         return
       }
       
-      if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode < 200, httpStatus.statusCode >= 300 {
+      if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode > 200, httpStatus.statusCode <= 300 {
         // check for http errors
         let errorString = String(data: data, encoding: .utf8)
         SOPLog.error(message: "response = \(response), statusCode = \(httpStatus.statusCode), errorString = \(errorString)")
         if let completion = completion {
-          completion(false)
+          completion(RequestResult.failed(error: error!))
         }
         return
       }
       
-      if let json = try? JSONSerialization.jsonObject(with: data) as? [String:Any],
-        let meta = json?["meta"] as? [String:Any],
-        let code = meta["code"] as? Int,
-        let message = meta["message"] as? String {
+      do {
+        let json = try JSONSerialization.jsonObject(with: data) as? [String:Any]
+        let meta = json?["meta"] as? [String:Any]
+        let code = meta?["code"] as? Int
+        let message = meta?["message"] as? String
         SurveyListItemFactory.create(data: data)
         let responseString = String(data: data, encoding: .utf8)
         SOPLog.debug(message: "responseString = \(responseString)")
         SOPLog.debug(message: "code = \(code), message = \(message)")
         if let completion = completion {
-          completion(true)
+          completion(RequestResult.success(statusCode: code!, message: message!, rawBody: responseString!))
         }
         return
-      } else {
-        SOPLog.error(message: "bad json")
-        if let completion = completion {
-          completion(false)
-        }
+      } catch let parseError {
+        completion!(RequestResult.failed(error: parseError))
         return
       }
     }
@@ -116,18 +115,19 @@ class Request: RequestProtocol {
 
 extension Request {
   
-  func post(completion: ((Bool) -> Void)?) {
+  func post(completion: ((RequestResult) -> Void)?) {
     var request = URLRequest(url: url)
     request.httpMethod = getHttpMethod()
     request.addValue(Request.APPLICATION_JSON, forHTTPHeaderField: Request.CONTENT_TYPE)
-    request.addValue(Authentication().createSignature(message: requestBody, key: SetupInfo.secretKey!), forHTTPHeaderField: Request.X_SOP_SIG)
+    
+    request.addValue(Authentication().createSignature(message: requestBody, key: SurveyonPartners.setupInfo!.secretKey!), forHTTPHeaderField: Request.X_SOP_SIG)
     request.addValue(Utility.getUserAgent(), forHTTPHeaderField: Request.USER_AGENT)
     request.httpBody = requestBody.data(using: .utf8)
     
     send(requestUrl: request, completion: completion)
   }
   
-  func get(completion: ((Bool) -> Void)?) {
+  func get(completion: ((RequestResult) -> Void)?) {
     var request = URLRequest(url: url)
     request.httpMethod = getHttpMethod()
     

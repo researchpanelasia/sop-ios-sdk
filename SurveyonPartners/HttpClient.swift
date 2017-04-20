@@ -32,7 +32,21 @@ struct HttpClient {
   
   static let KEY_SOP_AD_TRACKING = "sop_ad_tracking";
   
-  static var httpClient: HttpClient?
+  var appId: String
+  
+  var appMid: String
+  
+  var secretKey: String
+  
+  var sopHost: String
+  
+  var sopConsoleHost: String
+  
+  var idfaUpdateSpan: Int64
+  
+  var useHttps: Bool
+  
+  var verifyHost: Bool
   
   init(appId: String,
        appMid: String,
@@ -42,15 +56,14 @@ struct HttpClient {
        updateSpan: Int64,
        useHttps: Bool,
        verifyHost: Bool) {
-    SetupInfo.appId = appId
-    SetupInfo.appMid = appMid
-    SetupInfo.secretKey = secretKey
-    SetupInfo.sopHost = sopHost
-    SetupInfo.sopConsoleHost = sopConsoleHost
-    SetupInfo.idfaUpdateSpan = updateSpan
-    SetupInfo.useHttps = useHttps
-    SetupInfo.verifyHost = verifyHost
-    HttpClient.httpClient = self
+    self.appId = appId
+    self.appMid = appMid
+    self.secretKey = secretKey
+    self.sopHost = sopHost
+    self.sopConsoleHost = sopConsoleHost
+    self.idfaUpdateSpan = updateSpan
+    self.useHttps = useHttps
+    self.verifyHost = verifyHost
   }
   
 }
@@ -59,12 +72,14 @@ extension HttpClient {
   
   func updateIdfa(completion: @escaping (Bool) -> Void) {
     
+//  func updateIdfa(_ completion: httpResponse: HTTPURLResponse?, _ result: RequestResult<T>) -> Void {
+  
     if !Utility.isOnline() { return }
     
-    let url = URL(string: HttpClient.getProtocol() + SetupInfo.sopConsoleHost! + HttpClient.PATH_POST_IDFA)!
+    let url = URL(string: getProtocol() + self.sopConsoleHost + HttpClient.PATH_POST_IDFA)!
     let dictionary: Dictionary<String,Any>  = [
-      HttpClient.KEY_APP_ID: SetupInfo.appId!,
-      HttpClient.KEY_APP_MID: SetupInfo.appMid!,
+      HttpClient.KEY_APP_ID: self.appId,
+      HttpClient.KEY_APP_MID: self.appMid,
       HttpClient.KEY_TIME: Utility.getPosixTime(),
       HttpClient.KEY_IDENTIFIER: AdvertisingId.getAdvertisingIdentifier(),
       HttpClient.KEY_IS_AD_TRACKING_ENABLED: AdvertisingId.getIsAdvertisingTrackingEnabled()
@@ -76,12 +91,18 @@ extension HttpClient {
       let request = Request(url: url,
                             requestBody: JSONString,
                             httpMethod: .POST)
-      request.post(completion: { (isSuccess) -> Void in
-        if isSuccess {
-          completion(true)
-        } else {
-          completion(false)
+      request.post(completion: { (result) -> Void in
+        switch result {
+        case .success(let statusCode, let message, let rawBody):
+          print("statusCode = \(statusCode), message = \(message), rawBody = \(rawBody) ")
+        case .failed(let error):
+          print("error = \(error)")
         }
+//        if isSuccess {
+//          completion(true)
+//        } else {
+//          completion(false)
+//        }
       })
     }
     
@@ -91,19 +112,19 @@ extension HttpClient {
     
     if !Utility.isOnline() { return }
     
-    var apiUrl = HttpClient.getProtocol() + SetupInfo.sopHost! + HttpClient.PATH_GET_SURVEY
+    var apiUrl = getProtocol() + self.sopHost + HttpClient.PATH_GET_SURVEY
     
     let populationDict: Dictionary<String,String>  = [
-      HttpClient.KEY_APP_ID: SetupInfo.appId!,
-      HttpClient.KEY_APP_MID: SetupInfo.appMid!,
+      HttpClient.KEY_APP_ID: self.appId,
+      HttpClient.KEY_APP_MID: self.appMid,
       HttpClient.KEY_TIME: Utility.getPosixTime(),
       HttpClient.KEY_SOP_AD_TRACKING: "1"
       
     ]
     
-    let sig = Authentication().createSignature(parameters: populationDict, key: SetupInfo.secretKey!)
-    var params = "?app_id=" + SetupInfo.appId!
-    params += "&app_mid=" + SetupInfo.appMid!
+    let sig = Authentication().createSignature(parameters: populationDict, key: self.secretKey)
+    var params = "?app_id=" + self.appId
+    params += "&app_mid=" + self.appMid
     params += "&time=" + Utility.getPosixTime()
     let paramSig = "&sig=" + sig
     apiUrl += params + paramSig
@@ -112,26 +133,19 @@ extension HttpClient {
     let url = URL(string: apiUrl)!
     let request = Request(url: url,
                           httpMethod: .GET)
-    request.get(completion: { (isSuccess) -> Void in
-      if isSuccess {
-        completion(true)
-      } else {
-        completion(false)
+    request.get(completion: { (result) -> Void in
+      switch result {
+      case .success(let statusCode, let message, let rawBody):
+        print("statusCode = \(statusCode), message = \(message), rawBody = \(rawBody) ")
+      case .failed(let error):
+        print("error = \(error)")
       }
     })
     
   }
   
-}
-
-extension HttpClient {
-  
-  static func getHttpClient() -> HttpClient {
-    return HttpClient.httpClient!
-  }
-  
-  static func getProtocol() -> String {
-    if SetupInfo.useHttps! {
+  func getProtocol() -> String {
+    if self.useHttps {
       return HttpClient.HTTPS
     }
     return HttpClient.HTTP

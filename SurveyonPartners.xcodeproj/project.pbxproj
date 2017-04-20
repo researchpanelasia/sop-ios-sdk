@@ -31,6 +31,7 @@
 		5E38D3FB1E8E3E4600D00DB8 /* SurveyListItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E38D3FA1E8E3E4600D00DB8 /* SurveyListItemProtocol.swift */; };
 		5E38D3FD1E8E441300D00DB8 /* SOPLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E38D3FC1E8E441300D00DB8 /* SOPLog.swift */; };
 		5E38D3FF1E8E4D8400D00DB8 /* SurveyListItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E38D3FE1E8E4D8400D00DB8 /* SurveyListItemFactory.swift */; };
+		5E6CC6B11EA74FCE0098BEF1 /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6CC6B01EA74FCE0098BEF1 /* RequestResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		5E38D3FA1E8E3E4600D00DB8 /* SurveyListItemProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyListItemProtocol.swift; sourceTree = "<group>"; };
 		5E38D3FC1E8E441300D00DB8 /* SOPLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOPLog.swift; sourceTree = "<group>"; };
 		5E38D3FE1E8E4D8400D00DB8 /* SurveyListItemFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SurveyListItemFactory.swift; path = SurveyonPartners/Models/SurveyListItemFactory.swift; sourceTree = SOURCE_ROOT; };
+		5E6CC6B01EA74FCE0098BEF1 /* RequestResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 				5E142E601E714532002804A3 /* PreferencesManager.swift */,
 				5E142E781E7A3733002804A3 /* HttpClient.swift */,
 				5E142E761E792751002804A3 /* Request.swift */,
+				5E6CC6B01EA74FCE0098BEF1 /* RequestResult.swift */,
 				5E142EA91E82442B002804A3 /* RequestProtocol.swift */,
 				5E142E7A1E7A5751002804A3 /* Utility.swift */,
 				5E38D3FC1E8E441300D00DB8 /* SOPLog.swift */,
@@ -288,6 +291,7 @@
 				5E38D3FB1E8E3E4600D00DB8 /* SurveyListItemProtocol.swift in Sources */,
 				5E38D3F71E8E370C00D00DB8 /* Research.swift in Sources */,
 				5E142E5F1E71427A002804A3 /* Constants.swift in Sources */,
+				5E6CC6B11EA74FCE0098BEF1 /* RequestResult.swift in Sources */,
 				5E142E7B1E7A5751002804A3 /* Utility.swift in Sources */,
 				5E38D3F91E8E3D4600D00DB8 /* Profiling.swift in Sources */,
 				5E142E5B1E70F9F0002804A3 /* AdvertisingId.swift in Sources */,
@@ -438,7 +442,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SurveyonPartners/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.surveyon.partners.SurveyonPartners;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -462,7 +466,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SurveyonPartners/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.surveyon.partners.SurveyonPartners;
 				PRODUCT_NAME = "$(TARGET_NAME)";
