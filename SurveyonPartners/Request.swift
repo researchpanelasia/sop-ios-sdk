@@ -33,7 +33,7 @@ class Request: RequestProtocol {
     self.requestBody = requestBody
     self.httpMethod = httpMethod
   }
-  //@escaping (Data?, URLResponse?, Error?)
+  
   func send(requestUrl: URLRequest, completion: ((RequestResult) -> Void)?) {
     
     let operationQueue = OperationQueue()
@@ -51,7 +51,7 @@ class Request: RequestProtocol {
         return
       }
       
-      if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode > 200, httpStatus.statusCode <= 300 {
+      if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode < 200, httpStatus.statusCode >= 300 {
         // check for http errors
         let errorString = String(data: data, encoding: .utf8)
         SOPLog.error(message: "response = \(response), statusCode = \(httpStatus.statusCode), errorString = \(errorString)")

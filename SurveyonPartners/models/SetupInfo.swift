@@ -8,7 +8,7 @@
 
 struct SetupInfo {
   
-  let appId: String?
+  var appId: String?
   
   var appMid: String?
   
