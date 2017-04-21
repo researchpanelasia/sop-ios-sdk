@@ -19,6 +19,7 @@ class Constants {
   static let READ_TIMEOUT = 10000
   
   // Response Key
+  static let MOBILE_BLOCKED = "MOBILE";
   static let KEY_META = "meta"
   static let KEY_CODE = "code"
   static let KEY_MESSAGE = "messase"

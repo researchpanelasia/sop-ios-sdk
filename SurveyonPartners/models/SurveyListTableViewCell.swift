@@ -34,7 +34,7 @@ class SurveyListTableViewCell: UITableViewCell {
     super.setSelected(selected, animated: animated)
   }
   
-  func setCell(surveyListItemProtocol: SurveyListItemProtocol) {
+  func setCell(surveyListItemProtocol: SurveyListItem) {
 //    self.surveyNo = String(surveyListItemProtocol.surveyId)
     
   }

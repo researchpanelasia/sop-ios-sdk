@@ -60,6 +60,8 @@ public class SurveyonPartners: UIViewController {
     super.didReceiveMemoryWarning()
   }
   
+  static var setupInfo: SetupInfo?
+  
 }
 
 extension SurveyonPartners {
@@ -72,6 +74,15 @@ extension SurveyonPartners {
                            updateSpan: Int64 = SurveyonPartners.DEFAULT_IDFA_UPDATE_SPAN,
                            useHttps: Bool = true,
                            verifyHost: Bool = true) {
+    
+    setupInfo = SetupInfo(appId: appId,
+                         appMid: appMid,
+                         secretKey: secretKey,
+                         sopHost: sopHost,
+                         sopConsoleHost: sopConsoleHost,
+                         idfaUpdateSpan: updateSpan,
+                         useHttps: useHttps,
+                         verifyHost: verifyHost)
     
     let httpClient = HttpClient(appId: appId,
                                 appMid: appMid,
@@ -97,26 +108,34 @@ extension SurveyonPartners {
   
   public static func showSurveyList<T,R>(profilingPointRule: T, researchPointRule: R) {
     
-    HttpClient.getHttpClient().getSurveyList(completion: { (isSuccess) -> Void in
+    let httpClient = HttpClient(appId: setupInfo!.appId!,
+                                appMid: setupInfo!.appMid!,
+                                secretKey: setupInfo!.secretKey!,
+                                sopHost: setupInfo!.sopHost!,
+                                sopConsoleHost: setupInfo!.sopConsoleHost!,
+                                updateSpan: setupInfo!.idfaUpdateSpan!,
+                                useHttps: setupInfo!.useHttps!,
+                                verifyHost: setupInfo!.verifyHost!)
+    
+    httpClient.getSurveyList(completion: { (isSuccess) -> Void in
       if isSuccess {
-        print("##### Success #####")
-        let cookiePoint = profilingPointRule as! ProfilingPointRule
-        let pro = SurveyListItemFactory.SurveyListArray[0] as! Profiling
-        print("cookiePoint = \(cookiePoint.cookieProfilingPoint(profiling: pro))")
+        SOPLog.debug(message: "getSurveyList() Success")
+//        let cookiePoint = profilingPointRule as! ProfilingPointRule
+//        let pro = SurveyListItemFactory.SurveyListArray[0] as! Profiling
+//        print("cookiePoint = \(cookiePoint.cookieProfilingPoint(profiling: pro))")
         
-        if SurveyListItemFactory.SurveyListArray.count > 0 {
-          for index in 0..<SurveyListItemFactory.SurveyListArray.count {
-            print("surveyList.title = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).title!)")
-            print("surveyList.surveyId = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).surveyId!)")
-            print("surveyList.loi = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).loi!)")
-            print("surveyList.url = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).url!)")
-          }
-          
-        }
+//        if SurveyListItemFactory.SurveyListArray.count > 0 {
+//          for index in 0..<SurveyListItemFactory.SurveyListArray.count {
+//            print("surveyList.title = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).title!)")
+//            print("surveyList.surveyId = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).surveyId!)")
+//            print("surveyList.loi = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).loi!)")
+//            print("surveyList.url = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).url!)")
+//          }
+//        }
         
       } else {
-        print("##### Fail #####")
         //do nothing
+        SOPLog.debug(message: "showSurveyList() Fail")
       }
     })
     
@@ -132,7 +151,7 @@ extension SurveyonPartners {
   
   static func isNeedAdIdUpdated(currentTimeMilles: Int64) -> Bool {
     let previousTimeMilles: Int64 = PreferencesManager.readIntPreferences(forKey: Constants.SURVEYON_PARTNERS)
-    return SetupInfo.idfaUpdateSpan! <= (currentTimeMilles - previousTimeMilles)
+    return setupInfo!.idfaUpdateSpan! <= (currentTimeMilles - previousTimeMilles)
   }
   
 }
