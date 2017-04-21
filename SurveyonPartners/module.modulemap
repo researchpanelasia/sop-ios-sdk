@@ -1,5 +1,5 @@
 // for commoncrypto/commoncrypto.h
 module CommonCrypto {
-    header "/usr/include/CommonCrypto/CommonCrypto.h"
+    header "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/include/CommonCrypto/CommonCrypto.h"
     export *
 }
