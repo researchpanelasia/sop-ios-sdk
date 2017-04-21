@@ -8,7 +8,7 @@
 
 struct ImplResearch: Research, SurveyListItem {
   
-  var surveyIdLabel: String? { get {return surveyId} }
+  var surveyIdLabel: String? { get {return "r" + surveyId!} }
   
   var name: String? { get {return ""} }
   
@@ -68,6 +68,24 @@ struct ImplResearch: Research, SurveyListItem {
     self.date = date
     self.blockedDevices = blockedDevices
     self.extraInfo = extraInfo
+  }
+  
+  func isMobileBlocked() -> Bool {
+    let data = self.blockedDevices!.data(using: .utf8)
+    do {
+      let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? NSDictionary
+      guard let blockedDevices = json?[Constants.KEY_BLOCKED_DEVICES] as? [String:Any] else {
+        return false
+      }
+      let mobileValue = blockedDevices[Constants.MOBILE_BLOCKED] as? Int
+      if mobileValue == 1 {
+        return true
+      } else {
+        return true
+      }
+    } catch {
+      return true
+    }
   }
   
 }

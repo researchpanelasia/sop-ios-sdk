@@ -6,8 +6,6 @@
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
-import Foundation
-
 class SurveyListItemFactory {
   
   static func create(data: Data) -> [SurveyListItem] {
@@ -47,7 +45,7 @@ class SurveyListItemFactory {
                                             isFixedLoi: research[index]["is_fixed_loi"] as? String,
                                             isNotifiable: research[index]["is_notifiable"] as? String,
                                             date: research[index]["date"] as? String,
-                                            blockedDevices: research[index]["date"] as? String,
+                                            blockedDevices: research[index]["blocked_devices"] as? String,
                                             extraInfo: research[index]["extra_info"] as? String)
             surveyListArray.append(researchData)
           }
