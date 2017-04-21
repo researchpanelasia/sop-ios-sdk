@@ -63,10 +63,11 @@ class Request: RequestProtocol {
       
       do {
         let json = try JSONSerialization.jsonObject(with: data) as? [String:Any]
-        let meta = json?["meta"] as? [String:Any]
-        let code = meta?["code"] as? Int
-        let message = meta?["message"] as? String
-        SurveyListItemFactory.create(data: data)
+        let meta = json?[Constants.KEY_META] as? [String:Any]
+        let code = meta?[Constants.KEY_CODE] as? Int
+        let message = meta?[Constants.KEY_MESSAGE] as? String
+        let surveyList = SurveyListItemFactory.create(data: data)
+        
         let responseString = String(data: data, encoding: .utf8)
         SOPLog.debug(message: "responseString = \(responseString)")
         SOPLog.debug(message: "code = \(code), message = \(message)")

@@ -6,66 +6,34 @@
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
-class Research: SurveyListItemProtocol {
+public protocol Research {
   
-  static let MOBILE_BLOCKED = "MOBILE"
+  var surveyId: String? { get }
   
-  var surveyId: String?
+  var title: String? { get }
   
-  var quotaId: String?
+  var loi: String? { get }
   
-  var cpi: String?
+  var url: String? { get }
   
-  var ir: String?
+  var quotaId: String? { get }
   
-  var loi: String?
+  var cpi: String? { get }
   
-  var isAnswered: String?
+  var ir: String? { get }
   
-  var isClosed: String?
+  var isAnswered: String? { get }
   
-  var title: String?
+  var isClosed: String? { get }
   
-  var url: String?
+  var isFixedLoi: String? { get }
   
-  var isFixedLoi: String?
+  var isNotifiable: String? { get }
   
-  var isNotifiable: String?
+  var date: String? { get }
   
-  var date: String?
+  var blockedDevices: String? { get }
   
-  var blockedDevices: String?
-  
-  var extraInfo: String?
-  
-  init(surveyId: String?,
-       quotaId: String?,
-       cpi: String?,
-       ir: String?,
-       loi: String?,
-       isAnswered: String?,
-       isClosed: String?,
-       title: String?,
-       url: String?,
-       isFixedLoi: String?,
-       isNotifiable: String?,
-       date: String?,
-       blockedDevices: String?,
-       extraInfo: String?) {
-    self.surveyId = surveyId
-    self.quotaId = quotaId
-    self.cpi = cpi
-    self.ir = ir
-    self.loi = loi
-    self.isAnswered = isAnswered
-    self.isClosed = isClosed
-    self.title = title
-    self.url = url
-    self.isFixedLoi = isFixedLoi
-    self.isNotifiable = isNotifiable
-    self.date = date
-    self.blockedDevices = blockedDevices
-    self.extraInfo = extraInfo
-  }
+  var extraInfo: String? { get }
   
 }
