@@ -11,35 +11,40 @@ import Foundation
 class SOPLog{
   
   static var destination: LogDestination? = StdoutDestination()
+  static var level = Level.none
   
   static func debug(
     message: String,
     function: String = #function,
     file: String = #function,
-    line: Int = #line) { SOPLog.write(loglevel: "[DEBUG]", message: message, function: function, file: file, line: line) };
+    line: Int = #line) { SOPLog.write(level: .debug, message: message, function: function, file: file, line: line) };
   static func info(
     message: String,
     function: String = #function,
     file: String = #function,
-    line: Int = #line) { SOPLog.write(loglevel: "[INFO]", message: message, function: function, file: file, line: line) };
+    line: Int = #line) { SOPLog.write(level: .info, message: message, function: function, file: file, line: line) };
   static func warning(
     message: String,
     function: String = #function,
     file: String = #file,
-    line: Int = #line) { SOPLog.write(loglevel: "[WARNING]", message: message, function: function, file: file, line: line) };
+    line: Int = #line) { SOPLog.write(level: .warning, message: message, function: function, file: file, line: line) };
   static func error(
     message: String,
     function: String = #function,
     file: String = #file,
-    line: Int = #line) { SOPLog.write(loglevel: "[ERROR]", message: message, function: function, file: file, line: line) };
+    line: Int = #line) { SOPLog.write(level: .error, message: message, function: function, file: file, line: line) };
   
   static func write(
-    loglevel: String,
+    level: Level,
     message: String,
     function: String,
     file: String,
     line: Int) {
     
+    if level.rawValue < self.level.rawValue {
+      return
+    }
+
     let now = NSDate()
     let dateFormatter = DateFormatter()
     dateFormatter.locale = Locale(identifier: "ja_JP")
@@ -52,11 +57,35 @@ class SOPLog{
     if let match = filename.range(of: "[^/]*$") {
       filename = filename.substring(with: match)
     }
-    destination?.log("\(loglevel) \"\(message)\" \(nowdate) L\(line) \(function) @\(filename)")
+    destination?.log("[\(level.name)] \"\(message)\" \(nowdate) L\(line) \(function) @\(filename)")
   }
   
-  static func loadDefaultDestination(){
+  static func loadDefaultSetting(){
     destination = StdoutDestination()
+    level = .none
+  }
+
+  enum Level: Int {
+    case debug = 0
+    case info = 1
+    case warning = 2
+    case error = 3
+    case none = 4
+
+    var name: String {
+      switch self {
+      case .debug:
+        return "DEBUG"
+      case .info:
+        return "INFO"
+      case .warning:
+        return "WARNING"
+      case .error:
+        return "ERROR"
+      case .none:
+        return "NONE"
+      }
+    }
   }
 }
 

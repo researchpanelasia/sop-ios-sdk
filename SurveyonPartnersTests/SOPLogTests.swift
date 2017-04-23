@@ -13,27 +13,36 @@ class SOPLogTests: XCTestCase {
   
   override func tearDown() {
     super.tearDown()
-    SOPLog.loadDefaultDestination()
+    SOPLog.loadDefaultSetting()
   }
   
   func testDebug() {
+    SOPLog.level = .debug
     SOPLog.debug(message: "hoge")
     XCTAssert(matchMessage(regex: "\\[DEBUG\\] \"hoge\" \\d\\d\\d\\d/\\d\\d/\\d\\d \\d\\d:\\d\\d:\\d\\d L\\d+ testDebug\\(\\)"))
   }
   
   func testInfo() {
+    SOPLog.level = .debug
     SOPLog.info(message: "hoge")
     XCTAssert(matchMessage(regex: "\\[INFO\\] \"hoge\" \\d\\d\\d\\d/\\d\\d/\\d\\d \\d\\d:\\d\\d:\\d\\d L\\d+ testInfo\\(\\)"))
   }
 
   func testWarning() {
+    SOPLog.level = .debug
     SOPLog.warning(message: "hoge")
     XCTAssert(matchMessage(regex: "\\[WARNING\\] \"hoge\" \\d\\d\\d\\d/\\d\\d/\\d\\d \\d\\d:\\d\\d:\\d\\d L\\d+ testWarning\\(\\)"))
   }
   
   func testError() {
+    SOPLog.level = .debug
     SOPLog.error(message: "hoge")
     XCTAssert(matchMessage(regex: "\\[ERROR\\] \"hoge\" \\d\\d\\d\\d/\\d\\d/\\d\\d \\d\\d:\\d\\d:\\d\\d L\\d+ testError\\(\\)"))
+  }
+
+  func testNoLogging() {
+    SOPLog.error(message: "hoge")
+    XCTAssertEqual(destination?.shift(), "")
   }
 
   func matchMessage(regex: String) -> Bool{
@@ -51,6 +60,9 @@ class SOPLogTests: XCTestCase {
     }
     
     func shift() -> String {
+      if messageQueue.count == 0 {
+        return ""
+      }
       let message = messageQueue[0]
       messageQueue = Array(messageQueue[1..<messageQueue.count])
       return message
