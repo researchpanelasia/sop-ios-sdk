@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		5E142E431E6F9F06002804A3 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E421E6F9F06002804A3 /* Authentication.swift */; };
 		5E142E451E6F9F98002804A3 /* AuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E441E6F9F98002804A3 /* AuthenticationTests.swift */; };
-		5E142E461E6FB354002804A3 /* SurveyonPartners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E15B63C1E5EBC9E00FE0671 /* SurveyonPartners.swift */; };
 		5E142E481E6FB89A002804A3 /* SurveyonPartnersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E15B62A1E5EBA5C00FE0671 /* SurveyonPartnersTests.swift */; };
 		5E142E5B1E70F9F0002804A3 /* AdvertisingId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E5A1E70F9F0002804A3 /* AdvertisingId.swift */; };
 		5E142E5F1E71427A002804A3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E5E1E71427A002804A3 /* Constants.swift */; };
@@ -329,7 +328,6 @@
 				5E142E451E6F9F98002804A3 /* AuthenticationTests.swift in Sources */,
 				5E142E481E6FB89A002804A3 /* SurveyonPartnersTests.swift in Sources */,
 				5E142E6D1E728C93002804A3 /* PreferencesManagerTests.swift in Sources */,
-				5E142E461E6FB354002804A3 /* SurveyonPartners.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,7 +383,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -433,7 +431,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/SurveyonPartners/";
