@@ -10,28 +10,30 @@ import Foundation
 
 class SOPLog{
   
-  class func debug(
+  static var destination: LogDestination? = StdoutDestination()
+  
+  static func debug(
     message: String,
     function: String = #function,
     file: String = #function,
     line: Int = #line) { SOPLog.write(loglevel: "[DEBUG]", message: message, function: function, file: file, line: line) };
-  class func info(
+  static func info(
     message: String,
     function: String = #function,
     file: String = #function,
     line: Int = #line) { SOPLog.write(loglevel: "[INFO]", message: message, function: function, file: file, line: line) };
-  class func warning(
+  static func warning(
     message: String,
     function: String = #function,
     file: String = #file,
     line: Int = #line) { SOPLog.write(loglevel: "[WARNING]", message: message, function: function, file: file, line: line) };
-  class func error(
+  static func error(
     message: String,
     function: String = #function,
     file: String = #file,
     line: Int = #line) { SOPLog.write(loglevel: "[ERROR]", message: message, function: function, file: file, line: line) };
   
-  class func write(
+  static func write(
     loglevel: String,
     message: String,
     function: String,
@@ -44,13 +46,26 @@ class SOPLog{
     dateFormatter.timeStyle = .medium
     dateFormatter.dateStyle = .medium
     
-    let nowdate = dateFormatter.string(for: now)
+    let nowdate = dateFormatter.string(for: now)!
     
     var filename = file
     if let match = filename.range(of: "[^/]*$") {
       filename = filename.substring(with: match)
     }
-    print("\(loglevel) \"\(message)\" \(nowdate) L\(line) \(function) @\(filename)")
+    destination?.log("\(loglevel) \"\(message)\" \(nowdate) L\(line) \(function) @\(filename)")
   }
   
+  static func loadDefaultDestination(){
+    destination = StdoutDestination()
+  }
+}
+
+protocol LogDestination {
+  func log(_ message: String)
+}
+
+class StdoutDestination: LogDestination {
+  func log(_ message: String) {
+    print(message)
+  }
 }
