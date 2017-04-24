@@ -112,7 +112,7 @@ extension SurveyonPartners {
   
   public static func showSurveyList<T,R>(vc: UIViewController,profilingPointRule: T, researchPointRule: R) {
     
-    viewController = SurveyListViewContoroller()
+    viewController = SurveyListViewContoroller(nibName: "SurveyListViewContoroller", bundle: Bundle(identifier: "com.surveyon.partners.SurveyonPartners"))
     viewController!.modalPresentationStyle = .overCurrentContext
     vc.present(viewController!, animated: false, completion: nil)
     
