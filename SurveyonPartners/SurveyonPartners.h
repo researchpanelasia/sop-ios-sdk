@@ -2,7 +2,6 @@
 //  SurveyonPartners.h
 //  SurveyonPartners
 //
-//  Created by Choi Jiseon on 2017/02/23.
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
