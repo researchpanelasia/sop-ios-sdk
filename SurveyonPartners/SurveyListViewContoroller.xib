@@ -12,6 +12,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SurveyListViewContoroller" customModule="SurveyonPartners" customModuleProvider="target">
             <connections>
                 <outlet property="closeView" destination="934-Yt-jxW" id="4AJ-yD-jmh"/>
+                <outlet property="customView" destination="KW9-is-1ee" id="J7a-Vx-HL0"/>
+                <outlet property="tableView" destination="W8A-5c-SLL" id="ouN-Er-ypi"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Bgz-I2-4qt"/>
             </connections>
         </placeholder>
@@ -27,9 +29,13 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KW9-is-1ee" userLabel="Custome View">
                     <rect key="frame" x="20" y="60" width="335" height="567"/>
                     <subviews>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W8A-5c-SLL">
-                            <rect key="frame" x="12" y="10" width="311" height="547"/>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="140" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W8A-5c-SLL">
+                            <rect key="frame" x="4" y="10" width="327" height="547"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="BMS-41-5QC"/>
+                                <outlet property="delegate" destination="-1" id="1bM-8l-32U"/>
+                            </connections>
                         </tableView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-close.png" translatesAutoresizingMaskIntoConstraints="NO" id="934-Yt-jxW">
                             <rect key="frame" x="317" y="-18" width="36" height="36"/>
@@ -41,16 +47,16 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="W8A-5c-SLL" secondAttribute="trailing" constant="12" id="5SS-3F-laz"/>
+                        <constraint firstAttribute="trailing" secondItem="W8A-5c-SLL" secondAttribute="trailing" constant="4" id="5SS-3F-laz"/>
                         <constraint firstItem="W8A-5c-SLL" firstAttribute="top" secondItem="KW9-is-1ee" secondAttribute="top" constant="10" id="PQ8-B3-J2b"/>
                         <constraint firstItem="934-Yt-jxW" firstAttribute="top" secondItem="KW9-is-1ee" secondAttribute="top" constant="-18" id="XMX-cy-lLF"/>
                         <constraint firstAttribute="trailing" secondItem="934-Yt-jxW" secondAttribute="trailing" constant="-18" id="b1K-im-Q4u"/>
                         <constraint firstAttribute="bottom" secondItem="W8A-5c-SLL" secondAttribute="bottom" constant="10" id="eL9-fW-oC8"/>
-                        <constraint firstItem="W8A-5c-SLL" firstAttribute="leading" secondItem="KW9-is-1ee" secondAttribute="leading" constant="12" id="jg3-YW-Wqx"/>
+                        <constraint firstItem="W8A-5c-SLL" firstAttribute="leading" secondItem="KW9-is-1ee" secondAttribute="leading" constant="4" id="jg3-YW-Wqx"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstItem="KW9-is-1ee" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="EGd-XR-0Fo"/>
                 <constraint firstAttribute="trailing" secondItem="8Cg-4E-gi9" secondAttribute="trailing" id="HKF-15-gzr"/>
