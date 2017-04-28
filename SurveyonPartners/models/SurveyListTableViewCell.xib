@@ -43,8 +43,8 @@
                                     <constraint firstAttribute="width" constant="100" id="lXp-Ja-UJl"/>
                                     <constraint firstAttribute="height" constant="21" id="zfo-f7-E0K"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.46999999999999997" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-point.png" translatesAutoresizingMaskIntoConstraints="NO" id="xEw-sF-6an" userLabel="pointImage">
@@ -61,7 +61,7 @@
                                     <constraint firstAttribute="width" constant="120" id="xFz-da-tFY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.46999999999999997" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.22338223457336426" green="0.57570195198059082" blue="0.36963355541229248" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>

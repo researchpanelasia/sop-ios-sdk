@@ -7,7 +7,7 @@
 
 public enum RequestResult {
   
-  case success(statusCode: Int, message: String, rawBody: String)
+  case success(statusCode: Int, message: String, rawBody: Data)
   
   case failed(error: Error)
   

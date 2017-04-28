@@ -5,7 +5,7 @@
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
-public class SurveyonPartners: UIViewController {
+public class SurveyonPartners {
   
   // after 14 days, update idfa
   static let DEFAULT_IDFA_UPDATE_SPAN: Int64 = 60 * 60 * 24 * 14 * 1000
@@ -20,48 +20,11 @@ public class SurveyonPartners: UIViewController {
   
   static var initialized = false
   
-  // ------------------ remove ------------------
-//  public var viewController: UIViewController
+  static var showListItem: [SurveyListItem] = []
   
-//  var surveyListView: SurveyListView = SurveyListView()
-//  
-//  public convenience init<T,R>(profilingPointRule: T, researchPointRule: R) {
-//    let viewController = SurveyonPartnersDefaultViewController()
-//    self.init(viewController: viewController)
-//    
-//  }
-//  
-//  public init(viewController: UIViewController) {
-////    self.viewController = viewController
-//    super.init(nibName: nil, bundle: nil)
-//    
-//    let bundleIdentifier = "com.surveyon.partners.SurveyonPartners"
-//    let bundle = Bundle(identifier: bundleIdentifier)
-//    let customViews = bundle?.loadNibNamed("SurveyListView", owner: self, options: nil)?.first as! UIView
-//    
-//    self.presentationManager = PresentationManager(interactor: interactor)
-//    
-////    self.interactor.viewController = self
-//    
-////    transitioningDelegate = presentationManager
-//    modalPresentationStyle = .custom
-//    
-////    addChildViewController(viewController)
-//    view = customViews
-//    
-//    //UINib(nibName: "SurveyList", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
-//    //    self.view = customView//bundle?.loadNibNamed("SurveyList", owner: self, options: nil)?.first as! UIView
-//    
-//  }
-//  
-//  required public init?(coder aDecoder: NSCoder) {
-//    fatalError("init(coder:) has not been implemented")
-//  }
-//  
-//  override public func didReceiveMemoryWarning() {
-//    super.didReceiveMemoryWarning()
-//  }
-//
+  static var profilingPointRule: ProfilingPointRule?
+  
+  static var researchPointRule: ResearchPointRule?
   
 }
 
@@ -102,58 +65,51 @@ extension SurveyonPartners {
           SurveyonPartners.adIdUpdatedAt(currentTimeMilles: Utility.currentTimeMillis())
         case .failed(let error):
           //do nothing
-          SOPLog.error(message: "error = \(error)")
+          SOPLog.error(message: "error = \(error.localizedDescription)")
         }
       })
     }
     
   }
   
-  public static func showSurveyList<T,R>(vc: UIViewController,profilingPointRule: T, researchPointRule: R) {
+  public static func showSurveyList<T,R>(vc: UIViewController, profilingPointRule: T, researchPointRule: R) {
     
     guard initialized else {
       return
     }
     
+    self.profilingPointRule = profilingPointRule as? ProfilingPointRule
+    self.researchPointRule = researchPointRule as? ResearchPointRule
+    
     viewController = SurveyListViewContoroller(nibName: "SurveyListViewContoroller", bundle: Bundle(identifier: "com.surveyon.partners.SurveyonPartners"))
     viewController!.modalPresentationStyle = .overCurrentContext
     vc.present(viewController!, animated: false, completion: nil)
     
-//    let bundleIdentifier = "com.surveyon.partners.SurveyonPartners"
-//    let bundle = Bundle(identifier: bundleIdentifier)
-//    let customViews = bundle?.loadNibNamed("SurveyListView", owner: self, options: nil)?.first as! UIView
+    let httpClient = HttpClient(appId: setupInfo!.appId!,
+                                appMid: setupInfo!.appMid!,
+                                secretKey: setupInfo!.secretKey!,
+                                sopHost: setupInfo!.sopHost!,
+                                sopConsoleHost: setupInfo!.sopConsoleHost!,
+                                updateSpan: setupInfo!.idfaUpdateSpan!,
+                                useHttps: setupInfo!.useHttps!,
+                                verifyHost: setupInfo!.verifyHost!)
     
-//    let httpClient = HttpClient(appId: setupInfo!.appId!,
-//                                appMid: setupInfo!.appMid!,
-//                                secretKey: setupInfo!.secretKey!,
-//                                sopHost: setupInfo!.sopHost!,
-//                                sopConsoleHost: setupInfo!.sopConsoleHost!,
-//                                updateSpan: setupInfo!.idfaUpdateSpan!,
-//                                useHttps: setupInfo!.useHttps!,
-//                                verifyHost: setupInfo!.verifyHost!)
-//    
-//    httpClient.getSurveyList(completion: { (isSuccess) -> Void in
-//      if isSuccess {
-//        SOPLog.debug(message: "getSurveyList() Success")
-////        let cookiePoint = profilingPointRule as! ProfilingPointRule
-////        let pro = SurveyListItemFactory.SurveyListArray[0] as! Profiling
-////        print("cookiePoint = \(cookiePoint.cookieProfilingPoint(profiling: pro))")
-//        
-////        if SurveyListItemFactory.SurveyListArray.count > 0 {
-////          for index in 0..<SurveyListItemFactory.SurveyListArray.count {
-////            print("surveyList.title = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).title!)")
-////            print("surveyList.surveyId = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).surveyId!)")
-////            print("surveyList.loi = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).loi!)")
-////            print("surveyList.url = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).url!)")
-////          }
-////        }
-//        
-//      } else {
-//        //do nothing
-//        SOPLog.debug(message: "showSurveyList() Fail")
-//      }
-//    })
-    
+    httpClient.getSurveyList(completion: { (result) -> Void in
+      switch result {
+      case .success(let statusCode, let message, let rawBody):
+        SOPLog.debug(message: "statusCode = \(statusCode), message = \(message), rawBody = \(rawBody)")
+        
+        showListItem = SurveyListItemFactory.create(data: rawBody)
+        
+        viewController = SurveyListViewContoroller(nibName: "SurveyListViewContoroller", bundle: Bundle(identifier: "com.surveyon.partners.SurveyonPartners"))
+        viewController!.modalPresentationStyle = .overCurrentContext
+        vc.present(viewController!, animated: false, completion: nil)
+        
+      case .failed(let error):
+        //do nothing
+        SOPLog.error(message: "error = \(error.localizedDescription)")
+      }
+    })
   }
   
 }

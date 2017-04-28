@@ -18,21 +18,20 @@ class SurveyListTableViewCell: UITableViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    
-    self.frameView.layer.cornerRadius = 5
-    self.frameView.layer.shadowRadius = 1
-    self.frameView.layer.shadowOpacity = 0.1
-    
+    self.frameView.layer.cornerRadius = 2.0
+    self.frameView.layer.shadowOffset = CGSize(width: 0, height: 0)
+    self.frameView.layer.shadowRadius = 2.0
+    self.frameView.layer.shadowOpacity = 0.5
   }
   
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
   }
   
-  func setCell(surveyListItemProtocol: ListItem) {//SurveyListItem
-    self.surveyNo!.text = surveyListItemProtocol.surveyNo//surveyListItemProtocol.surveyIdLabel
-    self.titleName!.text = surveyListItemProtocol.titleName
-    self.loi!.text = surveyListItemProtocol.loi
+  func setCell(surveyListItem: SurveyListItem) {
+    self.surveyNo!.text = surveyListItem.surveyIdLabel
+    self.titleName!.text = surveyListItem.title
+    self.loi!.text = surveyListItem.loi
   }
   
 }

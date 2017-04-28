@@ -7,12 +7,6 @@
 
 import Foundation
 
-struct ListItem {
-  let surveyNo: String
-  let titleName: String
-  let loi: String
-}
-
 class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
   @IBOutlet weak var closeView: UIImageView!
@@ -20,8 +14,6 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
   @IBOutlet weak var tableView: UITableView!
   
   @IBOutlet weak var customView: UIView!
-  
-  var listItem = [ListItem]()
   
   let identifier: String = "SurveyListTableViewCell"
   
@@ -43,16 +35,23 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell: SurveyListTableViewCell! = tableView.dequeueReusableCell(withIdentifier: identifier) as? SurveyListTableViewCell
-    cell.surveyNo.text? = "No001"
-    cell.loi.text? = "10"
-    cell.titleName.text? = "What is your date of birth?What is your date of birth?What is your date of birth?"
+    cell.surveyNo.text? = (SurveyonPartners.showListItem[indexPath.row] as SurveyListItem).surveyIdLabel!
+    cell.loi.text? = (SurveyonPartners.showListItem[indexPath.row] as SurveyListItem).loi!
+    if cell.loi.text != "" {
+      cell.loi.text! += " min"
+    }
+    cell.titleName.text? = (SurveyonPartners.showListItem[indexPath.row] as SurveyListItem).title!
+    // TODO - get point value
+//    let cookiePoint = profilingPointRule as! ProfilingPointRule
+//    let pro = self.showListItem[0] as! Profiling
+//    let point = cookiePoint.cookieProfilingPoint(profiling: pro)
     cell.pointLabel.text? = "10 each"
     
     return cell!
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 5
+    return SurveyonPartners.showListItem.count
   }
   
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
