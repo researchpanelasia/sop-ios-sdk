@@ -20,10 +20,6 @@ public class SurveyonPartners: UIViewController {
   
   
   // ------------------ remove ------------------
-  fileprivate lazy var interactor = InteractiveTransition()
-  
-  fileprivate var presentationManager: PresentationManager!
-  
 //  public var viewController: UIViewController
   
 //  var surveyListView: SurveyListView = SurveyListView()
