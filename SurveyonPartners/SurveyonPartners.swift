@@ -18,6 +18,7 @@ public class SurveyonPartners: UIViewController {
   
   static var setupInfo: SetupInfo?
   
+  static var initialized = false
   
   // ------------------ remove ------------------
 //  public var viewController: UIViewController
@@ -93,13 +94,15 @@ extension SurveyonPartners {
                                 useHttps: useHttps,
                                 verifyHost: verifyHost)
     if (isNeedAdIdUpdated(currentTimeMilles: Utility.currentTimeMillis())) {
-      httpClient.updateIdfa(completion: { (isSuccess) -> Void in
-        if isSuccess {
-          SOPLog.debug(message: "setUP() Success")
+      httpClient.updateIdfa(completion: { (result) -> Void in
+        switch result {
+        case .success(let statusCode, let message, let rawBody):
+          SOPLog.debug(message: "statusCode = \(statusCode), message = \(message), rawBody = \(rawBody)")
+          initialized = true
           SurveyonPartners.adIdUpdatedAt(currentTimeMilles: Utility.currentTimeMillis())
-        } else {
+        case .failed(let error):
           //do nothing
-          SOPLog.debug(message: "setUP() Fail")
+          SOPLog.error(message: "error = \(error)")
         }
       })
     }
@@ -107,6 +110,10 @@ extension SurveyonPartners {
   }
   
   public static func showSurveyList<T,R>(vc: UIViewController,profilingPointRule: T, researchPointRule: R) {
+    
+    guard initialized else {
+      return
+    }
     
     viewController = SurveyListViewContoroller(nibName: "SurveyListViewContoroller", bundle: Bundle(identifier: "com.surveyon.partners.SurveyonPartners"))
     viewController!.modalPresentationStyle = .overCurrentContext
