@@ -1,5 +1,4 @@
-// for commoncrypto/commoncrypto.h
-module CommonCrypto {
-    header "/usr/include/CommonCrypto/CommonCrypto.h"
+module SOPCrypto {
+    header "SOPCrypto.h"
     export *
 }

@@ -5,7 +5,7 @@
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
-public struct SurveyonPartners {
+public class SurveyonPartners {
   
   // after 14 days, update idfa
   static let DEFAULT_IDFA_UPDATE_SPAN: Int64 = 60 * 60 * 24 * 14 * 1000
@@ -14,7 +14,17 @@ public struct SurveyonPartners {
   
   static let DEFAULT_SOP_CONSOLE_HOST = "console.partners.surveyon.com"
   
+  static var viewController: UIViewController?
+  
   static var setupInfo: SetupInfo?
+  
+  static var initialized = false
+  
+  static var showListItem: [SurveyListItem] = []
+  
+  static var profilingPointRule: ProfilingPointRule?
+  
+  static var researchPointRule: ResearchPointRule?
   
 }
 
@@ -47,20 +57,33 @@ extension SurveyonPartners {
                                 useHttps: useHttps,
                                 verifyHost: verifyHost)
     if (isNeedAdIdUpdated(currentTimeMilles: Utility.currentTimeMillis())) {
-      httpClient.updateIdfa(completion: { (isSuccess) -> Void in
-        if isSuccess {
-          print("@@@@@ Success @@@@@")
+      httpClient.updateIdfa(completion: { (result) -> Void in
+        switch result {
+        case .success(let statusCode, let message, let rawBody):
+          SOPLog.debug(message: "statusCode = \(statusCode), message = \(message), rawBody = \(rawBody)")
+          initialized = true
           SurveyonPartners.adIdUpdatedAt(currentTimeMilles: Utility.currentTimeMillis())
-        } else {
-          print("@@@@@ Failure @@@@@")
+        case .failed(let error):
           //do nothing
+          SOPLog.error(message: "error = \(error.localizedDescription)")
         }
       })
     }
     
   }
   
-  public static func showSurveyList<T,R>(profilingPointRule: T, researchPointRule: R) {
+  public static func showSurveyList<T,R>(vc: UIViewController, profilingPointRule: T, researchPointRule: R) {
+    
+    guard initialized else {
+      return
+    }
+    
+    self.profilingPointRule = profilingPointRule as? ProfilingPointRule
+    self.researchPointRule = researchPointRule as? ResearchPointRule
+    
+    viewController = SurveyListViewContoroller(nibName: "SurveyListViewContoroller", bundle: Bundle(identifier: "com.surveyon.partners.SurveyonPartners"))
+    viewController!.modalPresentationStyle = .overCurrentContext
+    vc.present(viewController!, animated: false, completion: nil)
     
     let httpClient = HttpClient(appId: setupInfo!.appId!,
                                 appMid: setupInfo!.appMid!,
@@ -71,22 +94,20 @@ extension SurveyonPartners {
                                 useHttps: setupInfo!.useHttps!,
                                 verifyHost: setupInfo!.verifyHost!)
     
-    httpClient.getSurveyList(completion: { (isSuccess) -> Void in
-      if isSuccess {
-        print("##### Success #####")
+    httpClient.getSurveyList(completion: { (result) -> Void in
+      switch result {
+      case .success(let statusCode, let message, let rawBody):
+        SOPLog.debug(message: "statusCode = \(statusCode), message = \(message), rawBody = \(rawBody)")
         
-//        if SurveyListItemFactory.SurveyListArray.count > 0 {
-//          for index in 0..<SurveyListItemFactory.SurveyListArray.count {
-//            print("surveyList.title = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).title!)")
-//            print("surveyList.surveyId = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).surveyId!)")
-//            print("surveyList.loi = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).loi!)")
-//            print("surveyList.url = \((SurveyListItemFactory.SurveyListArray[index] as! SurveyListItemProtocol).url!)")
-//          }
-//        }
+        showListItem = SurveyListItemFactory.create(data: rawBody)
         
-      } else {
-        print("##### Failure #####")
+        viewController = SurveyListViewContoroller(nibName: "SurveyListViewContoroller", bundle: Bundle(identifier: "com.surveyon.partners.SurveyonPartners"))
+        viewController!.modalPresentationStyle = .overCurrentContext
+        vc.present(viewController!, animated: false, completion: nil)
+        
+      case .failed(let error):
         //do nothing
+        SOPLog.error(message: "error = \(error.localizedDescription)")
       }
     })
   }

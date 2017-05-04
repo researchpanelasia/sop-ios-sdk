@@ -69,7 +69,7 @@ struct HttpClient {
 
 extension HttpClient {
   
-  func updateIdfa(completion: @escaping (Bool) -> Void) {
+  func updateIdfa(completion: @escaping (RequestResult) -> Void) {
     
     if !Utility.isOnline() { return }
     
@@ -91,16 +91,16 @@ extension HttpClient {
       request.post(completion: { (result) -> Void in
         switch result {
         case .success(let statusCode, let message, let rawBody):
-          print("statusCode = \(statusCode), message = \(message), rawBody = \(rawBody) ")
+          completion(RequestResult.success(statusCode: statusCode, message: message, rawBody: rawBody))
         case .failed(let error):
-          print("error = \(error)")
+          completion(RequestResult.failed(error: error))
         }
       })
     }
     
   }
   
-  func getSurveyList(completion: @escaping (Bool) -> Void) {
+  func getSurveyList(completion: @escaping (RequestResult) -> Void) {
     
     if !Utility.isOnline() { return }
     
@@ -128,9 +128,9 @@ extension HttpClient {
     request.get(completion: { (result) -> Void in
       switch result {
       case .success(let statusCode, let message, let rawBody):
-        print("statusCode = \(statusCode), message = \(message), rawBody = \(rawBody) ")
+        completion(RequestResult.success(statusCode: statusCode, message: message, rawBody: rawBody))
       case .failed(let error):
-        print("error = \(error)")
+        completion(RequestResult.failed(error: error))
       }
     })
     

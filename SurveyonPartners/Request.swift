@@ -53,7 +53,7 @@ class Request: RequestProtocol {
       if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode < 200, httpStatus.statusCode >= 300 {
         // check for http errors
         let errorString = String(data: data, encoding: .utf8)
-        SOPLog.error(message: "response = \(response), statusCode = \(httpStatus.statusCode), errorString = \(errorString)")
+        SOPLog.error(message: "response = \(response!), statusCode = \(httpStatus.statusCode), errorString = \(errorString!)")
         if let completion = completion {
           completion(RequestResult.failed(error: error!))
         }
@@ -65,13 +65,9 @@ class Request: RequestProtocol {
         let meta = json?[Constants.KEY_META] as? [String:Any]
         let code = meta?[Constants.KEY_CODE] as? Int
         let message = meta?[Constants.KEY_MESSAGE] as? String
-        let surveyList = SurveyListItemFactory.create(data: data)
         
-        let responseString = String(data: data, encoding: .utf8)
-        SOPLog.debug(message: "responseString = \(responseString)")
-        SOPLog.debug(message: "code = \(code), message = \(message)")
         if let completion = completion {
-          completion(RequestResult.success(statusCode: code!, message: message!, rawBody: responseString!))
+          completion(RequestResult.success(statusCode: code!, message: message!, rawBody: data))
         }
         return
       } catch let parseError {

@@ -21,7 +21,7 @@ class Constants {
   static let MOBILE_BLOCKED = "MOBILE";
   static let KEY_META = "meta"
   static let KEY_CODE = "code"
-  static let KEY_MESSAGE = "messase"
+  static let KEY_MESSAGE = "message"
   static let KEY_DATA = "data"
   static let KEY_PROFILING = "profiling"
   static let KEY_NAME = "name"
