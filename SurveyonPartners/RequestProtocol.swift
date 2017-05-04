@@ -15,12 +15,7 @@ public protocol RequestProtocol {
   
 }
 
-/**
- Represents HTTP methods that could be used to issue `RequestProtocol`.
- */
 public enum RequestHTTPMethod: String {
-  /// `GET` graph request HTTP method.
   case GET = "GET"
-  /// `POST` graph request HTTP method.
   case POST = "POST"
 }
