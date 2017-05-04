@@ -47,6 +47,8 @@
 		5EE33C651EA8A69D0051A341 /* SurveyListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE33C641EA8A69D0051A341 /* SurveyListItem.swift */; };
 		5EE33C691EA8B7680051A341 /* ImplProfiling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE33C681EA8B7680051A341 /* ImplProfiling.swift */; };
 		5EE33C6B1EA8B8850051A341 /* ImplResearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE33C6A1EA8B8850051A341 /* ImplResearch.swift */; };
+		76447E851EBAF35A00A091C7 /* SOPCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 76447E841EBAF35A00A091C7 /* SOPCrypto.m */; };
+		76447E881EBAFA7A00A091C7 /* SOPCryptoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76447E871EBAFA7A00A091C7 /* SOPCryptoTest.swift */; };
 		76E99A461EAC4EC4001BEDB7 /* SOPLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E99A451EAC4EC4001BEDB7 /* SOPLogTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -106,6 +108,9 @@
 		5EE33C641EA8A69D0051A341 /* SurveyListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyListItem.swift; sourceTree = "<group>"; };
 		5EE33C681EA8B7680051A341 /* ImplProfiling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImplProfiling.swift; sourceTree = "<group>"; };
 		5EE33C6A1EA8B8850051A341 /* ImplResearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImplResearch.swift; sourceTree = "<group>"; };
+		76447E841EBAF35A00A091C7 /* SOPCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOPCrypto.m; sourceTree = "<group>"; };
+		76447E861EBAF36D00A091C7 /* SOPCrypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SOPCrypto.h; sourceTree = "<group>"; };
+		76447E871EBAFA7A00A091C7 /* SOPCryptoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOPCryptoTest.swift; sourceTree = "<group>"; };
 		76E99A451EAC4EC4001BEDB7 /* SOPLogTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOPLogTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,6 +204,8 @@
 				5E38D3FC1E8E441300D00DB8 /* SOPLog.swift */,
 				5E3D9A301E9B83EC00AE9F88 /* SurveyListView.swift */,
 				5E3D9A271E977B8800AE9F88 /* SurveyListView.xib */,
+				76447E861EBAF36D00A091C7 /* SOPCrypto.h */,
+				76447E841EBAF35A00A091C7 /* SOPCrypto.m */,
 			);
 			path = SurveyonPartners;
 			sourceTree = "<group>";
@@ -213,6 +220,7 @@
 				5E142E6C1E728C93002804A3 /* PreferencesManagerTests.swift */,
 				5E15B62C1E5EBA5C00FE0671 /* Info.plist */,
 				76E99A451EAC4EC4001BEDB7 /* SOPLogTests.swift */,
+				76447E871EBAFA7A00A091C7 /* SOPCryptoTest.swift */,
 			);
 			path = SurveyonPartnersTests;
 			sourceTree = "<group>";
@@ -372,6 +380,7 @@
 				5E142EAA1E82442B002804A3 /* RequestProtocol.swift in Sources */,
 				5EE33C6B1EA8B8850051A341 /* ImplResearch.swift in Sources */,
 				5E142E771E792751002804A3 /* Request.swift in Sources */,
+				76447E851EBAF35A00A091C7 /* SOPCrypto.m in Sources */,
 				5EE33C651EA8A69D0051A341 /* SurveyListItem.swift in Sources */,
 				5E38D3FD1E8E441300D00DB8 /* SOPLog.swift in Sources */,
 				5E3D9A311E9B83EC00AE9F88 /* SurveyListView.swift in Sources */,
@@ -387,6 +396,7 @@
 				76E99A461EAC4EC4001BEDB7 /* SOPLogTests.swift in Sources */,
 				5E142E6F1E728DEA002804A3 /* AdvertisingIdTests.swift in Sources */,
 				5E142E451E6F9F98002804A3 /* AuthenticationTests.swift in Sources */,
+				76447E881EBAFA7A00A091C7 /* SOPCryptoTest.swift in Sources */,
 				5E142E481E6FB89A002804A3 /* SurveyonPartnersTests.swift in Sources */,
 				5E142E6D1E728C93002804A3 /* PreferencesManagerTests.swift in Sources */,
 			);
