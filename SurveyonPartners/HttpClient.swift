@@ -87,7 +87,8 @@ extension HttpClient {
       
       let request = Request(url: url,
                             requestBody: JSONString,
-                            httpMethod: .POST)
+                            httpMethod: .POST,
+                            verifyHost: verifyHost)
       request.post(completion: { (result) -> Void in
         switch result {
         case .success(let statusCode, let message, let rawBody):
@@ -124,7 +125,8 @@ extension HttpClient {
     SOPLog.debug(message: "apiUrl = \(apiUrl)")
     let url = URL(string: apiUrl)!
     let request = Request(url: url,
-                          httpMethod: .GET)
+                          httpMethod: .GET,
+                          verifyHost: verifyHost)
     request.get(completion: { (result) -> Void in
       switch result {
       case .success(let statusCode, let message, let rawBody):

@@ -19,26 +19,28 @@ class Request: RequestProtocol {
   
   static let USER_AGENT = "User-Agent"
   
-  public var url: URL
+  var url: URL
   
-  public var requestBody: String
+  var requestBody: String
+
+  var httpMethod: RequestHTTPMethod
   
-  public var httpMethod: RequestHTTPMethod
+  var verifyHost: Bool
   
   public init(url: URL,
               requestBody: String = "",
-              httpMethod: RequestHTTPMethod = .GET) {
+              httpMethod: RequestHTTPMethod = .GET,
+              verifyHost: Bool = true) {
     self.url = url
     self.requestBody = requestBody
     self.httpMethod = httpMethod
+    self.verifyHost = verifyHost
   }
   
   func send(requestUrl: URLRequest, completion: ((RequestResult) -> Void)?) {
     
-    let operationQueue = OperationQueue()
-    let configuration = URLSessionConfiguration.default
-    //      let session = URLSession(configuration: configuration)
-    let session = URLSession(configuration: configuration, delegate: NSURLSessionPinningDelegate(), delegateQueue: operationQueue)
+    let session = verifyHost ? URLSession.shared
+                             : URLSession(configuration: URLSessionConfiguration.default, delegate: SSCAcceptingDelegate(), delegateQueue: OperationQueue())
     let task = session.dataTask(with: requestUrl) { data, response, error in
       
       guard let data = data, error == nil else {
@@ -78,24 +80,12 @@ class Request: RequestProtocol {
     task.resume()
   }
   
-  class NSURLSessionPinningDelegate: NSObject, URLSessionDelegate {
+  class SSCAcceptingDelegate: NSObject, URLSessionDelegate {
     
     func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) {
-      
-      if (challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust) {
-        if let trust = challenge.protectionSpace.serverTrust,
-          let pem = Bundle.main.path(forResource: "https", ofType: "cer"),
-          let data = NSData(contentsOfFile: pem),
-          let cert = SecCertificateCreateWithData(nil, data) {
-          let certs = [cert]
-          SecTrustSetAnchorCertificates(trust, certs as CFArray)
-          return
-        }
-      }
-      
-      completionHandler(URLSession.AuthChallengeDisposition.useCredential, URLCredential(trust: challenge.protectionSpace.serverTrust!))
+      let credential = challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust ? URLCredential(trust: challenge.protectionSpace.serverTrust!) : nil
+      completionHandler(URLSession.AuthChallengeDisposition.useCredential, credential)
     }
-    
   }
   
   func getHttpMethod() -> String {
@@ -106,7 +96,6 @@ class Request: RequestProtocol {
       return "GET"
     }
   }
-  
 }
 
 extension Request {
