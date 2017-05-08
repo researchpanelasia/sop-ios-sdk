@@ -49,6 +49,7 @@
 		5EE33C6B1EA8B8850051A341 /* ImplResearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE33C6A1EA8B8850051A341 /* ImplResearch.swift */; };
 		76447E851EBAF35A00A091C7 /* SOPCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 76447E841EBAF35A00A091C7 /* SOPCrypto.m */; };
 		76447E881EBAFA7A00A091C7 /* SOPCryptoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76447E871EBAFA7A00A091C7 /* SOPCryptoTest.swift */; };
+		76447EE51EC0179500A091C7 /* RequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76447EE41EC0179500A091C7 /* RequestTests.swift */; };
 		76E99A461EAC4EC4001BEDB7 /* SOPLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E99A451EAC4EC4001BEDB7 /* SOPLogTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -111,6 +112,7 @@
 		76447E841EBAF35A00A091C7 /* SOPCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOPCrypto.m; sourceTree = "<group>"; };
 		76447E861EBAF36D00A091C7 /* SOPCrypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SOPCrypto.h; sourceTree = "<group>"; };
 		76447E871EBAFA7A00A091C7 /* SOPCryptoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOPCryptoTest.swift; sourceTree = "<group>"; };
+		76447EE41EC0179500A091C7 /* RequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTests.swift; sourceTree = "<group>"; };
 		76E99A451EAC4EC4001BEDB7 /* SOPLogTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOPLogTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -221,6 +223,7 @@
 				5E15B62C1E5EBA5C00FE0671 /* Info.plist */,
 				76E99A451EAC4EC4001BEDB7 /* SOPLogTests.swift */,
 				76447E871EBAFA7A00A091C7 /* SOPCryptoTest.swift */,
+				76447EE41EC0179500A091C7 /* RequestTests.swift */,
 			);
 			path = SurveyonPartnersTests;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E142E6B1E727994002804A3 /* SurveyonPartnersCommonTests.swift in Sources */,
+				76447EE51EC0179500A091C7 /* RequestTests.swift in Sources */,
 				76E99A461EAC4EC4001BEDB7 /* SOPLogTests.swift in Sources */,
 				5E142E6F1E728DEA002804A3 /* AdvertisingIdTests.swift in Sources */,
 				5E142E451E6F9F98002804A3 /* AuthenticationTests.swift in Sources */,

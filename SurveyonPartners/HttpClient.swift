@@ -46,7 +46,7 @@ struct HttpClient {
   var useHttps: Bool
   
   var verifyHost: Bool
-  
+
   init(appId: String,
        appMid: String,
        secretKey: String,
@@ -64,7 +64,6 @@ struct HttpClient {
     self.useHttps = useHttps
     self.verifyHost = verifyHost
   }
-  
 }
 
 extension HttpClient {
@@ -89,6 +88,11 @@ extension HttpClient {
                             requestBody: JSONString,
                             httpMethod: .POST,
                             verifyHost: verifyHost)
+      request.addHeader(key: Request.CONTENT_TYPE, value: Request.APPLICATION_JSON)
+      request.addHeader(key: Request.X_SOP_SIG,
+                        value: Authentication().createSignature(message: JSONString, key: secretKey))
+      request.addHeader(key: Request.USER_AGENT, value: Utility.getUserAgent())
+
       request.post(completion: { (result) -> Void in
         switch result {
         case .success(let statusCode, let message, let rawBody):
@@ -112,7 +116,6 @@ extension HttpClient {
       HttpClient.KEY_APP_MID: self.appMid,
       HttpClient.KEY_TIME: Utility.getPosixTime(),
       HttpClient.KEY_SOP_AD_TRACKING: "1"
-      
     ]
     
     let sig = Authentication().createSignature(parameters: populationDict, key: self.secretKey)
