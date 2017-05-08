@@ -41,6 +41,7 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
     customView.layer.cornerRadius = 5
     self.showActivityIndicator(uiView: customView)
     
+    tableView.register(UINib(nibName: "SurveyListTableViewCell", bundle: Bundle(identifier: "com.surveyon.partners.SurveyonPartners")), forCellReuseIdentifier: "SurveyListTableViewCell")
     tableView.separatorStyle = .none
     
     closeView.isUserInteractionEnabled = true
@@ -64,7 +65,12 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
         
         DispatchQueue.main.async {  
           self.hideActivityIndicator()
-          self.tableView.reloadData()
+          if self.showListItem.count > 0 {
+            self.tableView.reloadData()
+          } else {
+            // TODO - sdk_empty_survey_list
+          }
+          
         }
         
       case .failed(let error):

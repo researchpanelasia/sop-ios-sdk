@@ -13,11 +13,7 @@ public class SurveyonPartners {
   
   static let DEFAULT_SOP_CONSOLE_HOST = "console.partners.surveyon.com"
   
-  static var viewController: UIViewController?
-
   static var setupInfo: SetupInfo?
-
-  static var showListItem: [SurveyListItem] = []
   
 //  static var profilingPointRule: ProfilingPointRule?
 //  
@@ -80,13 +76,15 @@ extension SurveyonPartners {
 
   public static func showSurveyList<T,R>(vc: UIViewController, profilingPointRule: T, researchPointRule: R) {
     
-    // TODO
-//    self.profilingPointRule = profilingPointRule as? ProfilingPointRule
-//    self.researchPointRule = researchPointRule as? ResearchPointRule
+    guard let _ = SurveyonPartners.getSetupInfo() else {
+      //TODO: should throw error?
+      return
+    }
     
-    viewController = SurveyListViewContoroller(nibName: "SurveyListViewContoroller", bundle: Bundle(identifier: "com.surveyon.partners.SurveyonPartners"))
-    viewController!.modalPresentationStyle = .overCurrentContext
-    vc.present(viewController!, animated: false, completion: nil)
+    let viewController = SurveyListViewContoroller(nibName: "SurveyListViewContoroller", bundle: Bundle(identifier: "com.surveyon.partners.SurveyonPartners"))
+    viewController.setRule(profilingPointRule: profilingPointRule, researchPointRule: researchPointRule)
+    viewController.modalPresentationStyle = .overCurrentContext
+    vc.present(viewController, animated: false, completion: nil)
     
   }
 
