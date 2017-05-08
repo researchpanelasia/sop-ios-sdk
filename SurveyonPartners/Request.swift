@@ -20,7 +20,9 @@ class Request: RequestProtocol {
   static let USER_AGENT = "User-Agent"
   
   var url: URL
-  
+
+  var headers = [String: String]()
+
   var requestBody: String
 
   var httpMethod: RequestHTTPMethod
@@ -96,6 +98,10 @@ class Request: RequestProtocol {
       return "GET"
     }
   }
+
+  func addHeader(key: String, value: String){
+    headers[key] = value
+  }
 }
 
 extension Request {
@@ -103,10 +109,7 @@ extension Request {
   func post(completion: ((RequestResult) -> Void)?) {
     var request = URLRequest(url: url)
     request.httpMethod = getHttpMethod()
-    request.addValue(Request.APPLICATION_JSON, forHTTPHeaderField: Request.CONTENT_TYPE)
-    
-    request.addValue(Authentication().createSignature(message: requestBody, key: SurveyonPartners.setupInfo!.secretKey!), forHTTPHeaderField: Request.X_SOP_SIG)
-    request.addValue(Utility.getUserAgent(), forHTTPHeaderField: Request.USER_AGENT)
+    addHeaders(request: &request, headers: headers)
     request.httpBody = requestBody.data(using: .utf8)
     
     send(requestUrl: request, completion: completion)
@@ -118,5 +121,10 @@ extension Request {
     
     send(requestUrl: request, completion: completion)
   }
-  
+
+  func addHeaders(request: inout URLRequest, headers: [String: String]){
+    _ = headers.map { (key: String, value: String) in
+      request.addValue(value, forHTTPHeaderField: key)
+    }
+  }
 }

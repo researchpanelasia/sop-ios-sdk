@@ -19,25 +19,25 @@ class SOPLogTests: XCTestCase {
   func testDebug() {
     SOPLog.level = .debug
     SOPLog.debug(message: "hoge")
-    XCTAssert(matchMessage(regex: "\\[DEBUG\\] \"hoge\" \\d\\d\\d\\d/\\d\\d/\\d\\d \\d\\d:\\d\\d:\\d\\d L\\d+ testDebug\\(\\)"))
+    XCTAssert(matchMessage(regex: "\\[DEBUG\\] \"hoge\" \\d\\d\\d\\d/\\d\\d/\\d\\d \\d?\\d:\\d?\\d:\\d?\\d L\\d+ testDebug\\(\\)"))
   }
   
   func testInfo() {
     SOPLog.level = .debug
     SOPLog.info(message: "hoge")
-    XCTAssert(matchMessage(regex: "\\[INFO\\] \"hoge\" \\d\\d\\d\\d/\\d\\d/\\d\\d \\d\\d:\\d\\d:\\d\\d L\\d+ testInfo\\(\\)"))
+    XCTAssert(matchMessage(regex: "\\[INFO\\] \"hoge\" \\d\\d\\d\\d/\\d\\d/\\d\\d \\d?\\d:\\d?\\d:\\d?\\d L\\d+ testInfo\\(\\)"))
   }
 
   func testWarning() {
     SOPLog.level = .debug
     SOPLog.warning(message: "hoge")
-    XCTAssert(matchMessage(regex: "\\[WARNING\\] \"hoge\" \\d\\d\\d\\d/\\d\\d/\\d\\d \\d\\d:\\d\\d:\\d\\d L\\d+ testWarning\\(\\)"))
+    XCTAssert(matchMessage(regex: "\\[WARNING\\] \"hoge\" \\d\\d\\d\\d/\\d\\d/\\d\\d \\d?\\d:\\d?\\d:\\d?\\d L\\d+ testWarning\\(\\)"))
   }
   
   func testError() {
     SOPLog.level = .debug
     SOPLog.error(message: "hoge")
-    XCTAssert(matchMessage(regex: "\\[ERROR\\] \"hoge\" \\d\\d\\d\\d/\\d\\d/\\d\\d \\d\\d:\\d\\d:\\d\\d L\\d+ testError\\(\\)"))
+    XCTAssert(matchMessage(regex: "\\[ERROR\\] \"hoge\" \\d\\d\\d\\d/\\d\\d/\\d\\d \\d?\\d:\\d?\\d:\\d?\\d L\\d+ testError\\(\\)"))
   }
 
   func testNoLogging() {
