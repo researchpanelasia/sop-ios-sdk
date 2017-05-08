@@ -138,7 +138,6 @@ extension HttpClient {
         completion(RequestResult.failed(error: error))
       }
     })
-    
   }
   
   func getProtocol() -> String {
