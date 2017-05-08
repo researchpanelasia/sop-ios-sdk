@@ -19,9 +19,9 @@ public class SurveyonPartners {
 
   static var showListItem: [SurveyListItem] = []
   
-  static var profilingPointRule: ProfilingPointRule?
-  
-  static var researchPointRule: ResearchPointRule?
+//  static var profilingPointRule: ProfilingPointRule?
+//  
+//  static var researchPointRule: ResearchPointRule?
 
   static var queue = DispatchQueue(label: "com.surveyon.patners", attributes: .concurrent)
 }
@@ -80,41 +80,14 @@ extension SurveyonPartners {
 
   public static func showSurveyList<T,R>(vc: UIViewController, profilingPointRule: T, researchPointRule: R) {
     
-    guard let info = getSetupInfo() else {
-      //TODO: should throw error?
-      return
-    }
-
-    self.profilingPointRule = profilingPointRule as? ProfilingPointRule
-    self.researchPointRule = researchPointRule as? ResearchPointRule
+    // TODO
+//    self.profilingPointRule = profilingPointRule as? ProfilingPointRule
+//    self.researchPointRule = researchPointRule as? ResearchPointRule
     
-    let httpClient = HttpClient(appId: info.appId,
-                                appMid: info.appMid,
-                                secretKey: info.secretKey,
-                                sopHost: info.sopHost,
-                                sopConsoleHost: info.sopConsoleHost,
-                                updateSpan: info.idfaUpdateSpan,
-                                useHttps: info.useHttps,
-                                verifyHost: info.verifyHost)
-
-    httpClient.getSurveyList(completion: { (result) -> Void in
-      switch result {
-      case .success(let statusCode, let message, let rawBody):
-        SOPLog.debug(message: "statusCode = \(statusCode), message = \(message), rawBody = \(rawBody)")
-        
-        showListItem = SurveyListItemFactory.create(data: rawBody)
-        
-        DispatchQueue.main.async {
-          viewController = SurveyListViewContoroller(nibName: "SurveyListViewContoroller", bundle: Bundle(identifier: "com.surveyon.partners.SurveyonPartners"))
-          viewController!.modalPresentationStyle = .overCurrentContext
-          vc.present(viewController!, animated: false, completion: nil)
-        }
-        
-      case .failed(let error):
-        //do nothing
-        SOPLog.error(message: "error = \(error.localizedDescription)")
-      }
-    })
+    viewController = SurveyListViewContoroller(nibName: "SurveyListViewContoroller", bundle: Bundle(identifier: "com.surveyon.partners.SurveyonPartners"))
+    viewController!.modalPresentationStyle = .overCurrentContext
+    vc.present(viewController!, animated: false, completion: nil)
+    
   }
 
   static func setSetupInfo(_ setupInfo: SetupInfo){
