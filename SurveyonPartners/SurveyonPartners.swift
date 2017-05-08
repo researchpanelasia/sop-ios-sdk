@@ -88,10 +88,6 @@ extension SurveyonPartners {
     self.profilingPointRule = profilingPointRule as? ProfilingPointRule
     self.researchPointRule = researchPointRule as? ResearchPointRule
     
-    viewController = SurveyListViewContoroller(nibName: "SurveyListViewContoroller", bundle: Bundle(identifier: "com.surveyon.partners.SurveyonPartners"))
-    viewController!.modalPresentationStyle = .overCurrentContext
-    vc.present(viewController!, animated: false, completion: nil)
-    
     let httpClient = HttpClient(appId: info.appId,
                                 appMid: info.appMid,
                                 secretKey: info.secretKey,
@@ -108,9 +104,11 @@ extension SurveyonPartners {
         
         showListItem = SurveyListItemFactory.create(data: rawBody)
         
-        viewController = SurveyListViewContoroller(nibName: "SurveyListViewContoroller", bundle: Bundle(identifier: "com.surveyon.partners.SurveyonPartners"))
-        viewController!.modalPresentationStyle = .overCurrentContext
-        vc.present(viewController!, animated: false, completion: nil)
+        DispatchQueue.main.async {
+          viewController = SurveyListViewContoroller(nibName: "SurveyListViewContoroller", bundle: Bundle(identifier: "com.surveyon.partners.SurveyonPartners"))
+          viewController!.modalPresentationStyle = .overCurrentContext
+          vc.present(viewController!, animated: false, completion: nil)
+        }
         
       case .failed(let error):
         //do nothing
