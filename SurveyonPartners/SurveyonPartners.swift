@@ -15,10 +15,6 @@ public class SurveyonPartners {
   
   static var setupInfo: SetupInfo?
   
-//  static var profilingPointRule: ProfilingPointRule?
-//  
-//  static var researchPointRule: ResearchPointRule?
-
   static var queue = DispatchQueue(label: "com.surveyon.patners", attributes: .concurrent)
 }
 
@@ -32,7 +28,6 @@ extension SurveyonPartners {
                            updateSpan: Int64 = SurveyonPartners.DEFAULT_IDFA_UPDATE_SPAN,
                            useHttps: Bool = true,
                            verifyHost: Bool = true) {
-    
     setSetupInfo(SetupInfo(appId: appId,
                            appMid: appMid,
                            secretKey: secretKey,
@@ -61,7 +56,7 @@ extension SurveyonPartners {
                                 updateSpan: info.idfaUpdateSpan,
                                 useHttps: info.useHttps,
                                 verifyHost: info.verifyHost)
-
+    
     httpClient.updateIdfa(completion: { (result) -> Void in
       switch result {
       case .success(let statusCode, let message, let rawBody):
@@ -74,8 +69,7 @@ extension SurveyonPartners {
     })
   }
 
-  public static func showSurveyList<T,R>(vc: UIViewController, profilingPointRule: T, researchPointRule: R) {
-    
+  public static func showSurveyList(vc: UIViewController, profilingPointRule: ProfilingPointRule, researchPointRule: ResearchPointRule) {
     guard let _ = SurveyonPartners.getSetupInfo() else {
       //TODO: should throw error?
       return

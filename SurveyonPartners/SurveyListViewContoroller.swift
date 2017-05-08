@@ -25,9 +25,9 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
   
   var researchPointRule: ResearchPointRule?
   
-  func setRule<T,R>(profilingPointRule: T, researchPointRule: R) {
-    self.profilingPointRule = profilingPointRule as? ProfilingPointRule
-    self.researchPointRule = researchPointRule as? ResearchPointRule
+  func setRule(profilingPointRule: ProfilingPointRule, researchPointRule: ResearchPointRule) {
+    self.profilingPointRule = profilingPointRule
+    self.researchPointRule = researchPointRule
   }
   
   override func viewDidLoad() {
@@ -62,7 +62,6 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
         SOPLog.debug(message: "statusCode = \(statusCode), message = \(message), rawBody = \(rawBody)")
         
         self.showListItem = SurveyListItemFactory.create(data: rawBody)
-        
         DispatchQueue.main.async {  
           self.hideActivityIndicator()
           if self.showListItem.count > 0 {
@@ -70,15 +69,12 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
           } else {
             // TODO - sdk_empty_survey_list
           }
-          
         }
-        
       case .failed(let error):
         //do nothing
         SOPLog.error(message: "error = \(error.localizedDescription)")
       }
     })
-    
   }
   
   func closeButtonTapped(_ sender:AnyObject){
@@ -88,12 +84,12 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     let cell: SurveyListTableViewCell! = tableView.dequeueReusableCell(withIdentifier: identifier) as? SurveyListTableViewCell
-    cell.surveyNo.text? = (self.showListItem[indexPath.row] as SurveyListItem).surveyIdLabel!
-    cell.loi.text? = (self.showListItem[indexPath.row] as SurveyListItem).loi!
+    cell.surveyNo.text? = self.showListItem[indexPath.row].surveyIdLabel!
+    cell.loi.text? = self.showListItem[indexPath.row].loi!
     if cell.loi.text != "" {
       cell.loi.text! += " min"
     }
-    cell.titleName.text? = (self.showListItem[indexPath.row] as SurveyListItem).title!
+    cell.titleName.text? = self.showListItem[indexPath.row].title!
     // TODO - get point value
 //    let cookiePoint = profilingPointRule as! ProfilingPointRule
 //    let pro = self.showListItem[0] as! Profiling
@@ -104,7 +100,6 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    print("self.showListItem.count = \(self.showListItem.count)")
     return self.showListItem.count
   }
   
@@ -124,7 +119,6 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
   }
   
   func hideActivityIndicator() {
-    
     self.indicator?.stopAnimating()
   }
   
