@@ -7,21 +7,21 @@
 
 struct SetupInfo {
   
-  let appId: String?
+  let appId: String
   
-  let appMid: String?
+  let appMid: String
   
-  let secretKey: String?
+  let secretKey: String
   
-  let sopHost: String?
+  let sopHost: String
   
-  let sopConsoleHost: String?
+  let sopConsoleHost: String
   
-  let idfaUpdateSpan: Int64?
+  let idfaUpdateSpan: Int64
   
-  let useHttps: Bool?
+  let useHttps: Bool
   
-  let verifyHost: Bool?
+  let verifyHost: Bool
   
   init(appId: String,
        appMid: String,
