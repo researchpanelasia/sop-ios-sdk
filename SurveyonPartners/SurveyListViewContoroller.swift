@@ -141,6 +141,12 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
     
   }
   
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: false)
+    let url = URL(string: self.showListItem[indexPath.row].url!)
+    UIApplication.shared.openURL(url!)
+  }
+  
   func showActivityIndicator(uiView: UIView) {
     self.indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     self.indicator!.center = (CGPoint(x: uiView.bounds.midX, y: uiView.bounds.midY))
