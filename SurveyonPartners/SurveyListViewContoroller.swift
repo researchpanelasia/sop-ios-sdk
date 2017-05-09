@@ -150,8 +150,13 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
   }
   
   func showActivityIndicator(uiView: UIView) {
-    self.indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-    self.indicator!.center = (CGPoint(x: uiView.bounds.midX, y: uiView.bounds.midY))
+    self.indicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    if UIInterfaceOrientationIsPortrait(UIApplication.shared.statusBarOrientation) {
+      self.indicator!.center = (CGPoint(x: tableView.bounds.midX, y: tableView.bounds.midY))
+    } else {
+      self.indicator!.center = (CGPoint(x: tableView.bounds.midY, y: tableView.bounds.midX))
+    }
+    self.indicator!.color = UIColor.gray
     uiView.addSubview(self.indicator!)
     self.indicator!.startAnimating()
   }
