@@ -98,6 +98,9 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let FACEBOOK_Q_NAME = "q000_fb"
+    let GOOGLE_Q_NAME = "q000_ggl"
+    let COOKIE_Q_NAME = "q000_cookie"
     
     let cell: SurveyListTableViewCell! = tableView.dequeueReusableCell(withIdentifier: identifier) as? SurveyListTableViewCell
     cell.surveyNo.text? = self.showListItem[indexPath.row].surveyIdLabel!
@@ -106,11 +109,22 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
       cell.loi.text! += " min"
     }
     cell.titleName.text? = self.showListItem[indexPath.row].title!
-    // TODO - get point value
-//    let cookiePoint = profilingPointRule as! ProfilingPointRule
-//    let pro = self.showListItem[0] as! Profiling
-//    let point = cookiePoint.cookieProfilingPoint(profiling: pro)
-    cell.pointLabel.text? = "10 each"
+
+    var point = ""
+    if let _ = self.showListItem[indexPath.row] as? ImplProfiling {
+      if self.showListItem[indexPath.row].surveyIdLabel == FACEBOOK_Q_NAME {
+        point = profilingPointRule!.facebookAuthProfilingPoint(profiling: self.showListItem[indexPath.row] as! Profiling)
+      } else if self.showListItem[indexPath.row].surveyIdLabel == GOOGLE_Q_NAME {
+        point = profilingPointRule!.googleAuthProfilingPoint(profiling: self.showListItem[indexPath.row] as! Profiling)
+      } else if self.showListItem[indexPath.row].surveyIdLabel == COOKIE_Q_NAME {
+        point = profilingPointRule!.cookieProfilingPoint(profiling: self.showListItem[indexPath.row] as! Profiling)
+      } else {
+        point = profilingPointRule!.profilingPoint(profiling: self.showListItem[indexPath.row] as! Profiling)
+      }
+    } else if let _ = self.showListItem[indexPath.row] as? ImplResearch {
+      point = researchPointRule!.researchPoint(research: self.showListItem[indexPath.row] as! Research)
+    }
+    cell.pointLabel.text? = point
     
     return cell!
   }
