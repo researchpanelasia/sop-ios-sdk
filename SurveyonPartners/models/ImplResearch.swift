@@ -47,14 +47,20 @@ struct ImplResearch: Research, SurveyListItem {
     self.quotaId = json["quota_id"] as! String
     self.cpi = json["cpi"] as! String
     self.ir = json["ir"] as! String
-    self.isAnswered = true
-    self.isClosed = true
-    self.isFixedLoi = true
-    self.isNotifiable = true
+    self.isAnswered = json["is_answered"] as! String == "1"
+    self.isClosed = json["is_closed"] as! String == "1"
+    self.isFixedLoi = json["is_fixed_loi"] as! String == "1"
+    self.isNotifiable = json["is_notifiable"] as! String == "1"
     self.date = json["date"] as! String
     self.blockedDevices = [:]
     self.extraInfo = [:]
   }
+
+
+
+
+
+
   
   func isMobileBlocked() -> Bool {
     return true

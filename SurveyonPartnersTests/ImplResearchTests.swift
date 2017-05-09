@@ -24,8 +24,8 @@ class ImplResearchTests: XCTestCase {
       " \"cpi\": \"1.23\",\n" +
       " \"ir\": \"80\",\n" +
       " \"loi\": \"10\"\n," +
-      " \"is_answered\": \"0\",\n" +
-      " \"is_closed\": \"0\",\n" +
+      " \"is_answered\": \"1\",\n" +
+      " \"is_closed\": \"1\",\n" +
       " \"title\": \"Example Research Survey\",\n" +
       " \"url\": \"https://partners.surveyon.com/resource/auth/v1_1?sig=e523d747983fb8adcfd858b432bc7d15490fae8f5ccb16c75f8f72e86c37672b&next=%2Fproject_survey%2F23456&time=1416302209&app_id=22&app_mid=test2\",\n" +
       " \"is_fixed_loi\": \"1\",\n" +
@@ -40,14 +40,17 @@ class ImplResearchTests: XCTestCase {
 
     let research = ImplResearch(json: json)
 
-    XCTAssertEqual(research.surveyId ,  "10000")
-    XCTAssertEqual(research.title ,  "Example Research Survey")
-    XCTAssertEqual(research.loi ,  "10")
-    XCTAssertEqual(research.url ,  "https://partners.surveyon.com/resource/auth/v1_1?sig=e523d747983fb8adcfd858b432bc7d15490fae8f5ccb16c75f8f72e86c37672b&next=%2Fproject_survey%2F23456&time=1416302209&app_id=22&app_mid=test2")
-    XCTAssertEqual(research.quotaId ,  "20000")
-    XCTAssertEqual(research.cpi ,  "1.23")
-    XCTAssertEqual(research.ir ,  "80")
-
-    XCTAssertEqual(research.date ,  "2015-01-01")
+    XCTAssertEqual(research.surveyId, "10000")
+    XCTAssertEqual(research.title, "Example Research Survey")
+    XCTAssertEqual(research.loi, "10")
+    XCTAssertEqual(research.url, "https://partners.surveyon.com/resource/auth/v1_1?sig=e523d747983fb8adcfd858b432bc7d15490fae8f5ccb16c75f8f72e86c37672b&next=%2Fproject_survey%2F23456&time=1416302209&app_id=22&app_mid=test2")
+    XCTAssertEqual(research.quotaId, "20000")
+    XCTAssertEqual(research.cpi, "1.23")
+    XCTAssertEqual(research.ir, "80")
+    XCTAssertEqual(research.isAnswered, true)
+    XCTAssertEqual(research.isClosed, true)
+    XCTAssertEqual(research.isFixedLoi, true)
+    XCTAssertEqual(research.isNotifiable, true)
+    XCTAssertEqual(research.date, "2015-01-01")
   }
 }
