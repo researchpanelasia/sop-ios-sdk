@@ -20,7 +20,7 @@ class SurveyListTableViewCell: UITableViewCell {
     super.awakeFromNib()
     self.frameView.layer.cornerRadius = 2.0
     self.frameView.layer.shadowOffset = CGSize(width: 0, height: 0)
-    self.frameView.layer.shadowRadius = 2.0
+    self.frameView.layer.shadowRadius = 1.0
     self.frameView.layer.shadowOpacity = 0.5
   }
   
