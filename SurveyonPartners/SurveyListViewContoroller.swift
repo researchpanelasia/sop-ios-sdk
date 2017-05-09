@@ -19,7 +19,13 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
   
   @IBOutlet weak var emptyLabel: UILabel!
   
-  let identifier: String = "SurveyListTableViewCell"
+  static let FACEBOOK_Q_NAME = "q000_fb"
+  
+  static let GOOGLE_Q_NAME = "q000_ggl"
+  
+  static let COOKIE_Q_NAME = "q000_cookie"
+  
+  static let identifier: String = "SurveyListTableViewCell"
   
   var indicator: UIActivityIndicatorView?
   
@@ -98,11 +104,7 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let FACEBOOK_Q_NAME = "q000_fb"
-    let GOOGLE_Q_NAME = "q000_ggl"
-    let COOKIE_Q_NAME = "q000_cookie"
-    
-    let cell: SurveyListTableViewCell! = tableView.dequeueReusableCell(withIdentifier: identifier) as? SurveyListTableViewCell
+    let cell: SurveyListTableViewCell! = tableView.dequeueReusableCell(withIdentifier: SurveyListViewContoroller.identifier) as? SurveyListTableViewCell
     cell.surveyNo.text? = self.showListItem[indexPath.row].surveyIdLabel!
     cell.loi.text? = self.showListItem[indexPath.row].loi!
     if cell.loi.text != "" {
@@ -112,11 +114,11 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
 
     var point = ""
     if let _ = self.showListItem[indexPath.row] as? ImplProfiling {
-      if self.showListItem[indexPath.row].surveyIdLabel == FACEBOOK_Q_NAME {
+      if self.showListItem[indexPath.row].surveyIdLabel == SurveyListViewContoroller.FACEBOOK_Q_NAME {
         point = profilingPointRule!.facebookAuthProfilingPoint(profiling: self.showListItem[indexPath.row] as! Profiling)
-      } else if self.showListItem[indexPath.row].surveyIdLabel == GOOGLE_Q_NAME {
+      } else if self.showListItem[indexPath.row].surveyIdLabel == SurveyListViewContoroller.GOOGLE_Q_NAME {
         point = profilingPointRule!.googleAuthProfilingPoint(profiling: self.showListItem[indexPath.row] as! Profiling)
-      } else if self.showListItem[indexPath.row].surveyIdLabel == COOKIE_Q_NAME {
+      } else if self.showListItem[indexPath.row].surveyIdLabel == SurveyListViewContoroller.COOKIE_Q_NAME {
         point = profilingPointRule!.cookieProfilingPoint(profiling: self.showListItem[indexPath.row] as! Profiling)
       } else {
         point = profilingPointRule!.profilingPoint(profiling: self.showListItem[indexPath.row] as! Profiling)
@@ -139,6 +141,12 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: false)
+    let url = URL(string: self.showListItem[indexPath.row].url!)
+    UIApplication.shared.openURL(url!)
   }
   
   func showActivityIndicator(uiView: UIView) {
