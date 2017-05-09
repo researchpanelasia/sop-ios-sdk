@@ -13,16 +13,8 @@ public class SurveyonPartners {
   
   static let DEFAULT_SOP_CONSOLE_HOST = "console.partners.surveyon.com"
   
-  static var viewController: UIViewController?
-
   static var setupInfo: SetupInfo?
-
-  static var showListItem: [SurveyListItem] = []
   
-  static var profilingPointRule: ProfilingPointRule?
-  
-  static var researchPointRule: ResearchPointRule?
-
   static var queue = DispatchQueue(label: "com.surveyon.patners", attributes: .concurrent)
 }
 
@@ -36,7 +28,6 @@ extension SurveyonPartners {
                            updateSpan: Int64 = SurveyonPartners.DEFAULT_IDFA_UPDATE_SPAN,
                            useHttps: Bool = true,
                            verifyHost: Bool = true) {
-    
     setSetupInfo(SetupInfo(appId: appId,
                            appMid: appMid,
                            secretKey: secretKey,
@@ -65,7 +56,7 @@ extension SurveyonPartners {
                                 updateSpan: info.idfaUpdateSpan,
                                 useHttps: info.useHttps,
                                 verifyHost: info.verifyHost)
-
+    
     httpClient.updateIdfa(completion: { (result) -> Void in
       switch result {
       case .success(let statusCode, let message, let rawBody):
@@ -78,43 +69,17 @@ extension SurveyonPartners {
     })
   }
 
-  public static func showSurveyList<T,R>(vc: UIViewController, profilingPointRule: T, researchPointRule: R) {
-    
-    guard let info = getSetupInfo() else {
+  public static func showSurveyList(vc: UIViewController, profilingPointRule: ProfilingPointRule, researchPointRule: ResearchPointRule) {
+    guard let _ = SurveyonPartners.getSetupInfo() else {
       //TODO: should throw error?
       return
     }
-
-    self.profilingPointRule = profilingPointRule as? ProfilingPointRule
-    self.researchPointRule = researchPointRule as? ResearchPointRule
     
-    let httpClient = HttpClient(appId: info.appId,
-                                appMid: info.appMid,
-                                secretKey: info.secretKey,
-                                sopHost: info.sopHost,
-                                sopConsoleHost: info.sopConsoleHost,
-                                updateSpan: info.idfaUpdateSpan,
-                                useHttps: info.useHttps,
-                                verifyHost: info.verifyHost)
-
-    httpClient.getSurveyList(completion: { (result) -> Void in
-      switch result {
-      case .success(let statusCode, let message, let rawBody):
-        SOPLog.debug(message: "statusCode = \(statusCode), message = \(message), rawBody = \(rawBody)")
-        
-        showListItem = SurveyListItemFactory.create(data: rawBody)
-        
-        DispatchQueue.main.async {
-          viewController = SurveyListViewContoroller(nibName: "SurveyListViewContoroller", bundle: Bundle(identifier: "com.surveyon.partners.SurveyonPartners"))
-          viewController!.modalPresentationStyle = .overCurrentContext
-          vc.present(viewController!, animated: false, completion: nil)
-        }
-        
-      case .failed(let error):
-        //do nothing
-        SOPLog.error(message: "error = \(error.localizedDescription)")
-      }
-    })
+    let viewController = SurveyListViewContoroller(nibName: "SurveyListViewContoroller", bundle: Bundle(identifier: "com.surveyon.partners.SurveyonPartners"))
+    viewController.setRule(profilingPointRule: profilingPointRule, researchPointRule: researchPointRule)
+    viewController.modalPresentationStyle = .overCurrentContext
+    vc.present(viewController, animated: false, completion: nil)
+    
   }
 
   static func setSetupInfo(_ setupInfo: SetupInfo){
