@@ -33,7 +33,7 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    guard let info = SurveyonPartners.getSetupInfo() else {
+    guard let info = SurveyonPartners.getConfig() else {
       //TODO: should throw error?
       return
     }

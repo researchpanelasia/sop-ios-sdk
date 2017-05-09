@@ -5,7 +5,7 @@
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
-struct SetupInfo {
+struct Config {
   
   let appId: String
   
