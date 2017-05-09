@@ -32,21 +32,21 @@ class SurveyListItemFactory {
       if let dataJson = json!["data"] as? [String: Any] {
         if let research = dataJson["research"] as? [[String: Any]] {
           for index in 0..<research.count {
-            let researchData = ImplResearch(surveyId: research[index]["survey_id"] as? String,
-                                            quotaId: research[index]["quota_id"] as? String,
-                                            cpi: research[index]["cpi"] as? String,
-                                            ir: research[index]["ir"] as? String,
-                                            loi: research[index]["loi"] as? String,
-                                            isAnswered: research[index]["is_answered"] as? String,
-                                            isClosed: research[index]["is_closed"] as? String,
-                                            title: research[index]["title"] as? String,
-                                            url: research[index]["url"] as? String,
-                                            isFixedLoi: research[index]["is_fixed_loi"] as? String,
-                                            isNotifiable: research[index]["is_notifiable"] as? String,
-                                            date: research[index]["date"] as? String,
-                                            blockedDevices: research[index]["blocked_devices"] as? String,
-                                            extraInfo: research[index]["extra_info"] as? String)
-            surveyListArray.append(researchData)
+//            let researchData = ImplResearch(surveyId: research[index]["survey_id"] as? String,
+//                                            quotaId: research[index]["quota_id"] as? String,
+//                                            cpi: research[index]["cpi"] as? String,
+//                                            ir: research[index]["ir"] as? String,
+//                                            loi: research[index]["loi"] as? String,
+//                                            isAnswered: research[index]["is_answered"] as? String,
+//                                            isClosed: research[index]["is_closed"] as? String,
+//                                            title: research[index]["title"] as? String,
+//                                            url: research[index]["url"] as? String,
+//                                            isFixedLoi: research[index]["is_fixed_loi"] as? String,
+//                                            isNotifiable: research[index]["is_notifiable"] as? String,
+//                                            date: research[index]["date"] as? String,
+//                                            blockedDevices: research[index]["blocked_devices"] as? String,
+//                                            extraInfo: research[index]["extra_info"] as? String)
+//            surveyListArray.append(researchData)
           }
         }
       }

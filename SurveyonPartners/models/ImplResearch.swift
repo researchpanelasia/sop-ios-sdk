@@ -6,85 +6,73 @@
 //
 
 struct ImplResearch: Research, SurveyListItem {
+
+  var surveyId: String
   
-  var surveyIdLabel: String? { get {return "r" + surveyId!} }
+  var title: String
   
-  var name: String? { get {return ""} }
+  var loi: String
   
-  var surveyId: String?
+  var url: String
   
-  var title: String?
+  var quotaId: String
   
-  var loi: String?
+  var cpi: String
   
-  var url: String?
+  var ir: String
+
+  var isAnswered: Bool
   
-  var quotaId: String?
+  var isClosed: Bool
   
-  var cpi: String?
+  var isFixedLoi: Bool
   
-  var ir: String?
+  var isNotifiable: Bool
   
-  var isAnswered: String?
+  var date: String
   
-  var isClosed: String?
+  var blockedDevices: [String: Bool]
   
-  var isFixedLoi: String?
-  
-  var isNotifiable: String?
-  
-  var date: String?
-  
-  var blockedDevices: String?
-  
-  var extraInfo: String?
-  
-  init(surveyId: String?,
-       quotaId: String?,
-       cpi: String?,
-       ir: String?,
-       loi: String?,
-       isAnswered: String?,
-       isClosed: String?,
-       title: String?,
-       url: String?,
-       isFixedLoi: String?,
-       isNotifiable: String?,
-       date: String?,
-       blockedDevices: String?,
-       extraInfo: String?) {
-    self.surveyId = surveyId
-    self.quotaId = quotaId
-    self.cpi = cpi
-    self.ir = ir
-    self.loi = loi
-    self.isAnswered = isAnswered
-    self.isClosed = isClosed
-    self.title = title
-    self.url = url
-    self.isFixedLoi = isFixedLoi
-    self.isNotifiable = isNotifiable
-    self.date = date
-    self.blockedDevices = blockedDevices
-    self.extraInfo = extraInfo
+  var extraInfo: [String: AnyObject]
+
+  var surveyIdLabel: String { get {return "r" + surveyId} }
+
+  var name: String { get {return ""} }
+
+  init(json: [String: AnyObject]) {
+    self.surveyId = json["survey_id"] as! String
+    self.title = json["title"] as! String
+    self.loi = json["loi"] as! String
+    self.url = json["url"] as! String
+    self.quotaId = json["quota_id"] as! String
+    self.cpi = json["cpi"] as! String
+    self.ir = json["ir"] as! String
+    self.isAnswered = true
+    self.isClosed = true
+    self.isFixedLoi = true
+    self.isNotifiable = true
+    self.date = json["date"] as! String
+    self.blockedDevices = [:]
+    self.extraInfo = [:]
   }
   
   func isMobileBlocked() -> Bool {
-    let data = self.blockedDevices!.data(using: .utf8)
-    do {
-      let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? NSDictionary
-      guard let blockedDevices = json?[Constants.KEY_BLOCKED_DEVICES] as? [String:Any] else {
-        return false
-      }
-      let mobileValue = blockedDevices[Constants.MOBILE_BLOCKED] as? Int
-      if mobileValue == 1 {
-        return true
-      } else {
-        return true
-      }
-    } catch {
-      return true
-    }
+    return true
+//    let data = self.blockedDevices!.data(using: .utf8)
+//    do {
+//      let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? NSDictionary
+//      guard let blockedDevices = json?[Constants.KEY_BLOCKED_DEVICES] as? [String:Any] else {
+//        return false
+//      }
+//      let mobileValue = blockedDevices[Constants.MOBILE_BLOCKED] as? Int
+//      if mobileValue == 1 {
+//        return true
+//      } else {
+//        return true
+//      }
+//    } catch {
+//      return true
+//    }
+//  }
   }
-  
 }

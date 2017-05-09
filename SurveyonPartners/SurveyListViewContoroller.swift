@@ -84,12 +84,12 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     let cell: SurveyListTableViewCell! = tableView.dequeueReusableCell(withIdentifier: identifier) as? SurveyListTableViewCell
-    cell.surveyNo.text? = self.showListItem[indexPath.row].surveyIdLabel!
-    cell.loi.text? = self.showListItem[indexPath.row].loi!
+//    cell.surveyNo.text? = self.showListItem[indexPath.row].surveyIdLabel!
+//    cell.loi.text? = self.showListItem[indexPath.row].loi!
     if cell.loi.text != "" {
       cell.loi.text! += " min"
     }
-    cell.titleName.text? = self.showListItem[indexPath.row].title!
+//    cell.titleName.text? = self.showListItem[indexPath.row].title!
     // TODO - get point value
 //    let cookiePoint = profilingPointRule as! ProfilingPointRule
 //    let pro = self.showListItem[0] as! Profiling
