@@ -13,6 +13,8 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
   
   @IBOutlet weak var tableView: UITableView!
   
+  @IBOutlet weak var transparentView: UIView!
+  
   @IBOutlet weak var customView: UIView!
   
   @IBOutlet weak var emptyLabel: UILabel!
