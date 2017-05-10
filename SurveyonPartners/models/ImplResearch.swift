@@ -5,6 +5,10 @@
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
+
+struct ResearchInvalidDataError: Error {
+}
+
 struct ImplResearch: Research, SurveyListItem {
 
   var surveyId: String
@@ -39,29 +43,26 @@ struct ImplResearch: Research, SurveyListItem {
 
   var name: String { get {return ""} }
 
-  init(json: [String: AnyObject]) {
-    self.surveyId = json["survey_id"] as! String
-    self.title = json["title"] as! String
-    self.loi = json["loi"] as! String
-    self.url = json["url"] as! String
-    self.quotaId = json["quota_id"] as! String
-    self.cpi = json["cpi"] as! String
-    self.ir = json["ir"] as! String
-    self.isAnswered = json["is_answered"] as! String == "1"
-    self.isClosed = json["is_closed"] as! String == "1"
-    self.isFixedLoi = json["is_fixed_loi"] as! String == "1"
-    self.isNotifiable = json["is_notifiable"] as! String == "1"
-    self.date = json["date"] as! String
+  init(json: [String: AnyObject]) throws {
+    let getString = {(_ val: String!) throws -> String in try val ?? {throw ResearchInvalidDataError()}()}
+    let getBool = {(_ val: String!) throws -> Bool in try getString(val) == "1"}
+
+    self.surveyId = try getString(json["survey_id"] as? String)
+    self.title = try getString(json["title"] as? String)
+    self.loi = try getString(json["loi"] as? String)
+    self.url = try getString(json["url"] as? String)
+    self.quotaId = try getString(json["quota_id"] as? String)
+    self.cpi = try getString(json["cpi"] as? String)
+    self.ir = try getString(json["ir"] as? String)
+    self.isAnswered = try getBool(json["is_answered"] as? String)
+    self.isClosed = try getBool(json["is_closed"] as? String)
+    self.isFixedLoi = try getBool(json["is_fixed_loi"] as? String)
+    self.isNotifiable = try getBool(json["is_notifiable"] as? String)
+    self.date = try getString(json["date"] as? String)
     self.blockedDevices = [:]
     self.extraInfo = [:]
   }
 
-
-
-
-
-
-  
   func isMobileBlocked() -> Bool {
     return true
 //    let data = self.blockedDevices!.data(using: .utf8)
