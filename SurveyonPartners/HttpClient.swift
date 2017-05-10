@@ -122,6 +122,7 @@ extension HttpClient {
     var params = "?app_id=" + self.appId
     params += "&app_mid=" + self.appMid
     params += "&time=" + Utility.getPosixTime()
+    params += "&sop_ad_tracking=" + "1"
     let paramSig = "&sig=" + sig
     apiUrl += params + paramSig
     
