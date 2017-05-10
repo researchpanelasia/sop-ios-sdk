@@ -5,9 +5,10 @@
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
+struct ProfilingInvalidDataError: Error {
+}
+
 struct ImplProfiling: Profiling, SurveyListItem {
-  
-  var surveyIdLabel: String { get {return name} }
   
   var name: String
   
@@ -19,14 +20,13 @@ struct ImplProfiling: Profiling, SurveyListItem {
   
   var loi: String { get {return ""} }
   
-  init(name: String?,
-       title: String?,
-       url: String?) {
-//    self.name = name
-//    self.title = title
-//    self.url = url
-    self.name = ""
-    self.title = ""
-    self.url = ""
+  var surveyIdLabel: String { get {return name} }
+
+  init(json: [String: AnyObject]) throws {
+    let getString = {(_ val: String!) throws -> String in try val ?? {throw ProfilingInvalidDataError()}()}
+
+    self.name = try getString(json["name"] as? String)
+    self.title = try getString(json["title"] as? String)
+    self.url = try getString(json["url"] as? String)
   }
 }

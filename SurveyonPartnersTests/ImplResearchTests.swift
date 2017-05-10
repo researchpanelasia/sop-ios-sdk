@@ -10,14 +10,6 @@ import XCTest
 
 class ImplResearchTests: XCTestCase {
 
-  override func setUp() {
-    super.setUp()
-  }
-
-  override func tearDown() {
-    super.tearDown()
-  }
-
   func testInit() throws {
     let jsonString = "{\"survey_id\": \"10000\",\n" +
       " \"quota_id\": \"20000\",\n" +
