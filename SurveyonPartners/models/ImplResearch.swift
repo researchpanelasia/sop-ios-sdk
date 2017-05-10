@@ -59,27 +59,23 @@ struct ImplResearch: Research, SurveyListItem {
     self.isFixedLoi = try getBool(json["is_fixed_loi"] as? String)
     self.isNotifiable = try getBool(json["is_notifiable"] as? String)
     self.date = try getString(json["date"] as? String)
-    self.blockedDevices = [:]
-    self.extraInfo = [:]
+    self.blockedDevices = ImplResearch.parseBlockedDevice(json["blocked_devices"] as? [String:Int])
+    self.extraInfo = json["extra_info"] as? [String: AnyObject] ?? [:]
+  }
+
+  static func parseBlockedDevice(_ dic: [String:Int]?) -> [String: Bool] {
+    guard let dic = dic else {
+      return [:]
+    }
+
+    var parsed = [String: Bool]()
+    for (k, v) in dic {
+      parsed[k] = (v == 1)
+    }
+    return parsed
   }
 
   func isMobileBlocked() -> Bool {
-    return true
-//    let data = self.blockedDevices!.data(using: .utf8)
-//    do {
-//      let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? NSDictionary
-//      guard let blockedDevices = json?[Constants.KEY_BLOCKED_DEVICES] as? [String:Any] else {
-//        return false
-//      }
-//      let mobileValue = blockedDevices[Constants.MOBILE_BLOCKED] as? Int
-//      if mobileValue == 1 {
-//        return true
-//      } else {
-//        return true
-//      }
-//    } catch {
-//      return true
-//    }
-//  }
+    return blockedDevices["MOBILE"] ?? false
   }
 }
