@@ -51,7 +51,7 @@ class SurveyListItemFactoryTests: XCTestCase {
       "        \"loi\": \"10\"," +
       "        \"is_answered\": \"0\"," +
       "        \"is_closed\": \"1\"," +
-      "        \"title\": \"Example Research Survey\"," +
+      "        \"title\": \"hoge\"," +
       "        \"url\": \"\"," +
       "        \"is_fixed_loi\": \"0\"," +
       "        \"is_notifiable\": \"0\"," +
@@ -68,5 +68,7 @@ class SurveyListItemFactoryTests: XCTestCase {
 
     let items = try SurveyListItemFactory.create(data: response.data(using: .utf8)!)
     XCTAssertEqual(items[0].title, "请问您的生日是多少?")
+    XCTAssertEqual(items[1].title, "Example Research Survey")
+    XCTAssertEqual(items[2].title, "hoge")
   }
 }
