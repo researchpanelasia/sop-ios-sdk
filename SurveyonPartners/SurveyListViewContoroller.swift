@@ -61,7 +61,7 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
       case .success(let statusCode, let message, let rawBody):
         SOPLog.debug(message: "statusCode = \(statusCode), message = \(message), rawBody = \(rawBody)")
         
-        self.showListItem = SurveyListItemFactory.create(data: rawBody)
+        self.showListItem = try! SurveyListItemFactory.create(data: rawBody)
         DispatchQueue.main.async {  
           self.hideActivityIndicator()
           if self.showListItem.count > 0 {
