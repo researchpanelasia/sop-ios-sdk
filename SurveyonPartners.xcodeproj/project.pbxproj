@@ -48,6 +48,7 @@
 		5EE33C691EA8B7680051A341 /* ImplProfiling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE33C681EA8B7680051A341 /* ImplProfiling.swift */; };
 		5EE33C6B1EA8B8850051A341 /* ImplResearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE33C6A1EA8B8850051A341 /* ImplResearch.swift */; };
 		7614F56E1EC2DFCD009A76D1 /* ImplProfilingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7614F56D1EC2DFCD009A76D1 /* ImplProfilingTests.swift */; };
+		7614F5701EC2FCC0009A76D1 /* SurveyListItemFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7614F56F1EC2FCC0009A76D1 /* SurveyListItemFactoryTests.swift */; };
 		76447E851EBAF35A00A091C7 /* SOPCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 76447E841EBAF35A00A091C7 /* SOPCrypto.m */; };
 		76447E881EBAFA7A00A091C7 /* SOPCryptoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76447E871EBAFA7A00A091C7 /* SOPCryptoTest.swift */; };
 		76447EE51EC0179500A091C7 /* RequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76447EE41EC0179500A091C7 /* RequestTests.swift */; };
@@ -112,6 +113,7 @@
 		5EE33C681EA8B7680051A341 /* ImplProfiling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImplProfiling.swift; sourceTree = "<group>"; };
 		5EE33C6A1EA8B8850051A341 /* ImplResearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImplResearch.swift; sourceTree = "<group>"; };
 		7614F56D1EC2DFCD009A76D1 /* ImplProfilingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImplProfilingTests.swift; sourceTree = "<group>"; };
+		7614F56F1EC2FCC0009A76D1 /* SurveyListItemFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyListItemFactoryTests.swift; sourceTree = "<group>"; };
 		76447E841EBAF35A00A091C7 /* SOPCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOPCrypto.m; sourceTree = "<group>"; };
 		76447E861EBAF36D00A091C7 /* SOPCrypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SOPCrypto.h; sourceTree = "<group>"; };
 		76447E871EBAFA7A00A091C7 /* SOPCryptoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOPCryptoTest.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 			children = (
 				764BCB931EC1C7B7002AC5BF /* ImplResearchTests.swift */,
 				7614F56D1EC2DFCD009A76D1 /* ImplProfilingTests.swift */,
+				7614F56F1EC2FCC0009A76D1 /* SurveyListItemFactoryTests.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				764BCB941EC1C7B7002AC5BF /* ImplResearchTests.swift in Sources */,
 				5E142E481E6FB89A002804A3 /* SurveyonPartnersTests.swift in Sources */,
 				5E142E6D1E728C93002804A3 /* PreferencesManagerTests.swift in Sources */,
+				7614F5701EC2FCC0009A76D1 /* SurveyListItemFactoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
