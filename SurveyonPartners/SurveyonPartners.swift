@@ -5,6 +5,9 @@
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
+public struct InvalidConfigurationError: Error {
+}
+
 public class SurveyonPartners {
   
   static let DEFAULT_IDFA_UPDATE_SPAN: Int64 = 60 * 60 * 24 * 14 * 1000
@@ -80,6 +83,25 @@ extension SurveyonPartners {
     viewController.modalPresentationStyle = .overCurrentContext
     vc.present(viewController, animated: false, completion: nil)
     
+  }
+
+  public static func getSurveyList(completion: @escaping (RequestResult) -> Void ){
+    guard let config = getConfig() else {
+      DispatchQueue.main.async {
+        completion(RequestResult.failed(error: InvalidConfigurationError()))
+      }
+      return
+    }
+
+    let httpClient = HttpClient(appId: config.appId,
+                                appMid: config.appMid,
+                                secretKey: config.secretKey,
+                                sopHost: config.sopHost,
+                                sopConsoleHost: config.sopConsoleHost,
+                                updateSpan: config.idfaUpdateSpan,
+                                useHttps: config.useHttps,
+                                verifyHost: config.verifyHost)
+    httpClient.getSurveyList(completion: completion)
   }
 
   static func setConfig(_ config: Config){
