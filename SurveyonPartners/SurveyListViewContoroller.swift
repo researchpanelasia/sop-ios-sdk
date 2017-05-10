@@ -90,6 +90,7 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
               emptyMessage = "Anda telah menyelesaikan semua survei untuk Anda. Jangan kuatir, Anda akan menerima survei lagi segera."
             }
             self.emptyLabel.text =  emptyMessage
+            self.emptyLabel.textColor = UIColor(red: 66/255, green: 66/255, blue: 66/255, alpha: 1.0)
             self.emptyLabel.isHidden = false
           }
         }
