@@ -11,13 +11,12 @@ enum SurveyType {
 }
 
 protocol SurveyListItem {
-  
-  var surveyIdLabel: String? { get }
-  
-  var title: String? { get }
-  
-  var url: String? { get }
-  
-  var loi: String? { get }
-  
+
+  var surveyIdLabel: String { get }
+
+  var title: String { get }
+
+  var url: String{ get }
+
+  var loi: String { get }
 }

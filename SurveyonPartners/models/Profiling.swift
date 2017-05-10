@@ -7,10 +7,9 @@
 
 public protocol Profiling {
   
-  var name: String? { get }
+  var name: String { get }
   
-  var title: String? { get }
+  var title: String { get }
   
-  var url: String? { get }
-  
+  var url: String { get }
 }

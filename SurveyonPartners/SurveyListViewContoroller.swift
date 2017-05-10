@@ -43,7 +43,7 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    guard let info = SurveyonPartners.getSetupInfo() else {
+    guard let info = SurveyonPartners.getConfig() else {
       //TODO: should throw error?
       return
     }
@@ -74,7 +74,7 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
       case .success(let statusCode, let message, let rawBody):
         SOPLog.debug(message: "statusCode = \(statusCode), message = \(message), rawBody = \(rawBody)")
         
-        self.showListItem = SurveyListItemFactory.create(data: rawBody)
+        self.showListItem = try! SurveyListItemFactory.create(data: rawBody)
         DispatchQueue.main.async {  
           self.hideActivityIndicator()
           if self.showListItem.count > 0 {
@@ -107,12 +107,12 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell: SurveyListTableViewCell! = tableView.dequeueReusableCell(withIdentifier: SurveyListViewContoroller.identifier) as? SurveyListTableViewCell
-    cell.surveyNo.text? = self.showListItem[indexPath.row].surveyIdLabel!
-    cell.loi.text? = self.showListItem[indexPath.row].loi!
+    cell.surveyNo.text? = self.showListItem[indexPath.row].surveyIdLabel
+    cell.loi.text? = self.showListItem[indexPath.row].loi
     if cell.loi.text != "" {
       cell.loi.text! += " min"
     }
-    cell.titleName.text? = self.showListItem[indexPath.row].title!
+    cell.titleName.text? = self.showListItem[indexPath.row].title
 
     var point = ""
     if let _ = self.showListItem[indexPath.row] as? ImplProfiling {
@@ -129,7 +129,7 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
       point = researchPointRule!.researchPoint(research: self.showListItem[indexPath.row] as! Research)
     }
     cell.pointLabel.text? = point
-    
+
     return cell!
   }
   
@@ -147,7 +147,7 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: false)
-    let url = URL(string: self.showListItem[indexPath.row].url!)
+    let url = URL(string: self.showListItem[indexPath.row].url)
     UIApplication.shared.openURL(url!)
   }
   

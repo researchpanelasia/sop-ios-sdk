@@ -5,86 +5,77 @@
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
+
+struct ResearchInvalidDataError: Error {
+}
+
 struct ImplResearch: Research, SurveyListItem {
+
+  var surveyId: String
   
-  var surveyIdLabel: String? { get {return "r" + surveyId!} }
+  var title: String
   
-  var name: String? { get {return ""} }
+  var loi: String
   
-  var surveyId: String?
+  var url: String
   
-  var title: String?
+  var quotaId: String
   
-  var loi: String?
+  var cpi: String
   
-  var url: String?
+  var ir: String
+
+  var isAnswered: Bool
   
-  var quotaId: String?
+  var isClosed: Bool
   
-  var cpi: String?
+  var isFixedLoi: Bool
   
-  var ir: String?
+  var isNotifiable: Bool
   
-  var isAnswered: String?
+  var date: String
   
-  var isClosed: String?
+  var blockedDevices: [String: Bool]
   
-  var isFixedLoi: String?
-  
-  var isNotifiable: String?
-  
-  var date: String?
-  
-  var blockedDevices: String?
-  
-  var extraInfo: String?
-  
-  init(surveyId: String?,
-       quotaId: String?,
-       cpi: String?,
-       ir: String?,
-       loi: String?,
-       isAnswered: String?,
-       isClosed: String?,
-       title: String?,
-       url: String?,
-       isFixedLoi: String?,
-       isNotifiable: String?,
-       date: String?,
-       blockedDevices: String?,
-       extraInfo: String?) {
-    self.surveyId = surveyId
-    self.quotaId = quotaId
-    self.cpi = cpi
-    self.ir = ir
-    self.loi = loi
-    self.isAnswered = isAnswered
-    self.isClosed = isClosed
-    self.title = title
-    self.url = url
-    self.isFixedLoi = isFixedLoi
-    self.isNotifiable = isNotifiable
-    self.date = date
-    self.blockedDevices = blockedDevices
-    self.extraInfo = extraInfo
+  var extraInfo: [String: AnyObject]
+
+  var surveyIdLabel: String { get {return "r" + surveyId} }
+
+  var name: String { get {return ""} }
+
+  init(json: [String: AnyObject]) throws {
+    let getString = {(_ val: String!) throws -> String in try val ?? {throw ResearchInvalidDataError()}()}
+    let getBool = {(_ val: String!) throws -> Bool in try getString(val) == "1"}
+
+    self.surveyId = try getString(json["survey_id"] as? String)
+    self.title = try getString(json["title"] as? String)
+    self.loi = try getString(json["loi"] as? String)
+    self.url = try getString(json["url"] as? String)
+    self.quotaId = try getString(json["quota_id"] as? String)
+    self.cpi = try getString(json["cpi"] as? String)
+    self.ir = try getString(json["ir"] as? String)
+    self.isAnswered = try getBool(json["is_answered"] as? String)
+    self.isClosed = try getBool(json["is_closed"] as? String)
+    self.isFixedLoi = try getBool(json["is_fixed_loi"] as? String)
+    self.isNotifiable = try getBool(json["is_notifiable"] as? String)
+    self.date = try getString(json["date"] as? String)
+    self.blockedDevices = ImplResearch.parseBlockedDevice(json["blocked_devices"] as? [String:Int])
+    self.extraInfo = json["extra_info"] as? [String: AnyObject] ?? [:]
   }
-  
-  func isMobileBlocked() -> Bool {
-    let data = self.blockedDevices!.data(using: .utf8)
-    do {
-      let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? NSDictionary
-      guard let blockedDevices = json?[Constants.KEY_BLOCKED_DEVICES] as? [String:Any] else {
-        return false
-      }
-      let mobileValue = blockedDevices[Constants.MOBILE_BLOCKED] as? Int
-      if mobileValue == 1 {
-        return true
-      } else {
-        return true
-      }
-    } catch {
-      return true
+
+  static func parseBlockedDevice(_ dic: [String:Int]?) -> [String: Bool] {
+    guard let dic = dic else {
+      return [:]
     }
+
+    var parsed = [String: Bool]()
+    for (k, v) in dic {
+      parsed[k] = (v == 1)
+    }
+    return parsed
   }
-  
+
+  func isMobileBlocked() -> Bool {
+    return blockedDevices["MOBILE"] ?? false
+  }
 }

@@ -5,6 +5,9 @@
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
+public struct InvalidConfigurationError: Error {
+}
+
 public class SurveyonPartners {
   
   static let DEFAULT_IDFA_UPDATE_SPAN: Int64 = 60 * 60 * 24 * 14 * 1000
@@ -13,7 +16,7 @@ public class SurveyonPartners {
   
   static let DEFAULT_SOP_CONSOLE_HOST = "console.partners.surveyon.com"
   
-  static var setupInfo: SetupInfo?
+  static var config: Config?
   
   static var queue = DispatchQueue(label: "com.surveyon.patners", attributes: .concurrent)
 }
@@ -28,7 +31,7 @@ extension SurveyonPartners {
                            updateSpan: Int64 = SurveyonPartners.DEFAULT_IDFA_UPDATE_SPAN,
                            useHttps: Bool = true,
                            verifyHost: Bool = true) {
-    setSetupInfo(SetupInfo(appId: appId,
+    setConfig(Config(appId: appId,
                            appMid: appMid,
                            secretKey: secretKey,
                            sopHost: sopHost,
@@ -43,7 +46,7 @@ extension SurveyonPartners {
   }
 
   static func updateIdfa(){
-    guard let info = getSetupInfo() else {
+    guard let info = getConfig() else {
       //TODO: should throw error?
       return
     }
@@ -70,7 +73,7 @@ extension SurveyonPartners {
   }
 
   public static func showSurveyList(vc: UIViewController, profilingPointRule: ProfilingPointRule, researchPointRule: ResearchPointRule) {
-    guard let _ = SurveyonPartners.getSetupInfo() else {
+    guard let _ = SurveyonPartners.getConfig() else {
       //TODO: should throw error?
       return
     }
@@ -82,16 +85,35 @@ extension SurveyonPartners {
     
   }
 
-  static func setSetupInfo(_ setupInfo: SetupInfo){
+  public static func getSurveyList(completion: @escaping (RequestResult) -> Void ){
+    guard let config = getConfig() else {
+      DispatchQueue.main.async {
+        completion(RequestResult.failed(error: InvalidConfigurationError()))
+      }
+      return
+    }
+
+    let httpClient = HttpClient(appId: config.appId,
+                                appMid: config.appMid,
+                                secretKey: config.secretKey,
+                                sopHost: config.sopHost,
+                                sopConsoleHost: config.sopConsoleHost,
+                                updateSpan: config.idfaUpdateSpan,
+                                useHttps: config.useHttps,
+                                verifyHost: config.verifyHost)
+    httpClient.getSurveyList(completion: completion)
+  }
+
+  static func setConfig(_ config: Config){
     queue.async(flags: .barrier) {
-      SurveyonPartners.setupInfo = setupInfo
+      SurveyonPartners.config = config
     }
   }
 
-  static func getSetupInfo() -> SetupInfo?{
-    var tmp: SetupInfo?
+  static func getConfig() -> Config?{
+    var tmp: Config?
     queue.sync {
-      tmp = setupInfo
+      tmp = config
     }
     return tmp
   }
@@ -104,7 +126,7 @@ extension SurveyonPartners {
   }
   
   static func isNeedAdIdUpdated(currentTimeMilles: Int64) -> Bool {
-    guard let info = getSetupInfo() else {
+    guard let info = getConfig() else {
       //TODO: should throw error?
       return false
     }
