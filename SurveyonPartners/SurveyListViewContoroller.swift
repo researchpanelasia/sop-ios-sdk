@@ -19,6 +19,8 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
   
   @IBOutlet weak var emptyLabel: UILabel!
   
+  @IBOutlet weak var indicator: UIActivityIndicatorView!
+  
   static let FACEBOOK_Q_NAME = "q000_fb"
   
   static let GOOGLE_Q_NAME = "q000_ggl"
@@ -26,8 +28,6 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
   static let COOKIE_Q_NAME = "q000_cookie"
   
   static let identifier: String = "SurveyListTableViewCell"
-  
-  var indicator: UIActivityIndicatorView?
   
   var showListItem: [SurveyListItem] = []
   
@@ -60,10 +60,13 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
       return
     }
     
+    indicator.activityIndicatorViewStyle = .whiteLarge
+    indicator.color = UIColor.gray
+    indicator.isHidden = false
+    
     emptyLabel.isHidden = true
     
     customView.layer.cornerRadius = 5
-    self.showActivityIndicator(uiView: customView)
     
     tableView.register(UINib(nibName: "SurveyListTableViewCell", bundle: Bundle(identifier: "com.surveyon.partners.SurveyonPartners")), forCellReuseIdentifier: "SurveyListTableViewCell")
     tableView.separatorStyle = .none
@@ -88,7 +91,7 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
         
         self.showListItem = try! SurveyListItemFactory.create(data: rawBody)
         DispatchQueue.main.async {
-          self.hideActivityIndicator()
+          self.indicator.isHidden = true
           if self.showListItem.count > 0 {
             self.tableView.reloadData()
           } else {
@@ -162,21 +165,4 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
     let url = URL(string: self.showListItem[indexPath.row].url)
     UIApplication.shared.openURL(url!)
   }
-  
-  func showActivityIndicator(uiView: UIView) {
-    self.indicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-    if UIInterfaceOrientationIsPortrait(UIApplication.shared.statusBarOrientation) {
-      self.indicator!.center = (CGPoint(x: tableView.bounds.midX, y: tableView.bounds.midY))
-    } else {
-      self.indicator!.center = (CGPoint(x: tableView.bounds.midY, y: tableView.bounds.midX))
-    }
-    self.indicator!.color = UIColor.gray
-    uiView.addSubview(self.indicator!)
-    self.indicator!.startAnimating()
-  }
-  
-  func hideActivityIndicator() {
-    self.indicator?.stopAnimating()
-  }
-  
 }
