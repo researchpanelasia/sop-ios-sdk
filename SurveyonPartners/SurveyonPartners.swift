@@ -45,46 +45,6 @@ extension SurveyonPartners {
     }
   }
 
-  static func updateIdfa(){
-    guard let info = getConfig() else {
-      //TODO: should throw error?
-      return
-    }
-
-    let httpClient = HttpClient(appId: info.appId,
-                                appMid: info.appMid,
-                                secretKey: info.secretKey,
-                                sopHost: info.sopHost,
-                                sopConsoleHost: info.sopConsoleHost,
-                                updateSpan: info.idfaUpdateSpan,
-                                useHttps: info.useHttps,
-                                verifyHost: info.verifyHost)
-    
-    httpClient.updateIdfa(completion: { (result) -> Void in
-      switch result {
-      case .success(let statusCode, let message, let rawBody):
-        SOPLog.debug(message: "statusCode = \(statusCode), message = \(message), rawBody = \(rawBody)")
-        SurveyonPartners.adIdUpdatedAt(currentTimeMilles: Utility.currentTimeMillis())
-      case .failed(let error):
-        //do nothing
-        SOPLog.error(message: "error = \(error.localizedDescription)")
-      }
-    })
-  }
-
-  public static func showSurveyList(vc: UIViewController, profilingPointRule: ProfilingPointRule, researchPointRule: ResearchPointRule) {
-    guard let _ = SurveyonPartners.getConfig() else {
-      //TODO: should throw error?
-      return
-    }
-    
-    let viewController = SurveyListViewContoroller(nibName: "SurveyListViewContoroller", bundle: Bundle(identifier: "com.surveyon.partners.SurveyonPartners"))
-    viewController.setRule(profilingPointRule: profilingPointRule, researchPointRule: researchPointRule)
-    viewController.modalPresentationStyle = .overCurrentContext
-    vc.present(viewController, animated: false, completion: nil)
-    
-  }
-
   public static func getSurveyList(completion: @escaping (RequestResult) -> Void ){
     guard let config = getConfig() else {
       DispatchQueue.main.async {
@@ -102,6 +62,39 @@ extension SurveyonPartners {
                                 useHttps: config.useHttps,
                                 verifyHost: config.verifyHost)
     httpClient.getSurveyList(completion: completion)
+  }
+
+  public static func showSurveyList(vc: UIViewController, profilingPointRule: ProfilingPointRule, researchPointRule: ResearchPointRule) {
+    let viewController = SurveyListViewContoroller(nibName: "SurveyListViewContoroller", bundle: Bundle(identifier: "com.surveyon.partners.SurveyonPartners"))
+    viewController.setRule(profilingPointRule: profilingPointRule, researchPointRule: researchPointRule)
+    viewController.modalPresentationStyle = .overCurrentContext
+    vc.present(viewController, animated: false, completion: nil)
+  }
+
+  static func updateIdfa(){
+    guard let config = getConfig() else {
+      return
+    }
+
+    let httpClient = HttpClient(appId: config.appId,
+                                appMid: config.appMid,
+                                secretKey: config.secretKey,
+                                sopHost: config.sopHost,
+                                sopConsoleHost: config.sopConsoleHost,
+                                updateSpan: config.idfaUpdateSpan,
+                                useHttps: config.useHttps,
+                                verifyHost: config.verifyHost)
+    
+    httpClient.updateIdfa(completion: { (result) -> Void in
+      switch result {
+      case .success(let statusCode, let message, let rawBody):
+        SOPLog.debug(message: "statusCode = \(statusCode), message = \(message), rawBody = \(rawBody)")
+        SurveyonPartners.adIdUpdatedAt(currentTimeMilles: Utility.currentTimeMillis())
+      case .failed(let error):
+        //do nothing
+        SOPLog.error(message: "error = \(error.localizedDescription)")
+      }
+    })
   }
 
   static func setConfig(_ config: Config){
@@ -127,7 +120,6 @@ extension SurveyonPartners {
   
   static func isNeedAdIdUpdated(currentTimeMilles: Int64) -> Bool {
     guard let info = getConfig() else {
-      //TODO: should throw error?
       return false
     }
 

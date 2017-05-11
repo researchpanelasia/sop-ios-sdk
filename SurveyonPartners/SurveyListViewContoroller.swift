@@ -55,11 +55,6 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
   }
   
   func loadSurveyList() {
-    guard let info = SurveyonPartners.getConfig() else {
-      //TODO: should throw error?
-      return
-    }
-    
     indicator.activityIndicatorViewStyle = .whiteLarge
     indicator.color = UIColor.gray
     indicator.isHidden = false
@@ -74,21 +69,12 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
     
     closeView.isUserInteractionEnabled = true
     closeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SurveyListViewContoroller.closeButtonTapped)))
-    
-    let httpClient = HttpClient(appId: info.appId,
-                                appMid: info.appMid,
-                                secretKey: info.secretKey,
-                                sopHost: info.sopHost,
-                                sopConsoleHost: info.sopConsoleHost,
-                                updateSpan: info.idfaUpdateSpan,
-                                useHttps: info.useHttps,
-                                verifyHost: info.verifyHost)
-    
-    httpClient.getSurveyList(completion: { (result) -> Void in
+
+    SurveyonPartners.getSurveyList(completion: { (result) -> Void in
       switch result {
       case .success(let statusCode, let message, let rawBody):
         SOPLog.debug(message: "statusCode = \(statusCode), message = \(message), rawBody = \(rawBody)")
-        
+
         self.showListItem = try! SurveyListItemFactory.create(data: rawBody)
         DispatchQueue.main.async {
           self.indicator.isHidden = true
