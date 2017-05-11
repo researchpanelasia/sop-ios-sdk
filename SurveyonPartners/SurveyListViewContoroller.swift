@@ -70,7 +70,7 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
     
     tableView.register(UINib(nibName: "SurveyListTableViewCell", bundle: Bundle(identifier: "com.surveyon.partners.SurveyonPartners")), forCellReuseIdentifier: "SurveyListTableViewCell")
     tableView.separatorStyle = .none
-    tableView.backgroundColor = UIColor(red: 235/255, green: 239/255, blue: 241/255, alpha: 1.0)
+    tableView.backgroundColor = UIColor.clear
     
     closeView.isUserInteractionEnabled = true
     closeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SurveyListViewContoroller.closeButtonTapped)))
