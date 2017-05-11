@@ -40,9 +40,21 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
     self.researchPointRule = researchPointRule
   }
   
+  func movedToForeground() {
+    showListItem.removeAll()
+    tableView.reloadData()
+    loadSurveyList()
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    let notificationCenter = NotificationCenter.default
+    notificationCenter.addObserver(self, selector: #selector(movedToForeground), name: Notification.Name.UIApplicationWillEnterForeground, object: nil)
+    loadSurveyList()
+  }
+  
+  func loadSurveyList() {
     guard let info = SurveyonPartners.getConfig() else {
       //TODO: should throw error?
       return
@@ -75,7 +87,7 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
         SOPLog.debug(message: "statusCode = \(statusCode), message = \(message), rawBody = \(rawBody)")
         
         self.showListItem = try! SurveyListItemFactory.create(data: rawBody)
-        DispatchQueue.main.async {  
+        DispatchQueue.main.async {
           self.hideActivityIndicator()
           if self.showListItem.count > 0 {
             self.tableView.reloadData()
