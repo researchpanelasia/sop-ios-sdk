@@ -20,7 +20,7 @@ struct ImplResearch: Research, SurveyListItem {
   var url: String
   
   var quotaId: String
-  
+   
   var cpi: String
   
   var ir: String
