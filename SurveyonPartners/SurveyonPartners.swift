@@ -39,6 +39,12 @@ extension SurveyonPartners {
                            idfaUpdateSpan: updateSpan,
                            useHttps: useHttps,
                            verifyHost: verifyHost))
+    
+    if #available(iOS 10.0, *) {
+      if !AdvertisingId.getIsAdvertisingTrackingEnabled() {
+        return
+      }
+    }
 
     if (isNeedAdIdUpdated(currentTimeMilles: Utility.currentTimeMillis())) {
       updateIdfa()
