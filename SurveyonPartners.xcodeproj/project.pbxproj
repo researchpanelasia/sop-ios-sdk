@@ -31,11 +31,9 @@
 		5E38D3FF1E8E4D8400D00DB8 /* SurveyListItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E38D3FE1E8E4D8400D00DB8 /* SurveyListItemFactory.swift */; };
 		5E3D9A221E9760F900AE9F88 /* ProfilingPointRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3D9A211E9760F900AE9F88 /* ProfilingPointRule.swift */; };
 		5E3D9A241E97611300AE9F88 /* ResearchPointRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3D9A231E97611300AE9F88 /* ResearchPointRule.swift */; };
-		5E3D9A281E977B8800AE9F88 /* SurveyListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3D9A271E977B8800AE9F88 /* SurveyListView.xib */; };
 		5E3D9A2D1E9B2E5300AE9F88 /* icon-close.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E3D9A2A1E9B2E5300AE9F88 /* icon-close.png */; };
 		5E3D9A2E1E9B2E5300AE9F88 /* icon-close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E3D9A2B1E9B2E5300AE9F88 /* icon-close@2x.png */; };
 		5E3D9A2F1E9B2E5300AE9F88 /* icon-close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E3D9A2C1E9B2E5300AE9F88 /* icon-close@3x.png */; };
-		5E3D9A311E9B83EC00AE9F88 /* SurveyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3D9A301E9B83EC00AE9F88 /* SurveyListView.swift */; };
 		5E6CC6B11EA74FCE0098BEF1 /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6CC6B01EA74FCE0098BEF1 /* RequestResult.swift */; };
 		5E7C58A81EAA235E00D74CB6 /* SurveyListViewContoroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7C58A71EAA235E00D74CB6 /* SurveyListViewContoroller.swift */; };
 		5E7C58AA1EAA236900D74CB6 /* SurveyListViewContoroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E7C58A91EAA236900D74CB6 /* SurveyListViewContoroller.xib */; };
@@ -96,11 +94,9 @@
 		5E38D3FE1E8E4D8400D00DB8 /* SurveyListItemFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SurveyListItemFactory.swift; path = SurveyonPartners/Models/SurveyListItemFactory.swift; sourceTree = SOURCE_ROOT; };
 		5E3D9A211E9760F900AE9F88 /* ProfilingPointRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilingPointRule.swift; sourceTree = "<group>"; };
 		5E3D9A231E97611300AE9F88 /* ResearchPointRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResearchPointRule.swift; sourceTree = "<group>"; };
-		5E3D9A271E977B8800AE9F88 /* SurveyListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SurveyListView.xib; sourceTree = "<group>"; };
 		5E3D9A2A1E9B2E5300AE9F88 /* icon-close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-close.png"; sourceTree = "<group>"; };
 		5E3D9A2B1E9B2E5300AE9F88 /* icon-close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-close@2x.png"; sourceTree = "<group>"; };
 		5E3D9A2C1E9B2E5300AE9F88 /* icon-close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-close@3x.png"; sourceTree = "<group>"; };
-		5E3D9A301E9B83EC00AE9F88 /* SurveyListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyListView.swift; sourceTree = "<group>"; };
 		5E6CC6B01EA74FCE0098BEF1 /* RequestResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
 		5E7C58A71EAA235E00D74CB6 /* SurveyListViewContoroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyListViewContoroller.swift; sourceTree = "<group>"; };
 		5E7C58A91EAA236900D74CB6 /* SurveyListViewContoroller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SurveyListViewContoroller.xib; sourceTree = "<group>"; };
@@ -210,8 +206,6 @@
 				5E142EA91E82442B002804A3 /* RequestProtocol.swift */,
 				5E142E7A1E7A5751002804A3 /* Utility.swift */,
 				5E38D3FC1E8E441300D00DB8 /* SOPLog.swift */,
-				5E3D9A301E9B83EC00AE9F88 /* SurveyListView.swift */,
-				5E3D9A271E977B8800AE9F88 /* SurveyListView.xib */,
 				76447E861EBAF36D00A091C7 /* SOPCrypto.h */,
 				76447E841EBAF35A00A091C7 /* SOPCrypto.m */,
 			);
@@ -356,7 +350,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E7C58AA1EAA236900D74CB6 /* SurveyListViewContoroller.xib in Resources */,
-				5E3D9A281E977B8800AE9F88 /* SurveyListView.xib in Resources */,
 				5E3D9A2E1E9B2E5300AE9F88 /* icon-close@2x.png in Resources */,
 				5E3D9A2D1E9B2E5300AE9F88 /* icon-close.png in Resources */,
 				5E8D11F01E9E079100162619 /* icon-point.png in Resources */,
@@ -403,7 +396,6 @@
 				76447E851EBAF35A00A091C7 /* SOPCrypto.m in Sources */,
 				5EE33C651EA8A69D0051A341 /* SurveyListItem.swift in Sources */,
 				5E38D3FD1E8E441300D00DB8 /* SOPLog.swift in Sources */,
-				5E3D9A311E9B83EC00AE9F88 /* SurveyListView.swift in Sources */,
 				5E142E751E791E59002804A3 /* Config.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
