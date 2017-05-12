@@ -40,12 +40,6 @@ extension SurveyonPartners {
                            useHttps: useHttps,
                            verifyHost: verifyHost))
     
-    if #available(iOS 10.0, *) {
-      if !AdvertisingId.getIsAdvertisingTrackingEnabled() {
-        return
-      }
-    }
-
     if (isNeedAdIdUpdated(currentTimeMilles: Utility.currentTimeMillis())) {
       updateIdfa()
     }
@@ -59,6 +53,10 @@ extension SurveyonPartners {
       return
     }
 
+    if (isNeedAdIdUpdated(currentTimeMilles: Utility.currentTimeMillis())) {
+      updateIdfa()
+    }
+    
     let httpClient = HttpClient(appId: config.appId,
                                 appMid: config.appMid,
                                 secretKey: config.secretKey,
@@ -125,6 +123,12 @@ extension SurveyonPartners {
   }
   
   static func isNeedAdIdUpdated(currentTimeMilles: Int64) -> Bool {
+    if #available(iOS 10.0, *) {
+      if !AdvertisingId.getIsAdvertisingTrackingEnabled() {
+        return false
+      }
+    }
+    
     guard let info = getConfig() else {
       return false
     }
