@@ -14,5 +14,3 @@ FOUNDATION_EXPORT double SurveyonPartnersVersionNumber;
 FOUNDATION_EXPORT const unsigned char SurveyonPartnersVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <SurveyonPartners/PublicHeader.h>
-
-
