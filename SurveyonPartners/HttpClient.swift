@@ -7,6 +7,9 @@
 
 import Foundation
 
+public struct InvalidNetworkError: Error {
+}
+
 struct HttpClient {
   
   static let HTTPS = "https://"
@@ -70,7 +73,10 @@ extension HttpClient {
   
   func updateIdfa(completion: @escaping (RequestResult) -> Void) {
     
-    if !Utility.isOnline() { return }
+    if !Utility.isOnline() {
+      completion(RequestResult.failed(error: InvalidNetworkError()))
+      return
+    }
     
     let url = URL(string: getProtocol() + self.sopConsoleHost + HttpClient.PATH_POST_IDFA)!
     let dictionary: Dictionary<String,Any>  = [
@@ -107,7 +113,10 @@ extension HttpClient {
   
   func getSurveyList(completion: @escaping (RequestResult) -> Void) {
     
-    if !Utility.isOnline() { return }
+    if !Utility.isOnline() {
+      completion(RequestResult.failed(error: InvalidNetworkError()))
+      return
+    }
     
     var apiUrl = getProtocol() + self.sopHost + HttpClient.PATH_GET_SURVEY
     
