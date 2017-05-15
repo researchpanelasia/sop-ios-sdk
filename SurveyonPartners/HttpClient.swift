@@ -7,9 +7,6 @@
 
 import Foundation
 
-public struct InvalidNetworkError: Error {
-}
-
 struct HttpClient {
   
   static let HTTPS = "https://"
@@ -74,7 +71,7 @@ extension HttpClient {
   func updateIdfa(completion: @escaping (RequestResult) -> Void) {
     
     if !Utility.isOnline() {
-      completion(RequestResult.failed(error: InvalidNetworkError()))
+      completion(RequestResult.failed(error: SOPError(message: "Network not available", type: .NetworkNotAvailable, response: nil, error: nil)))
       return
     }
     
@@ -99,22 +96,14 @@ extension HttpClient {
                         value: Authentication().createSignature(message: JSONString, key: secretKey))
       request.addHeader(key: Request.USER_AGENT, value: Utility.getUserAgent())
 
-      request.post(completion: { (result) -> Void in
-        switch result {
-        case .success(let statusCode, let message, let rawBody):
-          completion(RequestResult.success(statusCode: statusCode, message: message, rawBody: rawBody))
-        case .failed(let error):
-          completion(RequestResult.failed(error: error))
-        }
-      })
+      request.post(completion: completion)
     }
-    
   }
   
   func getSurveyList(completion: @escaping (RequestResult) -> Void) {
     
     if !Utility.isOnline() {
-      completion(RequestResult.failed(error: InvalidNetworkError()))
+      completion(RequestResult.failed(error: SOPError(message: "Network not available", type: .NetworkNotAvailable, response: nil, error: nil)))
       return
     }
     
@@ -140,14 +129,7 @@ extension HttpClient {
     let request = Request(url: url,
                           httpMethod: .GET,
                           verifyHost: verifyHost)
-    request.get(completion: { (result) -> Void in
-      switch result {
-      case .success(let statusCode, let message, let rawBody):
-        completion(RequestResult.success(statusCode: statusCode, message: message, rawBody: rawBody))
-      case .failed(let error):
-        completion(RequestResult.failed(error: error))
-      }
-    })
+    request.get(completion: completion)
   }
   
   func getProtocol() -> String {

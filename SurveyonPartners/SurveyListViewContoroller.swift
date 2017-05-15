@@ -72,10 +72,10 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
 
     SurveyonPartners.getSurveyList(completion: { (result) -> Void in
       switch result {
-      case .success(let statusCode, let message, let rawBody):
-        SOPLog.debug(message: "statusCode = \(statusCode), message = \(message), rawBody = \(rawBody)")
+      case .success(let response):
+        SOPLog.debug(message: "statusCode = \(response)")
 
-        self.showListItem = try! SurveyListItemFactory.create(data: rawBody)
+        self.showListItem = try! SurveyListItemFactory.create(data: response.data!)
         DispatchQueue.main.async {
           self.indicator.isHidden = true
           if self.showListItem.count > 0 {
@@ -97,7 +97,7 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
         }
       case .failed(let error):
         //do nothing
-        SOPLog.error(message: "error = \(error.localizedDescription)")
+        SOPLog.error(message: "error = \(error)")
       }
     })
   }
