@@ -10,11 +10,9 @@ import Foundation
 public class Response {
   public var statusCode: Int
   public var data: Data?
-  public var error: NSError?
 
-  init(statusCode: Int, data: Data?, error: NSError?){
+  init(statusCode: Int, data: Data?){
     self.statusCode = statusCode
     self.data = data
-    self.error = error
   }
 }

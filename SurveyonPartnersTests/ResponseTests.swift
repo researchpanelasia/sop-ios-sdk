@@ -11,9 +11,8 @@ import XCTest
 class ResponseTests: XCTestCase {
 
   func testInit() {
-    let res = Response(statusCode: 200, data: Data(base64Encoded: "hoge"), error: NSError(domain: "fuga", code: 999, userInfo: nil))
+    let res = Response(statusCode: 200, data: Data(base64Encoded: "hoge"))
     XCTAssertEqual(res.statusCode, 200)
     XCTAssertEqual(res.data?.base64EncodedString(), "hoge")
-    XCTAssertEqual(res.error?.code, 999)
   }
 }
