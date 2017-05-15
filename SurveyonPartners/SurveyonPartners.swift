@@ -5,9 +5,6 @@
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
-public struct InvalidConfigurationError: Error {
-}
-
 public class SurveyonPartners {
   
   static let DEFAULT_IDFA_UPDATE_SPAN: Int64 = 60 * 60 * 24 * 14 * 1000
@@ -48,7 +45,7 @@ extension SurveyonPartners {
   public static func getSurveyList(completion: @escaping (RequestResult) -> Void ){
     guard let config = getConfig() else {
       DispatchQueue.main.async {
-        completion(RequestResult.failed(error: InvalidConfigurationError()))
+        completion(RequestResult.failed(error: SOPError(message: "Invalid configuration", type: .InvalidConfiguration, response: nil, error: nil)))
       }
       return
     }
@@ -95,12 +92,12 @@ extension SurveyonPartners {
     
     httpClient.updateIdfa(completion: { (result) -> Void in
       switch result {
-      case .success(let statusCode, let message, let rawBody):
-        SOPLog.debug(message: "statusCode = \(statusCode), message = \(message), rawBody = \(rawBody)")
+      case .success(let response):
+        SOPLog.debug(message: "statusCode = \(response)")
         SurveyonPartners.adIdUpdatedAt(currentTimeMilles: Utility.currentTimeMillis())
       case .failed(let error):
         //do nothing
-        SOPLog.error(message: "error = \(error.localizedDescription)")
+        SOPLog.error(message: "error = \(error)")
       }
     })
   }

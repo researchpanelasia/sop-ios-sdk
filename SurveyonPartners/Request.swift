@@ -39,44 +39,52 @@ class Request: RequestProtocol {
     self.verifyHost = verifyHost
   }
   
-  func send(requestUrl: URLRequest, completion: ((RequestResult) -> Void)?) {
+  func send(requestUrl: URLRequest, completion: @escaping (RequestResult) -> Void) {
     
     let session = verifyHost ? URLSession.shared
                              : URLSession(configuration: URLSessionConfiguration.default, delegate: SSCAcceptingDelegate(), delegateQueue: OperationQueue())
     let task = session.dataTask(with: requestUrl) { data, response, error in
-      
-      guard let data = data, error == nil else {
-        // check for fundamental networking error
-        SOPLog.error(message: "network error")
-        if let completion = completion {
-          completion(RequestResult.failed(error: error!))
-        }
+
+      if let error = error {
+        completion(RequestResult.failed(error: SOPError(message: "Connection error", type: .ConnectionError, response: nil, error: error)))
         return
       }
-      
-      if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode < 200, httpStatus.statusCode >= 300 {
-        // check for http errors
-        let errorString = String(data: data, encoding: .utf8)
-        SOPLog.error(message: "response = \(response!), statusCode = \(httpStatus.statusCode), errorString = \(errorString!)")
-        if let completion = completion {
-          completion(RequestResult.failed(error: error!))
-        }
+
+      guard let httpResponse = response as? HTTPURLResponse else {
+        completion(RequestResult.failed(error: SOPError(message: "Can't get response", type: .UnknownError, response: nil, error: nil)))
         return
       }
-      
+
+      let responseWrapper = Response(statusCode:httpResponse.statusCode, data: data)
+
+      if 400 <= responseWrapper.statusCode && responseWrapper.statusCode < 500 {
+        completion(RequestResult.failed(error: SOPError(message: "Invalid request", type: .InvalidRequest, response: responseWrapper, error: nil)))
+        return
+      }
+
+      if responseWrapper.statusCode < 200 && 500 <= responseWrapper.statusCode {
+        completion(RequestResult.failed(error: SOPError(message: "Server error", type: .ServerError, response: responseWrapper, error: nil)))
+        return
+      }
+
+      guard let data = data else {
+        completion(RequestResult.failed(error: SOPError(message: "Invalid response body", type: .ServerError, response: responseWrapper, error: nil)))
+        return
+      }
+
       do {
-        let json = try JSONSerialization.jsonObject(with: data) as? [String:Any]
-        let meta = json?[Constants.KEY_META] as? [String:Any]
-        let code = meta?[Constants.KEY_CODE] as? Int
-        let message = meta?[Constants.KEY_MESSAGE] as? String
-        
-        if let completion = completion {
-          completion(RequestResult.success(statusCode: code!, message: message!, rawBody: data))
+        let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+        guard let meta = json?[Constants.KEY_META] as? [String: Any], let code = meta[Constants.KEY_CODE] as? Int else {
+          completion(RequestResult.failed(error: SOPError(message: "Invalid response body", type: .ServerError, response: responseWrapper, error: nil)))
+          return
         }
-        return
-      } catch let parseError {
-        completion!(RequestResult.failed(error: parseError))
-        return
+        if code != 200 {
+          completion(RequestResult.failed(error: SOPError(message: "Invalid response body", type: .ServerError, response: responseWrapper, error: nil)))
+          return
+        }
+        completion(RequestResult.success(response: responseWrapper))
+      } catch let e {
+        completion(RequestResult.failed(error: SOPError(message: "Server error", type: .ServerError, response: responseWrapper, error: e)))
       }
     }
     task.resume()
@@ -105,8 +113,8 @@ class Request: RequestProtocol {
 }
 
 extension Request {
-  
-  func post(completion: ((RequestResult) -> Void)?) {
+
+  func post(completion: @escaping (RequestResult) -> Void) {
     var request = URLRequest(url: url)
     request.httpMethod = getHttpMethod()
     addHeaders(request: &request, headers: headers)
@@ -115,7 +123,7 @@ extension Request {
     send(requestUrl: request, completion: completion)
   }
   
-  func get(completion: ((RequestResult) -> Void)?) {
+  func get(completion: @escaping (RequestResult) -> Void) {
     var request = URLRequest(url: url)
     request.httpMethod = getHttpMethod()
     

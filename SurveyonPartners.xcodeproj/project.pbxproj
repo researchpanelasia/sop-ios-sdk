@@ -51,6 +51,10 @@
 		76447E881EBAFA7A00A091C7 /* SOPCryptoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76447E871EBAFA7A00A091C7 /* SOPCryptoTest.swift */; };
 		76447EE51EC0179500A091C7 /* RequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76447EE41EC0179500A091C7 /* RequestTests.swift */; };
 		764BCB941EC1C7B7002AC5BF /* ImplResearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764BCB931EC1C7B7002AC5BF /* ImplResearchTests.swift */; };
+		764EF3F71EC97EC700EF25EE /* SOPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764EF3F61EC97EC700EF25EE /* SOPError.swift */; };
+		764EF3F91EC98AA900EF25EE /* SOPErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764EF3F81EC98AA900EF25EE /* SOPErrorTests.swift */; };
+		764EF3FB1EC9937600EF25EE /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764EF3FA1EC9937600EF25EE /* Response.swift */; };
+		764EF3FD1EC994B900EF25EE /* ResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764EF3FC1EC994B900EF25EE /* ResponseTests.swift */; };
 		76E99A461EAC4EC4001BEDB7 /* SOPLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E99A451EAC4EC4001BEDB7 /* SOPLogTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +119,10 @@
 		76447E871EBAFA7A00A091C7 /* SOPCryptoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOPCryptoTest.swift; sourceTree = "<group>"; };
 		76447EE41EC0179500A091C7 /* RequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTests.swift; sourceTree = "<group>"; };
 		764BCB931EC1C7B7002AC5BF /* ImplResearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImplResearchTests.swift; sourceTree = "<group>"; };
+		764EF3F61EC97EC700EF25EE /* SOPError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOPError.swift; sourceTree = "<group>"; };
+		764EF3F81EC98AA900EF25EE /* SOPErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOPErrorTests.swift; sourceTree = "<group>"; };
+		764EF3FA1EC9937600EF25EE /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		764EF3FC1EC994B900EF25EE /* ResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseTests.swift; sourceTree = "<group>"; };
 		76E99A451EAC4EC4001BEDB7 /* SOPLogTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOPLogTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -204,10 +212,12 @@
 				5E142E761E792751002804A3 /* Request.swift */,
 				5E6CC6B01EA74FCE0098BEF1 /* RequestResult.swift */,
 				5E142EA91E82442B002804A3 /* RequestProtocol.swift */,
+				764EF3FA1EC9937600EF25EE /* Response.swift */,
 				5E142E7A1E7A5751002804A3 /* Utility.swift */,
 				5E38D3FC1E8E441300D00DB8 /* SOPLog.swift */,
 				76447E861EBAF36D00A091C7 /* SOPCrypto.h */,
 				76447E841EBAF35A00A091C7 /* SOPCrypto.m */,
+				764EF3F61EC97EC700EF25EE /* SOPError.swift */,
 			);
 			path = SurveyonPartners;
 			sourceTree = "<group>";
@@ -221,10 +231,11 @@
 				5E142E6E1E728DEA002804A3 /* AdvertisingIdTests.swift */,
 				5E142E441E6F9F98002804A3 /* AuthenticationTests.swift */,
 				5E142E6C1E728C93002804A3 /* PreferencesManagerTests.swift */,
-				5E15B62C1E5EBA5C00FE0671 /* Info.plist */,
+				764EF3FC1EC994B900EF25EE /* ResponseTests.swift */,
 				76E99A451EAC4EC4001BEDB7 /* SOPLogTests.swift */,
 				76447E871EBAFA7A00A091C7 /* SOPCryptoTest.swift */,
 				76447EE41EC0179500A091C7 /* RequestTests.swift */,
+				764EF3F81EC98AA900EF25EE /* SOPErrorTests.swift */,
 			);
 			path = SurveyonPartnersTests;
 			sourceTree = "<group>";
@@ -246,6 +257,7 @@
 		764BCB921EC1C737002AC5BF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5E15B62C1E5EBA5C00FE0671 /* Info.plist */,
 				764BCB931EC1C7B7002AC5BF /* ImplResearchTests.swift */,
 				7614F56D1EC2DFCD009A76D1 /* ImplProfilingTests.swift */,
 				7614F56F1EC2FCC0009A76D1 /* SurveyListItemFactoryTests.swift */,
@@ -395,8 +407,10 @@
 				5E142E771E792751002804A3 /* Request.swift in Sources */,
 				76447E851EBAF35A00A091C7 /* SOPCrypto.m in Sources */,
 				5EE33C651EA8A69D0051A341 /* SurveyListItem.swift in Sources */,
+				764EF3F71EC97EC700EF25EE /* SOPError.swift in Sources */,
 				5E38D3FD1E8E441300D00DB8 /* SOPLog.swift in Sources */,
 				5E142E751E791E59002804A3 /* Config.swift in Sources */,
+				764EF3FB1EC9937600EF25EE /* Response.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +419,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E142E6B1E727994002804A3 /* SurveyonPartnersCommonTests.swift in Sources */,
+				764EF3F91EC98AA900EF25EE /* SOPErrorTests.swift in Sources */,
 				76447EE51EC0179500A091C7 /* RequestTests.swift in Sources */,
 				76E99A461EAC4EC4001BEDB7 /* SOPLogTests.swift in Sources */,
 				5E142E6F1E728DEA002804A3 /* AdvertisingIdTests.swift in Sources */,
@@ -412,6 +427,7 @@
 				5E142E451E6F9F98002804A3 /* AuthenticationTests.swift in Sources */,
 				76447E881EBAFA7A00A091C7 /* SOPCryptoTest.swift in Sources */,
 				764BCB941EC1C7B7002AC5BF /* ImplResearchTests.swift in Sources */,
+				764EF3FD1EC994B900EF25EE /* ResponseTests.swift in Sources */,
 				5E142E481E6FB89A002804A3 /* SurveyonPartnersTests.swift in Sources */,
 				5E142E6D1E728C93002804A3 /* PreferencesManagerTests.swift in Sources */,
 				7614F5701EC2FCC0009A76D1 /* SurveyListItemFactoryTests.swift in Sources */,
