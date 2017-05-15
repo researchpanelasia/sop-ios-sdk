@@ -74,19 +74,17 @@ class Request: RequestProtocol {
 
       do {
         let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
-        guard let meta = json?[Constants.KEY_META] as? [String: Int] else {
+        guard let meta = json?[Constants.KEY_META] as? [String: Any], let code = meta[Constants.KEY_CODE] as? Int else {
           completion(RequestResult.failed(error: SOPError(message: "Invalid response body", type: .ServerError, response: responseWrapper, error: nil)))
           return
         }
-        if meta[Constants.KEY_CODE] != 200 {
+        if code != 200 {
           completion(RequestResult.failed(error: SOPError(message: "Invalid response body", type: .ServerError, response: responseWrapper, error: nil)))
           return
         }
         completion(RequestResult.success(response: responseWrapper))
-        return
       } catch let e {
         completion(RequestResult.failed(error: SOPError(message: "Server error", type: .ServerError, response: responseWrapper, error: e)))
-        return
       }
     }
     task.resume()

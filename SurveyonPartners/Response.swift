@@ -15,4 +15,11 @@ public class Response {
     self.statusCode = statusCode
     self.data = data
   }
+
+  func stringData() -> String {
+    guard let data = data else {
+      return ""
+    }
+    return String(data: data, encoding: .utf8) ?? ""
+  }
 }
