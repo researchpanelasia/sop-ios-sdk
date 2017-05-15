@@ -5,7 +5,7 @@
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
-public protocol RequestProtocol {
+protocol RequestProtocol {
   
   var url: URL { get }
   
@@ -15,7 +15,7 @@ public protocol RequestProtocol {
   
 }
 
-public enum RequestHTTPMethod: String {
+enum RequestHTTPMethod: String {
   case GET = "GET"
   case POST = "POST"
 }
