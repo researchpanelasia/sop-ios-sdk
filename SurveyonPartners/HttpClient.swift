@@ -86,7 +86,8 @@ extension HttpClient {
     
     let JSONData = try! JSONSerialization.data(withJSONObject: dictionary, options: JSONSerialization.WritingOptions.prettyPrinted)
     if let JSONString = String(data: JSONData, encoding: String.Encoding.utf8) {
-      
+
+      SOPLog.debug(message: "request: POST \(url)")
       let request = Request(url: url,
                             requestBody: JSONString,
                             httpMethod: .POST,
@@ -124,7 +125,7 @@ extension HttpClient {
     let paramSig = "&sig=" + sig
     apiUrl += params + paramSig
     
-    SOPLog.debug(message: "apiUrl = \(apiUrl)")
+    SOPLog.debug(message: "request: GET \(apiUrl)")
     let url = URL(string: apiUrl)!
     let request = Request(url: url,
                           httpMethod: .GET,
