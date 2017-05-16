@@ -28,6 +28,8 @@ class Request: RequestProtocol {
   var httpMethod: RequestHTTPMethod
   
   var verifyHost: Bool
+
+  var urlSession: URLSession
   
   public init(url: URL,
               requestBody: String = "",
@@ -37,13 +39,16 @@ class Request: RequestProtocol {
     self.requestBody = requestBody
     self.httpMethod = httpMethod
     self.verifyHost = verifyHost
+    self.urlSession = verifyHost
+      ? URLSession.shared
+      : URLSession(configuration: URLSessionConfiguration.default,
+                   delegate: SSCAcceptingDelegate(),
+                   delegateQueue: OperationQueue())
   }
-  
+
   func send(requestUrl: URLRequest, completion: @escaping (RequestResult) -> Void) {
     
-    let session = verifyHost ? URLSession.shared
-                             : URLSession(configuration: URLSessionConfiguration.default, delegate: SSCAcceptingDelegate(), delegateQueue: OperationQueue())
-    let task = session.dataTask(with: requestUrl) { data, response, error in
+    let task = urlSession.dataTask(with: requestUrl) { data, response, error in
 
       if let error = error {
         completion(RequestResult.failed(error: SOPError(message: "Connection error", type: .ConnectionError, response: nil, error: error)))
@@ -57,12 +62,14 @@ class Request: RequestProtocol {
 
       let responseWrapper = Response(statusCode:httpResponse.statusCode, data: data)
 
+      //status is 40X
       if 400 <= responseWrapper.statusCode && responseWrapper.statusCode < 500 {
         completion(RequestResult.failed(error: SOPError(message: "Invalid request", type: .InvalidRequest, response: responseWrapper, error: nil)))
         return
       }
 
-      if responseWrapper.statusCode < 200 && 500 <= responseWrapper.statusCode {
+      //status is other than 2XX and 4XX
+      if responseWrapper.statusCode < 200 || 300 <= responseWrapper.statusCode {
         completion(RequestResult.failed(error: SOPError(message: "Server error", type: .ServerError, response: responseWrapper, error: nil)))
         return
       }
@@ -84,7 +91,7 @@ class Request: RequestProtocol {
         }
         completion(RequestResult.success(response: responseWrapper))
       } catch let e {
-        completion(RequestResult.failed(error: SOPError(message: "Server error", type: .ServerError, response: responseWrapper, error: e)))
+        completion(RequestResult.failed(error: SOPError(message: "Invalid response body", type: .ServerError, response: responseWrapper, error: e)))
       }
     }
     task.resume()

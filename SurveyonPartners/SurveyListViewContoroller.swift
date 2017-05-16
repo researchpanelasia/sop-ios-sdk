@@ -96,8 +96,8 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
           }
         }
       case .failed(let error):
-        //do nothing
         SOPLog.error(message: "error = \(error)")
+        self.dismiss(animated: false, completion: nil)
       }
     })
   }
