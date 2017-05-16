@@ -75,7 +75,7 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
       case .success(let response):
         SOPLog.debug(message: "statusCode = \(response)")
 
-        self.showListItem = try! SurveyListItemFactory.create(data: response.data!)
+        self.showListItem = try! SurveyListItemFactory.create(data: response.data!).filter({ !$0.isMobileBlocked()})
         DispatchQueue.main.async {
           self.indicator.isHidden = true
           if self.showListItem.count > 0 {

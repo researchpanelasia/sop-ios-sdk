@@ -14,4 +14,6 @@ protocol SurveyListItem {
   var url: String{ get }
 
   var loi: String { get }
+
+  func isMobileBlocked() -> Bool
 }
