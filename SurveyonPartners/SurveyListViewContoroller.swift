@@ -97,7 +97,9 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
         }
       case .failed(let error):
         SOPLog.error(message: "error = \(error)")
-        self.dismiss(animated: false, completion: nil)
+        DispatchQueue.main.async {
+          self.dismiss(animated: false, completion: nil)
+        }
       }
     })
   }
