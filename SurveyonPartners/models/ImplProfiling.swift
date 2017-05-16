@@ -9,7 +9,7 @@ struct ProfilingInvalidDataError: Error {
 }
 
 struct ImplProfiling: Profiling, SurveyListItem {
-  
+
   var name: String
   
   var title: String
@@ -28,5 +28,9 @@ struct ImplProfiling: Profiling, SurveyListItem {
     self.name = try getString(json["name"] as? String)
     self.title = try getString(json["title"] as? String)
     self.url = try getString(json["url"] as? String)
+  }
+
+  func isMobileBlocked() -> Bool {
+    return false
   }
 }
