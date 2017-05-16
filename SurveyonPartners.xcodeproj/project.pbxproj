@@ -231,10 +231,10 @@
 				5E142E6E1E728DEA002804A3 /* AdvertisingIdTests.swift */,
 				5E142E441E6F9F98002804A3 /* AuthenticationTests.swift */,
 				5E142E6C1E728C93002804A3 /* PreferencesManagerTests.swift */,
+				76447EE41EC0179500A091C7 /* RequestTests.swift */,
 				764EF3FC1EC994B900EF25EE /* ResponseTests.swift */,
 				76E99A451EAC4EC4001BEDB7 /* SOPLogTests.swift */,
 				76447E871EBAFA7A00A091C7 /* SOPCryptoTest.swift */,
-				76447EE41EC0179500A091C7 /* RequestTests.swift */,
 				764EF3F81EC98AA900EF25EE /* SOPErrorTests.swift */,
 			);
 			path = SurveyonPartnersTests;
