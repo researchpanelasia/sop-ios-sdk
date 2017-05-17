@@ -1,0 +1,6 @@
+framework module Pods_SurveyonPartnersTests {
+  umbrella header "Pods-SurveyonPartnersTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

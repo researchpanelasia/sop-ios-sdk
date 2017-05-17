@@ -10,7 +10,7 @@ import Foundation
 class SOPLog{
   
   static var destination: LogDestination? = StdoutDestination()
-  static var level = Level.none
+  static var level = Level.debug
   
   static func debug(
     message: String,

@@ -115,6 +115,12 @@ extension SurveyonPartners {
     }
     return tmp
   }
+
+  static func initConfig() {
+    queue.async(flags: .barrier) {
+      SurveyonPartners.config = nil
+    }
+  }
 }
 
 extension SurveyonPartners {
