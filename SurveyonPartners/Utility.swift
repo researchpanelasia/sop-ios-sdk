@@ -10,9 +10,14 @@ import SystemConfiguration
 final class Utility {
   
   static func getUserAgent() -> String {
-    let appName: String = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as! String
-    let version: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-    return appName + "/" + version + " (" + getDeviceInfo() + ")"
+    var version: String = ""
+    if let bundle = Bundle(identifier: "com.surveyon.partners.SurveyonPartners"),
+       let obj = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString"),
+       let tmpVersion = obj as? String {
+      version = tmpVersion
+    }
+
+    return "sop-android-sdk/" + version + " (" + getDeviceInfo() + ")"
   }
   
   static func getDeviceInfo() -> String {
