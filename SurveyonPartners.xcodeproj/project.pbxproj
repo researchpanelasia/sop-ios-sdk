@@ -14,7 +14,6 @@
 		5E142E5B1E70F9F0002804A3 /* AdvertisingId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E5A1E70F9F0002804A3 /* AdvertisingId.swift */; };
 		5E142E5F1E71427A002804A3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E5E1E71427A002804A3 /* Constants.swift */; };
 		5E142E611E714532002804A3 /* PreferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E601E714532002804A3 /* PreferencesManager.swift */; };
-		5E142E6B1E727994002804A3 /* SurveyonPartnersCommonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E691E727994002804A3 /* SurveyonPartnersCommonTests.swift */; };
 		5E142E6D1E728C93002804A3 /* PreferencesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E6C1E728C93002804A3 /* PreferencesManagerTests.swift */; };
 		5E142E6F1E728DEA002804A3 /* AdvertisingIdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E6E1E728DEA002804A3 /* AdvertisingIdTests.swift */; };
 		5E142E751E791E59002804A3 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E741E791E59002804A3 /* Config.swift */; };
@@ -22,7 +21,6 @@
 		5E142E791E7A3733002804A3 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E781E7A3733002804A3 /* HttpClient.swift */; };
 		5E142E7B1E7A5751002804A3 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E7A1E7A5751002804A3 /* Utility.swift */; };
 		5E142E831E7A767A002804A3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E142E821E7A767A002804A3 /* SystemConfiguration.framework */; };
-		5E142EAA1E82442B002804A3 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142EA91E82442B002804A3 /* RequestProtocol.swift */; };
 		5E15B6261E5EBA5C00FE0671 /* SurveyonPartners.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E15B61C1E5EBA5C00FE0671 /* SurveyonPartners.framework */; };
 		5E15B62D1E5EBA5C00FE0671 /* SurveyonPartners.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E15B61F1E5EBA5C00FE0671 /* SurveyonPartners.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5E15B63D1E5EBC9E00FE0671 /* SurveyonPartners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E15B63C1E5EBC9E00FE0671 /* SurveyonPartners.swift */; };
@@ -79,7 +77,6 @@
 		5E142E5A1E70F9F0002804A3 /* AdvertisingId.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvertisingId.swift; sourceTree = "<group>"; };
 		5E142E5E1E71427A002804A3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5E142E601E714532002804A3 /* PreferencesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesManager.swift; sourceTree = "<group>"; };
-		5E142E691E727994002804A3 /* SurveyonPartnersCommonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyonPartnersCommonTests.swift; sourceTree = "<group>"; };
 		5E142E6C1E728C93002804A3 /* PreferencesManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesManagerTests.swift; sourceTree = "<group>"; };
 		5E142E6E1E728DEA002804A3 /* AdvertisingIdTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvertisingIdTests.swift; sourceTree = "<group>"; };
 		5E142E741E791E59002804A3 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -87,7 +84,6 @@
 		5E142E781E7A3733002804A3 /* HttpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		5E142E7A1E7A5751002804A3 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		5E142E821E7A767A002804A3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		5E142EA91E82442B002804A3 /* RequestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
 		5E15B61C1E5EBA5C00FE0671 /* SurveyonPartners.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SurveyonPartners.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E15B61F1E5EBA5C00FE0671 /* SurveyonPartners.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SurveyonPartners.h; sourceTree = "<group>"; };
 		5E15B6201E5EBA5C00FE0671 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -226,7 +222,6 @@
 				5E142E781E7A3733002804A3 /* HttpClient.swift */,
 				5E142E761E792751002804A3 /* Request.swift */,
 				5E6CC6B01EA74FCE0098BEF1 /* RequestResult.swift */,
-				5E142EA91E82442B002804A3 /* RequestProtocol.swift */,
 				764EF3FA1EC9937600EF25EE /* Response.swift */,
 				5E142E7A1E7A5751002804A3 /* Utility.swift */,
 				5E38D3FC1E8E441300D00DB8 /* SOPLog.swift */,
@@ -242,7 +237,6 @@
 			children = (
 				764BCB921EC1C737002AC5BF /* Models */,
 				5E15B62A1E5EBA5C00FE0671 /* SurveyonPartnersTests.swift */,
-				5E142E691E727994002804A3 /* SurveyonPartnersCommonTests.swift */,
 				5E142E6E1E728DEA002804A3 /* AdvertisingIdTests.swift */,
 				5E142E441E6F9F98002804A3 /* AuthenticationTests.swift */,
 				5E142E6C1E728C93002804A3 /* PreferencesManagerTests.swift */,
@@ -512,7 +506,6 @@
 				5E15B63D1E5EBC9E00FE0671 /* SurveyonPartners.swift in Sources */,
 				5E3D9A221E9760F900AE9F88 /* ProfilingPointRule.swift in Sources */,
 				5E142E431E6F9F06002804A3 /* Authentication.swift in Sources */,
-				5E142EAA1E82442B002804A3 /* RequestProtocol.swift in Sources */,
 				5EE33C6B1EA8B8850051A341 /* ImplResearch.swift in Sources */,
 				5E142E771E792751002804A3 /* Request.swift in Sources */,
 				76447E851EBAF35A00A091C7 /* SOPCrypto.m in Sources */,
@@ -528,7 +521,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E142E6B1E727994002804A3 /* SurveyonPartnersCommonTests.swift in Sources */,
 				764EF3F91EC98AA900EF25EE /* SOPErrorTests.swift in Sources */,
 				76447EE51EC0179500A091C7 /* RequestTests.swift in Sources */,
 				76E99A461EAC4EC4001BEDB7 /* SOPLogTests.swift in Sources */,
