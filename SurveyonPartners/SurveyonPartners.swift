@@ -70,6 +70,10 @@ extension SurveyonPartners {
       return
     }
     
+    guard let _ = getConfig() else {
+      return
+    }
+    
     let viewController = SurveyListViewContoroller(nibName: "SurveyListViewContoroller", bundle: Bundle(identifier: "com.surveyon.partners.SurveyonPartners"))
     viewController.setRule(profilingPointRule: profilingPointRule, researchPointRule: researchPointRule)
     viewController.modalPresentationStyle = .overCurrentContext
