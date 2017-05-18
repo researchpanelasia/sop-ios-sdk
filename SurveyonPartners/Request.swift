@@ -51,6 +51,12 @@ class Request {
                    delegateQueue: OperationQueue())
   }
 
+  deinit {
+    if !verifyHost {
+      urlSession.finishTasksAndInvalidate()
+    }
+  }
+  
   func send(requestUrl: URLRequest, completion: @escaping (RequestResult) -> Void) {
     
     let task = urlSession.dataTask(with: requestUrl) { data, response, error in
