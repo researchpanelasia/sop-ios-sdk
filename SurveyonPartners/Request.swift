@@ -7,7 +7,12 @@
 
 import Foundation
 
-class Request: RequestProtocol {
+enum RequestHTTPMethod: String {
+  case GET = "GET"
+  case POST = "POST"
+}
+
+class Request {
   
   static let ACCEPT = "Accept"
   
@@ -105,15 +110,6 @@ class Request: RequestProtocol {
     }
   }
   
-  func getHttpMethod() -> String {
-    switch httpMethod {
-    case RequestHTTPMethod.POST:
-      return "POST"
-    default:
-      return "GET"
-    }
-  }
-
   func addHeader(key: String, value: String){
     headers[key] = value
   }
@@ -123,7 +119,7 @@ extension Request {
 
   func post(completion: @escaping (RequestResult) -> Void) {
     var request = URLRequest(url: url)
-    request.httpMethod = getHttpMethod()
+    request.httpMethod = httpMethod.rawValue
     addHeaders(request: &request, headers: headers)
     request.httpBody = requestBody.data(using: .utf8)
     
@@ -132,7 +128,7 @@ extension Request {
   
   func get(completion: @escaping (RequestResult) -> Void) {
     var request = URLRequest(url: url)
-    request.httpMethod = getHttpMethod()
+    request.httpMethod = httpMethod.rawValue
     
     send(requestUrl: request, completion: completion)
   }
