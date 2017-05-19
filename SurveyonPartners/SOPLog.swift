@@ -68,24 +68,12 @@ class SOPLog{
   
   static func getDebugLevel() -> Level {
     guard let dict = Utility.getPlistDictionary(),
-      let debugLivel = dict[debugLevel] as? Int else {
+      let debugLevel = dict[debugLevel] as? Int,
+      let level = Level(rawValue: debugLevel) else {
         return .none
     }
     
-    switch debugLivel {
-    case 0:
-      return Level.debug
-    case 1:
-      return Level.info
-    case 2:
-      return Level.warning
-    case 3:
-      return Level.error
-    case 4:
-      return Level.none
-    default:
-      return Level.none
-    }
+    return level
   }
   
   enum Level: Int {
