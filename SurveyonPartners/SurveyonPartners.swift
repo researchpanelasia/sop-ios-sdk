@@ -7,11 +7,27 @@
 
 public class SurveyonPartners: NSObject {
   
+  static let sopHostKey = "SopHost"
+  
+  static let sopConsoleHostKey = "SopConsoleHost"
+  
+  static let updataSpanKey = "SopUpdateSpan"
+  
+  static let useHttpsKey = "SopUseHttps"
+  
+  static let verifyHostKey = "SopVerifyHost"
+  
   static let DEFAULT_IDFA_UPDATE_SPAN: Int64 = 60 * 60 * 24 * 14 * 1000
   
   static let DEFAULT_SOP_HOST = "partners.surveyon.com"
   
   static let DEFAULT_SOP_CONSOLE_HOST = "console.partners.surveyon.com"
+  
+  static let DEFAULT_USE_HTTPS = true
+  
+  static let DEFAULT_VERIFYHOST = true
+  
+  static let plistFileName = "Info"
   
   static var config: Config?
   
@@ -24,14 +40,20 @@ extension SurveyonPartners {
                            appMid: String,
                            secretKey: String) {
 
+    let host = getHost()
+    let consoleHost = getConsoleHost()
+    let updateSpan = getUpdateSpan()
+    let useHttps = getUseHttps()
+    let verifyHost = getVerifyHost()
+    
     setConfig(Config(appId: appId,
                      appMid: appMid,
                      secretKey: secretKey,
-                     sopHost: DEFAULT_SOP_HOST,
-                     sopConsoleHost: DEFAULT_SOP_CONSOLE_HOST,
-                     idfaUpdateSpan: DEFAULT_IDFA_UPDATE_SPAN,
-                     useHttps: true,
-                     verifyHost: true))
+                     sopHost: host,
+                     sopConsoleHost: consoleHost,
+                     idfaUpdateSpan: updateSpan,
+                     useHttps: useHttps,
+                     verifyHost: verifyHost))
 
     if (isNeedAdIdUpdated(currentTimeMilles: Utility.currentTimeMillis())) {
       updateIdfa()
@@ -153,5 +175,50 @@ extension SurveyonPartners {
 
     let previousTimeMilles: Int64 = PreferencesManager.readIntPreferences(forKey: Constants.SURVEYON_PARTNERS)
     return info.idfaUpdateSpan <= (currentTimeMilles - previousTimeMilles)
+  }
+  
+  static func getHost() -> String {
+    guard let dict = Utility.getPlistDictionary(),
+      let host = dict[sopHostKey] as? String else {
+        return DEFAULT_SOP_HOST
+    }
+    
+    return host
+  }
+  
+  static func getConsoleHost() -> String {
+    guard let dict = Utility.getPlistDictionary(),
+      let consoleHost = dict[sopConsoleHostKey] as? String else {
+        return DEFAULT_SOP_HOST
+    }
+    
+    return consoleHost
+  }
+  
+  static func getUpdateSpan() -> Int64 {
+    guard let dict = Utility.getPlistDictionary(),
+      let updateSpan = dict[updataSpanKey] as? Int64 else {
+        return DEFAULT_IDFA_UPDATE_SPAN
+    }
+    
+    return updateSpan
+  }
+  
+  static func getUseHttps() -> Bool {
+    guard let dict = Utility.getPlistDictionary(),
+      let useHttps = dict[useHttpsKey] as? Bool else {
+        return DEFAULT_USE_HTTPS
+    }
+    
+    return useHttps
+  }
+  
+  static func getVerifyHost() -> Bool {
+    guard let dict = Utility.getPlistDictionary(),
+      let verifyHost = dict[verifyHostKey] as? Bool else {
+        return DEFAULT_VERIFYHOST
+    }
+    
+    return verifyHost
   }
 }

@@ -10,6 +10,9 @@ class Constants {
   // Preferences
   static let SURVEYON_PARTNERS: String = "surveyonPartners"
   
+  // Plist file Name
+  static let plistFileName = "Info"
+  
   // frefix sop_
   static let PREFIX_SOP_ = "sop_"
   
