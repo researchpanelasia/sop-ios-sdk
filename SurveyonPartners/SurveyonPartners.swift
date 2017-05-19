@@ -7,11 +7,25 @@
 
 public class SurveyonPartners: NSObject {
   
+  static let sopHostKey = "SopHost"
+  
+  static let sopConsoleHostKey = "SopConsoleHost"
+  
+  static let updataSpanKey = "SopUpdateSpan"
+  
+  static let useHttpsKey = "SopUseHttps"
+  
+  static let verifyHostKey = "SopVerifyHost"
+  
   static let DEFAULT_IDFA_UPDATE_SPAN: Int64 = 60 * 60 * 24 * 14 * 1000
   
   static let DEFAULT_SOP_HOST = "partners.surveyon.com"
   
   static let DEFAULT_SOP_CONSOLE_HOST = "console.partners.surveyon.com"
+  
+  static let DEFAULT_USE_HTTPS = true
+  
+  static let DEFAULT_VERIFYHOST = true
   
   static var config: Config?
   
@@ -24,14 +38,20 @@ extension SurveyonPartners {
                            appMid: String,
                            secretKey: String) {
 
+    let host = getFromPlist(key: sopHostKey, defaultValue: DEFAULT_SOP_HOST)
+    let consoleHost = getFromPlist(key: sopConsoleHostKey, defaultValue: DEFAULT_SOP_CONSOLE_HOST)
+    let updateSpan = getFromPlist(key: updataSpanKey, defaultValue: DEFAULT_IDFA_UPDATE_SPAN)
+    let useHttps = getFromPlist(key: useHttpsKey, defaultValue: DEFAULT_USE_HTTPS)
+    let verifyHost = getFromPlist(key: verifyHostKey, defaultValue: DEFAULT_VERIFYHOST)
+    
     setConfig(Config(appId: appId,
                      appMid: appMid,
                      secretKey: secretKey,
-                     sopHost: DEFAULT_SOP_HOST,
-                     sopConsoleHost: DEFAULT_SOP_CONSOLE_HOST,
-                     idfaUpdateSpan: DEFAULT_IDFA_UPDATE_SPAN,
-                     useHttps: true,
-                     verifyHost: true))
+                     sopHost: host,
+                     sopConsoleHost: consoleHost,
+                     idfaUpdateSpan: updateSpan,
+                     useHttps: useHttps,
+                     verifyHost: verifyHost))
 
     if (isNeedAdIdUpdated(currentTimeMilles: Utility.currentTimeMillis())) {
       updateIdfa()
@@ -153,5 +173,14 @@ extension SurveyonPartners {
 
     let previousTimeMilles: Int64 = PreferencesManager.readIntPreferences(forKey: Constants.SURVEYON_PARTNERS)
     return info.idfaUpdateSpan <= (currentTimeMilles - previousTimeMilles)
+  }
+  
+  static func getFromPlist<T>(key: String, defaultValue: T) -> T {
+    guard let dict = Utility.getPlist(),
+      let getValue = dict[key] as? T else {
+        return defaultValue
+    }
+    
+    return getValue
   }
 }

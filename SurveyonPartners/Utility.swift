@@ -55,4 +55,11 @@ final class Utility {
     return String(sec)
   }
   
+  static func getPlist() -> [String : AnyObject]? {
+    guard let path = Bundle.main.path(forResource: Constants.plistFileName, ofType: "plist"),
+      let dic = NSDictionary(contentsOfFile: path) as? [String: AnyObject] else {
+        return nil
+    }
+    return dic
+  }
 }
