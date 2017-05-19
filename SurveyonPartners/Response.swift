@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class Response {
+public class Response: NSObject {
   public var statusCode: Int
   public var data: Data?
 

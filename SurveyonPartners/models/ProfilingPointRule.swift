@@ -5,7 +5,7 @@
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
-public protocol ProfilingPointRule {
+@objc public protocol ProfilingPointRule {
   
   func profilingPoint(profiling: Profiling) -> String
   

@@ -56,7 +56,6 @@
 		764EF3FD1EC994B900EF25EE /* ResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764EF3FC1EC994B900EF25EE /* ResponseTests.swift */; };
 		76DC6F891ECC55870013ACA4 /* UtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DC6F881ECC55870013ACA4 /* UtilityTests.swift */; };
 		76E99A461EAC4EC4001BEDB7 /* SOPLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E99A451EAC4EC4001BEDB7 /* SOPLogTests.swift */; };
-		C088F6EDF850A73FF0764A22 /* Pods_SurveyonPartners.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7298454B63E2403FE1FA85DC /* Pods_SurveyonPartners.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,7 +137,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E142E831E7A767A002804A3 /* SystemConfiguration.framework in Frameworks */,
-				C088F6EDF850A73FF0764A22 /* Pods_SurveyonPartners.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

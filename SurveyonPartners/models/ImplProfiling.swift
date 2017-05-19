@@ -8,7 +8,7 @@
 struct ProfilingInvalidDataError: Error {
 }
 
-struct ImplProfiling: Profiling, SurveyListItem {
+class ImplProfiling: Profiling, SurveyListItem {
 
   var name: String
   

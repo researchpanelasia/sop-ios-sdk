@@ -70,7 +70,7 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
     closeView.isUserInteractionEnabled = true
     closeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SurveyListViewContoroller.closeButtonTapped)))
 
-    SurveyonPartners.getSurveyList(completion: { (result) -> Void in
+    SurveyonPartners.getSurveyList(completion: { (result: RequestResult) -> Void in
       switch result {
       case .success(let response):
         SOPLog.debug(message: "statusCode = \(response)")
