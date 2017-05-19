@@ -27,8 +27,6 @@ public class SurveyonPartners: NSObject {
   
   static let DEFAULT_VERIFYHOST = true
   
-  static let plistFileName = "Info"
-  
   static var config: Config?
   
   static var queue = DispatchQueue(label: "com.surveyon.patners", attributes: .concurrent)
