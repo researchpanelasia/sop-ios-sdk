@@ -9,8 +9,10 @@ import Foundation
 
 class SOPLog{
   
+  static let debugLevel = "SopDebugLevel"
+  
   static var destination: LogDestination? = StdoutDestination()
-  static var level = Level.none
+  static var level = getDebugLevel()
   
   static func debug(
     message: String,
@@ -43,7 +45,7 @@ class SOPLog{
     if level.rawValue < self.level.rawValue {
       return
     }
-
+    
     let now = NSDate()
     let dateFormatter = DateFormatter()
     dateFormatter.locale = Locale(identifier: "ja_JP")
@@ -63,14 +65,36 @@ class SOPLog{
     destination = StdoutDestination()
     level = .none
   }
-
+  
+  static func getDebugLevel() -> Level {
+    guard let dict = Utility.getPlistDictionary(),
+      let debugLivel = dict[debugLevel] as? Int else {
+        return .none
+    }
+    
+    switch debugLivel {
+    case 0:
+      return Level.debug
+    case 1:
+      return Level.info
+    case 2:
+      return Level.warning
+    case 3:
+      return Level.error
+    case 4:
+      return Level.none
+    default:
+      return Level.none
+    }
+  }
+  
   enum Level: Int {
     case debug = 0
     case info = 1
     case warning = 2
     case error = 3
     case none = 4
-
+    
     var name: String {
       switch self {
       case .debug:
