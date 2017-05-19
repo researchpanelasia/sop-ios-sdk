@@ -38,11 +38,11 @@ extension SurveyonPartners {
                            appMid: String,
                            secretKey: String) {
 
-    let host = getHost()
-    let consoleHost = getConsoleHost()
-    let updateSpan = getUpdateSpan()
-    let useHttps = getUseHttps()
-    let verifyHost = getVerifyHost()
+    let host = getFromPlist(key: sopHostKey, defaultValue: DEFAULT_SOP_HOST)
+    let consoleHost = getFromPlist(key: sopConsoleHostKey, defaultValue: DEFAULT_SOP_CONSOLE_HOST)
+    let updateSpan = getFromPlist(key: updataSpanKey, defaultValue: DEFAULT_IDFA_UPDATE_SPAN)
+    let useHttps = getFromPlist(key: useHttpsKey, defaultValue: DEFAULT_USE_HTTPS)
+    let verifyHost = getFromPlist(key: verifyHostKey, defaultValue: DEFAULT_VERIFYHOST)
     
     setConfig(Config(appId: appId,
                      appMid: appMid,
@@ -175,48 +175,12 @@ extension SurveyonPartners {
     return info.idfaUpdateSpan <= (currentTimeMilles - previousTimeMilles)
   }
   
-  static func getHost() -> String {
-    guard let dict = Utility.getPlistDictionary(),
-      let host = dict[sopHostKey] as? String else {
-        return DEFAULT_SOP_HOST
+  static func getFromPlist<T>(key: String, defaultValue: T) -> T {
+    guard let dict = Utility.getPlist(),
+      let getValue = dict[key] as? T else {
+        return defaultValue
     }
     
-    return host
-  }
-  
-  static func getConsoleHost() -> String {
-    guard let dict = Utility.getPlistDictionary(),
-      let consoleHost = dict[sopConsoleHostKey] as? String else {
-        return DEFAULT_SOP_HOST
-    }
-    
-    return consoleHost
-  }
-  
-  static func getUpdateSpan() -> Int64 {
-    guard let dict = Utility.getPlistDictionary(),
-      let updateSpan = dict[updataSpanKey] as? Int64 else {
-        return DEFAULT_IDFA_UPDATE_SPAN
-    }
-    
-    return updateSpan
-  }
-  
-  static func getUseHttps() -> Bool {
-    guard let dict = Utility.getPlistDictionary(),
-      let useHttps = dict[useHttpsKey] as? Bool else {
-        return DEFAULT_USE_HTTPS
-    }
-    
-    return useHttps
-  }
-  
-  static func getVerifyHost() -> Bool {
-    guard let dict = Utility.getPlistDictionary(),
-      let verifyHost = dict[verifyHostKey] as? Bool else {
-        return DEFAULT_VERIFYHOST
-    }
-    
-    return verifyHost
+    return getValue
   }
 }
