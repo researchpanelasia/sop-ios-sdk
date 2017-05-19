@@ -1,0 +1,4 @@
+module SOPCrypto {
+    header "SOPCrypto.h"
+    export *
+}
