@@ -6,7 +6,7 @@ This library allows you to integrate surveyonPartners into your iOS app
 - iOS 8.0+
 - Swift 3
 - You need to be a partner of surveyonPartners. If you have any interest, please [contact us](http://www.d8aspring.com/).
-- Read `SOP v1.1 Documentations` and integrate your webservice with SOP.
+- Read [SOP v1.1 Documentations](https://console.partners.surveyon.com/docs/v1_1) and integrate your webservice with SOP.
 - Make a endpoint for `research survey delivery notification` on your webservice and notify targeted members via medium of your choice, such as Push Notification. Making a endpoint for research survey delivery notification is mandatory to use SOP iOS SDK.
 
 ## Getting Started
@@ -105,7 +105,7 @@ SurveyonPartners.getSurveyList(completion: { (result) -> Void in
 ```
 
 ### Calling SOP API directly
-You can also request SOP API directly without SOP iOS SDK. See `SOP v1.1 Documentations`. If you want to use SOP in mobile, please make sure that you need to implement below functions.
+You can also request SOP API directly without SOP iOS SDK. See [SOP v1.1 Documentations](https://console.partners.surveyon.com/docs/v1_1). If you want to use SOP in mobile, please make sure that you need to implement below functions.
 
 - Profile questionnaire with survey_id q000_cookie should be open in browser application, not WebView in your application. Because this survey gather cookie in browser application to delivery ad tracking surveys.
 - Call Panelist Registration API to register advertising id.  
