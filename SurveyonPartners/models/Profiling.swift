@@ -5,7 +5,7 @@
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
-public protocol Profiling {
+@objc public protocol Profiling {
   
   var name: String { get }
   

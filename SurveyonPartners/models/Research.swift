@@ -5,7 +5,7 @@
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
-public protocol Research {
+@objc public protocol Research {
   
   var surveyId: String { get }
   

@@ -5,7 +5,7 @@
 //  Copyright © 2017年 d8aspring. All rights reserved.
 //
 
-public class SurveyonPartners {
+public class SurveyonPartners: NSObject {
   
   static let DEFAULT_IDFA_UPDATE_SPAN: Int64 = 60 * 60 * 24 * 14 * 1000
   
@@ -19,24 +19,20 @@ public class SurveyonPartners {
 }
 
 extension SurveyonPartners {
-  
+
   public static func setUp(appId: String,
                            appMid: String,
-                           secretKey: String,
-                           sopHost: String = SurveyonPartners.DEFAULT_SOP_HOST,
-                           sopConsoleHost: String = SurveyonPartners.DEFAULT_SOP_CONSOLE_HOST,
-                           updateSpan: Int64 = SurveyonPartners.DEFAULT_IDFA_UPDATE_SPAN,
-                           useHttps: Bool = true,
-                           verifyHost: Bool = true) {
+                           secretKey: String) {
+
     setConfig(Config(appId: appId,
-                           appMid: appMid,
-                           secretKey: secretKey,
-                           sopHost: sopHost,
-                           sopConsoleHost: sopConsoleHost,
-                           idfaUpdateSpan: updateSpan,
-                           useHttps: useHttps,
-                           verifyHost: verifyHost))
-    
+                     appMid: appMid,
+                     secretKey: secretKey,
+                     sopHost: DEFAULT_SOP_HOST,
+                     sopConsoleHost: DEFAULT_SOP_CONSOLE_HOST,
+                     idfaUpdateSpan: DEFAULT_IDFA_UPDATE_SPAN,
+                     useHttps: true,
+                     verifyHost: true))
+
     if (isNeedAdIdUpdated(currentTimeMilles: Utility.currentTimeMillis())) {
       updateIdfa()
     }
@@ -63,6 +59,17 @@ extension SurveyonPartners {
                                 useHttps: config.useHttps,
                                 verifyHost: config.verifyHost)
     httpClient.getSurveyList(completion: completion)
+  }
+
+  public static func getSurveyList(completion: @escaping (Response?, SOPError?) -> Void ){
+    getSurveyList(completion: { (result: RequestResult) in
+      switch result {
+      case .success(let response):
+        completion(response, nil)
+      case .failed(let error):
+        completion(error.response, error)
+      }
+    })
   }
 
   public static func showSurveyList(vc: UIViewController, profilingPointRule: ProfilingPointRule, researchPointRule: ResearchPointRule) {

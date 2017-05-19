@@ -8,7 +8,7 @@
 struct ResearchInvalidDataError: Error {
 }
 
-struct ImplResearch: Research, SurveyListItem {
+class ImplResearch: Research, SurveyListItem {
 
   var surveyId: String
   

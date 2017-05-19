@@ -34,7 +34,7 @@ class SurveyonPartnersTests: XCTestCase {
     let semaphore = DispatchSemaphore(value: 0)
 
     SurveyonPartners.setUp(appId: "hoge", appMid: "fuga", secretKey: "bar")
-    SurveyonPartners.getSurveyList { (result) in
+    SurveyonPartners.getSurveyList { (result: RequestResult) in
       switch result {
       case .success(let response):
         XCTAssertEqual(response.statusCode, 200)
@@ -60,7 +60,7 @@ class SurveyonPartnersTests: XCTestCase {
     let semaphore = DispatchSemaphore(value: 0)
 
     SurveyonPartners.setUp(appId: "hoge", appMid: "fuga", secretKey: "bar")
-    SurveyonPartners.getSurveyList { (result) in
+    SurveyonPartners.getSurveyList { (result: RequestResult) in
       switch result {
       case .success:
         XCTFail()
@@ -86,13 +86,61 @@ class SurveyonPartnersTests: XCTestCase {
     let semaphore = DispatchSemaphore(value: 0)
 
     SurveyonPartners.setUp(appId: "hoge", appMid: "fuga", secretKey: "bar")
-    SurveyonPartners.getSurveyList { (result) in
+    SurveyonPartners.getSurveyList { (result: RequestResult) in
       switch result {
       case .success:
         XCTFail()
       case .failed(let error):
         XCTAssertEqual(error.message, "Invalid response body")
       }
+      semaphore.signal()
+    }
+
+    semaphore.wait()
+  }
+
+  func testGetSurveyList500NoEnum(){
+    stub(condition: isHost("partners.surveyon.com"), response: { _ in
+      return OHHTTPStubsResponse(data: Data(), statusCode:500, headers:nil)
+    })
+
+    stub(condition: isHost("console.partners.surveyon.com"), response: { _ in
+      let json = ["meta": ["code":200,"message":""]]
+      return OHHTTPStubsResponse(jsonObject: json, statusCode:200, headers:nil)
+    })
+
+    let semaphore = DispatchSemaphore(value: 0)
+
+    SurveyonPartners.setUp(appId: "hoge", appMid: "fuga", secretKey: "bar")
+    SurveyonPartners.getSurveyList { (response, error) in
+      XCTAssertEqual(error?.response?.statusCode, 500)
+      XCTAssertEqual(error?.message, "Server error")
+      semaphore.signal()
+    }
+
+    semaphore.wait()
+  }
+
+  func testGetSurveyList200NoEnum(){
+    stub(condition: isHost("partners.surveyon.com"), response: { _ in
+      let json = ["meta": ["code":200,"message":""]
+        ,"data":
+          ["profiling":[]
+            ,"research":[]]]
+      return OHHTTPStubsResponse(jsonObject: json, statusCode:200, headers:nil)
+    })
+
+    stub(condition: isHost("console.partners.surveyon.com"), response: { _ in
+      let json = ["meta": ["code":200,"message":""]]
+      return OHHTTPStubsResponse(jsonObject: json, statusCode:200, headers:nil)
+    })
+
+    let semaphore = DispatchSemaphore(value: 0)
+
+    SurveyonPartners.setUp(appId: "hoge", appMid: "fuga", secretKey: "bar")
+    SurveyonPartners.getSurveyList { (response, error) in
+      XCTAssertNil(error)
+      XCTAssertEqual(response?.statusCode, 200)
       semaphore.signal()
     }
 
