@@ -67,7 +67,7 @@ class SOPLog{
   }
   
   static func getDebugLevel() -> Level {
-    guard let dict = Utility.getPlistDictionary(),
+    guard let dict = Utility.getPlist(),
       let debugLevel = dict[debugLevel] as? Int,
       let level = Level(rawValue: debugLevel) else {
         return .none
