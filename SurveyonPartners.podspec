@@ -12,6 +12,6 @@ Pod::Spec.new do |s|
   s.author       = { "Kotaro Arimura" => "kotaro.arimura@d8aspring.com", "Choi Jiseon" => "choi.jiseon@d8aspring.com" }
   s.platform     = :ios, "8.0"
   s.source       = { :git => "https://github.com/researchpanelasia/sop-ios-sdk.git", :tag => 'v' + s.version.to_s }
-  s.source_files  = "SurveyonPartners/*.{swift,h,m,modulemap}", "SurveyonPartners/Models/*.swift"
+  s.source_files  = "SurveyonPartners/*.{swift,h,m,modulemap}", "SurveyonPartners/Models/*.{swift,xib}","SurveyonPartners/Resources/*.png"
   s.xcconfig = { 'SWIFT_INCLUDE_PATHS' => '$(SRCROOT)/SurveyonPartners/SurveyonPartners' }
 end
