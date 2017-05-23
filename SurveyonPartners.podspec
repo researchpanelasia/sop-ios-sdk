@@ -13,6 +13,6 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "8.0"
   s.source       = { :git => "https://github.com/researchpanelasia/sop-ios-sdk.git", :tag => 'v' + s.version.to_s }
   s.source_files  = "SurveyonPartners/*.{swift,h,m,modulemap}", "SurveyonPartners/Models/*.{swift,xib}"
-  s.resource_bundle = "SurveyonPartners/Resources/*.*"
+  s.resource_bundle = {'SurveyonPartners' => 'SurveyonPartners/Resources/*.*'}
   s.xcconfig = { 'SWIFT_INCLUDE_PATHS' => '$(SRCROOT)/SurveyonPartners/SurveyonPartners' }
 end
