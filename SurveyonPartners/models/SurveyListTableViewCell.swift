@@ -21,6 +21,7 @@ class SurveyListTableViewCell: UITableViewCell {
     self.surveyNo.textColor = UIColor(red: 200/255, green: 199/255, blue: 204/255, alpha: 1.0)
     self.titleName.textColor = UIColor(red: 66/255, green: 66/255, blue: 66/255, alpha: 1.0)
     self.pointLabel.textColor = UIColor(red: 57/255, green: 152/255, blue: 71/255, alpha: 1.0)
+    self.pointImage.image = SurveyonPartners.getImage(name: "icon-point.png")
     self.loi.textColor = UIColor(red: 130/255, green: 130/255, blue: 130/255, alpha: 1.0)
     self.frameView.layer.cornerRadius = 2.0
     self.frameView.layer.shadowOffset = CGSize(width: 0, height: 1)

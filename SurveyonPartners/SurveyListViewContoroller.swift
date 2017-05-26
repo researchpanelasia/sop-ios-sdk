@@ -48,7 +48,9 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
+    closeView.image = SurveyonPartners.getImage(name: "icon-close.png")
+
     let notificationCenter = NotificationCenter.default
     notificationCenter.addObserver(self, selector: #selector(movedToForeground), name: Notification.Name.UIApplicationWillEnterForeground, object: nil)
     loadSurveyList()

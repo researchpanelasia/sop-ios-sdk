@@ -101,7 +101,7 @@ extension SurveyonPartners {
       return
     }
     
-    let viewController = SurveyListViewContoroller(nibName: "SurveyListViewContoroller", bundle: Bundle(identifier: "com.surveyon.partners.SurveyonPartners"))
+    let viewController = SurveyListViewContoroller(nibName: "SurveyListViewContoroller", bundle: getResourceBundle())
     viewController.setRule(profilingPointRule: profilingPointRule, researchPointRule: researchPointRule)
     viewController.modalPresentationStyle = .overCurrentContext
     vc.present(viewController, animated: false, completion: nil)
@@ -151,6 +151,18 @@ extension SurveyonPartners {
     queue.async(flags: .barrier) {
       SurveyonPartners.config = nil
     }
+  }
+
+  static func getResourceBundle() -> Bundle?{
+    let classBundle = Bundle(for: self)
+    guard let url = classBundle.url(forResource: "SurveyonPartners", withExtension: "bundle") else {
+      return classBundle
+    }
+    return Bundle(url: url)
+  }
+
+  static func getImage(name: String) -> UIImage?{
+    return UIImage(named: name, in: getResourceBundle(), compatibleWith: nil)
   }
 }
 
