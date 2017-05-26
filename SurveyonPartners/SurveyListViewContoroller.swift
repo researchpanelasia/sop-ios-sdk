@@ -65,7 +65,7 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
     
     customView.layer.cornerRadius = 5
     
-    tableView.register(UINib(nibName: "SurveyListTableViewCell", bundle: Bundle(identifier: "com.surveyon.partners.SurveyonPartners")), forCellReuseIdentifier: "SurveyListTableViewCell")
+    tableView.register(UINib(nibName: "SurveyListTableViewCell", bundle: SurveyonPartners.getResourceBundle()), forCellReuseIdentifier: "SurveyListTableViewCell")
     tableView.separatorStyle = .none
     tableView.backgroundColor = UIColor.clear
     
