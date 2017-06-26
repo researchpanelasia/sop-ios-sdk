@@ -83,15 +83,7 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
           if self.showListItem.count > 0 {
             self.tableView.reloadData()
           } else {
-            let languages = Locale.preferredLanguages.first
-            var emptyMessage = "You\'ve completed all surveys for you. Don\'t worry, you will receive another survey soon."
-            if languages!.hasPrefix("ko") {
-              emptyMessage = "지금 참여 가능 설문조사가 없습니다. 곧 새로운 설문조사를 보내드리겠습니다."
-            } else if languages!.hasPrefix("zh") {
-              emptyMessage = "您已完成所有的問卷。不用擔心。您將會近期收到其他問卷。"
-            } else if languages!.hasPrefix("id") {
-              emptyMessage = "Anda telah menyelesaikan semua survei untuk Anda. Jangan kuatir, Anda akan menerima survei lagi segera."
-            }
+            let emptyMessage = NSLocalizedString("label_no_survey", comment: "")
             self.emptyLabel.text =  emptyMessage
             self.emptyLabel.textColor = UIColor(red: 66/255, green: 66/255, blue: 66/255, alpha: 1.0)
             self.emptyLabel.isHidden = false

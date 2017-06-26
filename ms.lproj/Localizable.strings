@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  SurveyonPartners
+
+  Created by Tadahiro Waad on 2017/06/26.
+  Copyright © 2017年 d8aspring. All rights reserved.
+*/
+
+label_no_survey = "Anda telah menyelesaikan semua survey anda. Jangan bimbang, anda akan menerima survey lain tidak lama lagi."

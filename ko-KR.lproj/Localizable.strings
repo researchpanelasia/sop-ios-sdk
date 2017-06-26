@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  SurveyonPartners
+
+  Created by Tadahiro Waad on 2017/06/26.
+  Copyright © 2017年 d8aspring. All rights reserved.
+*/
+
+label_no_survey = "지금 참여 가능 설문조사가 없습니다. 곧 새로운 설문조사를 보내드리겠습니다."
