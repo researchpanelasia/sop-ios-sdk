@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  SurveyonPartners
+
+  Created by Tadahiro Wada on 2017/06/26.
+  Copyright © 2017年 d8aspring. All rights reserved.
+*/
+
+"label_no_survey" = "You\'ve completed all surveys for you. Don\'t worry, you will receive another survey soon.";
