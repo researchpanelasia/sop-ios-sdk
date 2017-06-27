@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		179942BD1F0222E8005E8EAF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 179942BF1F0222E8005E8EAF /* Localizable.strings */; };
 		525B8ADCBDB316374654D7AE /* Pods_SurveyonPartnersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D38C4A8C2BFCBE1AB17C2DE6 /* Pods_SurveyonPartnersTests.framework */; };
 		5E142E431E6F9F06002804A3 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E421E6F9F06002804A3 /* Authentication.swift */; };
 		5E142E451E6F9F98002804A3 /* AuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E441E6F9F98002804A3 /* AuthenticationTests.swift */; };
@@ -69,6 +70,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		179942BE1F0222E8005E8EAF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		179942C01F022315005E8EAF /* en-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-HK"; path = "en-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		179942C11F02231B005E8EAF /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/Localizable.strings; sourceTree = "<group>"; };
+		179942C21F022322005E8EAF /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		179942C31F022328005E8EAF /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
+		179942C51F022342005E8EAF /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Localizable.strings; sourceTree = "<group>"; };
+		179942C61F022354005E8EAF /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		179942C71F022361005E8EAF /* zh-Hans-SG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-SG"; path = "zh-Hans-SG.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		179942C81F02236E005E8EAF /* zh-Hant-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-HK"; path = "zh-Hant-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		179942C91F022379005E8EAF /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		179942CA1F0223C3005E8EAF /* en-PH */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-PH"; path = "en-PH.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		179942CB1F0223D5005E8EAF /* en-SG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-SG"; path = "en-SG.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		179942CC1F0223F9005E8EAF /* en-MY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-MY"; path = "en-MY.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		179942CD1F02240C005E8EAF /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "vi-VN"; path = "vi-VN.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		179942CE1F022419005E8EAF /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		179942CF1F022435005E8EAF /* ko-KR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ko-KR"; path = "ko-KR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		179942D01F0224DA005E8EAF /* th-TH */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "th-TH"; path = "th-TH.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2D0A00B679CE56530376A284 /* Pods-SurveyonPartnersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurveyonPartnersTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SurveyonPartnersTests/Pods-SurveyonPartnersTests.release.xcconfig"; sourceTree = "<group>"; };
 		5E142E3C1E6E9ADF002804A3 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		5E142E421E6F9F06002804A3 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
@@ -226,6 +244,7 @@
 				76447E861EBAF36D00A091C7 /* SOPCrypto.h */,
 				76447E841EBAF35A00A091C7 /* SOPCrypto.m */,
 				764EF3F61EC97EC700EF25EE /* SOPError.swift */,
+				179942BF1F0222E8005E8EAF /* Localizable.strings */,
 			);
 			path = SurveyonPartners;
 			sourceTree = "<group>";
@@ -368,6 +387,22 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"en-HK",
+				ms,
+				vi,
+				id,
+				zh,
+				"zh-Hans-CN",
+				"zh-Hans-SG",
+				"zh-Hant-HK",
+				"zh-Hant-TW",
+				"en-PH",
+				"en-SG",
+				"en-MY",
+				"vi-VN",
+				ko,
+				"ko-KR",
+				"th-TH",
 			);
 			mainGroup = 5E15B6121E5EBA5C00FE0671;
 			productRefGroup = 5E15B61D1E5EBA5C00FE0671 /* Products */;
@@ -389,6 +424,7 @@
 				5E3D9A2E1E9B2E5300AE9F88 /* icon-close@2x.png in Resources */,
 				5E3D9A2D1E9B2E5300AE9F88 /* icon-close.png in Resources */,
 				5E8D11F01E9E079100162619 /* icon-point.png in Resources */,
+				179942BD1F0222E8005E8EAF /* Localizable.strings in Resources */,
 				5E8D11F11E9E079100162619 /* icon-point@2x.png in Resources */,
 				5E8D11EC1E9E063D00162619 /* SurveyListTableViewCell.xib in Resources */,
 				5E3D9A2F1E9B2E5300AE9F88 /* icon-close@3x.png in Resources */,
@@ -545,11 +581,39 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		179942BF1F0222E8005E8EAF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				179942BE1F0222E8005E8EAF /* en */,
+				179942C01F022315005E8EAF /* en-HK */,
+				179942C11F02231B005E8EAF /* ms */,
+				179942C21F022322005E8EAF /* vi */,
+				179942C31F022328005E8EAF /* id */,
+				179942C51F022342005E8EAF /* zh */,
+				179942C61F022354005E8EAF /* zh-Hans-CN */,
+				179942C71F022361005E8EAF /* zh-Hans-SG */,
+				179942C81F02236E005E8EAF /* zh-Hant-HK */,
+				179942C91F022379005E8EAF /* zh-Hant-TW */,
+				179942CA1F0223C3005E8EAF /* en-PH */,
+				179942CB1F0223D5005E8EAF /* en-SG */,
+				179942CC1F0223F9005E8EAF /* en-MY */,
+				179942CD1F02240C005E8EAF /* vi-VN */,
+				179942CE1F022419005E8EAF /* ko */,
+				179942CF1F022435005E8EAF /* ko-KR */,
+				179942D01F0224DA005E8EAF /* th-TH */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		5E15B62E1E5EBA5C00FE0671 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -604,6 +668,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
