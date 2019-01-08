@@ -10,6 +10,11 @@ import SystemConfiguration
 final class Utility {
   
   static func getUserAgent(appName: String? = nil, appVersion: String? = nil) -> String {
+    
+    if let aName = appName, let aVersion = appVersion {
+      return aName + " " + aVersion + " (" + getDeviceInfo() + ")"
+    }
+    
     var version: String = ""
     
     if let bundle = SurveyonPartners.getResourceBundle(),
@@ -17,10 +22,8 @@ final class Utility {
        let tmpVersion = obj as? String {
       version = tmpVersion
     }
-    let aName = appName ?? "sop-ios-sdk" // when appName is nil, set sop-ios-sdk
-    let aVersion = appVersion ?? version //when appVersion is nil, set SOP SDK version
-
-    return aName + " " + aVersion + " (" + getDeviceInfo() + ")"
+    
+    return "sop-ios-sdk" + " " + version + " (" + getDeviceInfo() + ")"
   }
   
   static func getDeviceInfo() -> String {
