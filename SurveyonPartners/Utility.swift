@@ -11,8 +11,9 @@ final class Utility {
   
   static func getUserAgent(appName: String? = nil, appVersion: String? = nil) -> String {
     var version: String = ""
-    let bundle = Bundle(for: SurveyonPartners.self)
-    if let obj = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString"),
+    
+    if let bundle = SurveyonPartners.getResourceBundle(),
+       let obj = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString"),
        let tmpVersion = obj as? String {
       version = tmpVersion
     }
