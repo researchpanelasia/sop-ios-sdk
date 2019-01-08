@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-//! Project version number for SurveyonPartners.
+//! Project version number fwor SurveyonPartners.
 FOUNDATION_EXPORT double SurveyonPartnersVersionNumber;
 
 //! Project version string for SurveyonPartners.

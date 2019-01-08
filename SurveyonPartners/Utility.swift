@@ -9,15 +9,17 @@ import SystemConfiguration
 
 final class Utility {
   
-  static func getUserAgent() -> String {
+  static func getUserAgent(appName: String? = nil, appVersion: String? = nil) -> String {
     var version: String = ""
-    if let bundle = Bundle(identifier: "com.surveyon.partners.SurveyonPartners"),
-       let obj = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString"),
+    let bundle = Bundle(for: SurveyonPartners.self)
+    if let obj = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString"),
        let tmpVersion = obj as? String {
       version = tmpVersion
     }
+    let aName = appName ?? "sop-ios-sdk" // when appName is nil, set sop-ios-sdk
+    let aVersion = appVersion ?? version //when appVersion is nil, set SOP SDK version
 
-    return "sop-android-sdk/" + version + " (" + getDeviceInfo() + ")"
+    return aName + " " + aVersion + " (" + getDeviceInfo() + ")"
   }
   
   static func getDeviceInfo() -> String {
