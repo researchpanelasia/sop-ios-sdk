@@ -46,10 +46,6 @@ struct HttpClient {
   var useHttps: Bool
   
   var verifyHost: Bool
-  
-  var appVersion: String?
-    
-  var appName: String?
 
   init(appId: String,
        appMid: String,
@@ -58,9 +54,7 @@ struct HttpClient {
        sopConsoleHost: String,
        updateSpan: Int64,
        useHttps: Bool,
-       verifyHost: Bool,
-       appVersion: String? = nil,
-       appName: String? = nil ) {
+       verifyHost: Bool ) {
     self.appId = appId
     self.appMid = appMid
     self.secretKey = secretKey
@@ -69,8 +63,6 @@ struct HttpClient {
     self.idfaUpdateSpan = updateSpan
     self.useHttps = useHttps
     self.verifyHost = verifyHost
-    self.appVersion = appVersion
-    self.appName = appName
   }
 }
 
@@ -103,7 +95,7 @@ extension HttpClient {
       request.addHeader(key: Request.CONTENT_TYPE, value: Request.APPLICATION_JSON)
       request.addHeader(key: Request.X_SOP_SIG,
                         value: Authentication().createSignature(message: JSONString, key: secretKey))
-      request.addHeader(key: Request.USER_AGENT, value: Utility.getUserAgent(appName: self.appName, appVersion: self.appVersion))
+      request.addHeader(key: Request.USER_AGENT, value: Utility.getUserAgent())
       request.post(completion: completion)
     }
   }
@@ -137,7 +129,7 @@ extension HttpClient {
     let request = Request(url: url,
                           httpMethod: .GET,
                           verifyHost: verifyHost)
-    request.addHeader(key: Request.USER_AGENT, value: Utility.getUserAgent(appName: self.appName, appVersion: self.appVersion))
+    request.addHeader(key: Request.USER_AGENT, value: Utility.getUserAgent())
     request.get(completion: completion)
   }
   

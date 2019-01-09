@@ -36,9 +36,7 @@ extension SurveyonPartners {
 
   public static func setUp(appId: String,
                            appMid: String,
-                           secretKey: String,
-                           appVersion: String? = nil,
-                           appName: String? = nil ) {
+                           secretKey: String ) {
 
     let host = getFromPlist(key: sopHostKey, defaultValue: DEFAULT_SOP_HOST)
     let consoleHost = getFromPlist(key: sopConsoleHostKey, defaultValue: DEFAULT_SOP_CONSOLE_HOST)
@@ -53,9 +51,7 @@ extension SurveyonPartners {
                      sopConsoleHost: consoleHost,
                      idfaUpdateSpan: updateSpan,
                      useHttps: useHttps,
-                     verifyHost: verifyHost,
-                     appVersion: appVersion,
-                     appName: appName))
+                     verifyHost: verifyHost))
 
     if (isNeedAdIdUpdated(currentTimeMilles: Utility.currentTimeMillis())) {
       updateIdfa()
@@ -81,9 +77,7 @@ extension SurveyonPartners {
                                 sopConsoleHost: config.sopConsoleHost,
                                 updateSpan: config.idfaUpdateSpan,
                                 useHttps: config.useHttps,
-                                verifyHost: config.verifyHost,
-                                appVersion: config.appVersion,
-                                appName: config.appName)
+                                verifyHost: config.verifyHost)
     httpClient.getSurveyList(completion: completion)
   }
 
@@ -125,9 +119,7 @@ extension SurveyonPartners {
                                 sopConsoleHost: config.sopConsoleHost,
                                 updateSpan: config.idfaUpdateSpan,
                                 useHttps: config.useHttps,
-                                verifyHost: config.verifyHost,
-                                appVersion: config.appVersion,
-                                appName: config.appName)
+                                verifyHost: config.verifyHost)
     
     httpClient.updateIdfa(completion: { (result) -> Void in
       switch result {

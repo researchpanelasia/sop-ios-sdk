@@ -9,11 +9,7 @@ import SystemConfiguration
 
 final class Utility {
   
-  static func getUserAgent(appName: String? = nil, appVersion: String? = nil) -> String {
-    
-    if let aName = appName, let aVersion = appVersion {
-      return aName + " " + aVersion + " (" + getDeviceInfo() + ")"
-    }
+  static func getUserAgent() -> String {
     
     var version: String = ""
     
