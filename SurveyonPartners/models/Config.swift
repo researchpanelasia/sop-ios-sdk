@@ -22,10 +22,6 @@ struct Config {
   let useHttps: Bool
   
   let verifyHost: Bool
-    
-  var appVersion: String?
-    
-  var appName: String?
   
   init(appId: String,
        appMid: String,
@@ -34,9 +30,7 @@ struct Config {
        sopConsoleHost: String,
        idfaUpdateSpan: Int64,
        useHttps: Bool,
-       verifyHost: Bool,
-       appVersion: String? = nil,
-       appName: String? = nil ) {
+       verifyHost: Bool ) {
     self.appId = appId
     self.appMid = appMid
     self.secretKey = secretKey
@@ -45,7 +39,5 @@ struct Config {
     self.idfaUpdateSpan = idfaUpdateSpan
     self.useHttps = useHttps
     self.verifyHost = verifyHost
-    self.appVersion = appVersion
-    self.appName = appName
   }
 }

@@ -135,7 +135,7 @@ extension Request {
   func get(completion: @escaping (RequestResult) -> Void) {
     var request = URLRequest(url: url)
     request.httpMethod = httpMethod.rawValue
-    
+    addHeaders(request: &request, headers: headers)
     send(requestUrl: request, completion: completion)
   }
 
