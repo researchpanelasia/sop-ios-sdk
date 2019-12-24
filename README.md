@@ -23,7 +23,7 @@ pod 'SurveyonPartners'
 #### Swift 3
 
 ```
-pod 'SurveyonPartners', , '0.0.10'
+pod 'SurveyonPartners', '0.0.10'
 ```
 
 Run below command
