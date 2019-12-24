@@ -21,6 +21,6 @@ class Authentication {
       .filter({!$0.0.hasPrefix(Constants.PREFIX_SOP_)})
       .reduce("", {result, element in result + "&" + element.key + "=" + element.value })
     
-    return str.substring(from: str.index(str.startIndex, offsetBy: 1))
+    return String(str[str.index(str.startIndex, offsetBy: 1)...])
   }
 }

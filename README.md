@@ -4,7 +4,7 @@ This library allows you to integrate surveyonPartners into your iOS app
  
 ## Requirements
 - iOS 8.0+
-- Swift 3
+- Swift 5
 - You need to be a partner of surveyonPartners. If you have any interest, please [contact us](http://www.d8aspring.com/).
 - Read [SOP v1.1 Documentations](https://console.partners.surveyon.com/docs/v1_1) and integrate your webservice with SOP.
 - Make a endpoint for `research survey delivery notification` on your webservice and notify targeted members via medium of your choice, such as Push Notification. Making a endpoint for research survey delivery notification is mandatory to use SOP iOS SDK.
@@ -14,10 +14,17 @@ This library allows you to integrate surveyonPartners into your iOS app
 
 Add the following lines to your Podfile
 
+#### Swift 5
+
 ```
 pod 'SurveyonPartners'
 ```
 
+#### Swift 3
+
+```
+pod 'SurveyonPartners', '0.0.10'
+```
 
 Run below command
 

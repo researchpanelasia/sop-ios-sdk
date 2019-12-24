@@ -56,7 +56,7 @@ class SOPLog{
     
     var filename = file
     if let match = filename.range(of: "[^/]*$") {
-      filename = filename.substring(with: match)
+        filename = String(filename[match])
     }
     destination?.log("[\(level.name)] \"\(message)\" \(nowdate) L\(line) \(function) @\(filename)")
   }
