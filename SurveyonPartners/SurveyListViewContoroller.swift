@@ -40,7 +40,7 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
     self.researchPointRule = researchPointRule
   }
   
-  func movedToForeground() {
+    @objc func movedToForeground() {
     showListItem.removeAll()
     tableView.reloadData()
     loadSurveyList()
@@ -52,12 +52,12 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
     closeView.image = SurveyonPartners.getImage(name: "icon-close.png")
 
     let notificationCenter = NotificationCenter.default
-    notificationCenter.addObserver(self, selector: #selector(movedToForeground), name: Notification.Name.UIApplicationWillEnterForeground, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(movedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
     loadSurveyList()
   }
   
   func loadSurveyList() {
-    indicator.activityIndicatorViewStyle = .whiteLarge
+    indicator.style = .whiteLarge
     indicator.color = UIColor.gray
     indicator.isHidden = false
     
@@ -101,7 +101,7 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
     })
   }
   
-  func closeButtonTapped(_ sender:AnyObject){
+    @objc func closeButtonTapped(_ sender:AnyObject){
     dismiss(animated: false, completion: nil)
   }
   
@@ -137,7 +137,7 @@ class SurveyListViewContoroller: UIViewController, UITableViewDelegate, UITableV
     return self.showListItem.count
   }
   
-  func tableView(_ tableView: UITableView, commiteditingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commiteditingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     
   }
   
