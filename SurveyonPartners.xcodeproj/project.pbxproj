@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		179942BD1F0222E8005E8EAF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 179942BF1F0222E8005E8EAF /* Localizable.strings */; };
+		523AED7C263546FE0043B8AA /* IDFA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523AED7B263546FE0043B8AA /* IDFA.swift */; };
 		525B8ADCBDB316374654D7AE /* Pods_SurveyonPartnersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D38C4A8C2BFCBE1AB17C2DE6 /* Pods_SurveyonPartnersTests.framework */; };
 		5E142E431E6F9F06002804A3 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E421E6F9F06002804A3 /* Authentication.swift */; };
 		5E142E451E6F9F98002804A3 /* AuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E441E6F9F98002804A3 /* AuthenticationTests.swift */; };
 		5E142E481E6FB89A002804A3 /* SurveyonPartnersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E15B62A1E5EBA5C00FE0671 /* SurveyonPartnersTests.swift */; };
-		5E142E5B1E70F9F0002804A3 /* AdvertisingId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E5A1E70F9F0002804A3 /* AdvertisingId.swift */; };
 		5E142E5F1E71427A002804A3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E5E1E71427A002804A3 /* Constants.swift */; };
 		5E142E611E714532002804A3 /* PreferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E601E714532002804A3 /* PreferencesManager.swift */; };
 		5E142E6D1E728C93002804A3 /* PreferencesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E142E6C1E728C93002804A3 /* PreferencesManagerTests.swift */; };
@@ -88,10 +88,10 @@
 		179942CF1F022435005E8EAF /* ko-KR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ko-KR"; path = "ko-KR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		179942D01F0224DA005E8EAF /* th-TH */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "th-TH"; path = "th-TH.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2D0A00B679CE56530376A284 /* Pods-SurveyonPartnersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurveyonPartnersTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SurveyonPartnersTests/Pods-SurveyonPartnersTests.release.xcconfig"; sourceTree = "<group>"; };
+		523AED7B263546FE0043B8AA /* IDFA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDFA.swift; sourceTree = "<group>"; };
 		5E142E3C1E6E9ADF002804A3 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		5E142E421E6F9F06002804A3 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		5E142E441E6F9F98002804A3 /* AuthenticationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationTests.swift; sourceTree = "<group>"; };
-		5E142E5A1E70F9F0002804A3 /* AdvertisingId.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvertisingId.swift; sourceTree = "<group>"; };
 		5E142E5E1E71427A002804A3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5E142E601E714532002804A3 /* PreferencesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesManager.swift; sourceTree = "<group>"; };
 		5E142E6C1E728C93002804A3 /* PreferencesManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesManagerTests.swift; sourceTree = "<group>"; };
@@ -232,7 +232,6 @@
 				5E7C58A71EAA235E00D74CB6 /* SurveyListViewContoroller.swift */,
 				5E7C58A91EAA236900D74CB6 /* SurveyListViewContoroller.xib */,
 				5E15B63B1E5EBC9E00FE0671 /* SurveyonPartnersUniversal-Bridging-Header.h */,
-				5E142E5A1E70F9F0002804A3 /* AdvertisingId.swift */,
 				5E142E421E6F9F06002804A3 /* Authentication.swift */,
 				5E142E601E714532002804A3 /* PreferencesManager.swift */,
 				5E142E781E7A3733002804A3 /* HttpClient.swift */,
@@ -244,6 +243,7 @@
 				76447E861EBAF36D00A091C7 /* SOPCrypto.h */,
 				76447E841EBAF35A00A091C7 /* SOPCrypto.m */,
 				764EF3F61EC97EC700EF25EE /* SOPError.swift */,
+				523AED7B263546FE0043B8AA /* IDFA.swift */,
 				179942BF1F0222E8005E8EAF /* Localizable.strings */,
 			);
 			path = SurveyonPartners;
@@ -537,7 +537,6 @@
 				5E7C58A81EAA235E00D74CB6 /* SurveyListViewContoroller.swift in Sources */,
 				5E38D3F91E8E3D4600D00DB8 /* Profiling.swift in Sources */,
 				5E3D9A241E97611300AE9F88 /* ResearchPointRule.swift in Sources */,
-				5E142E5B1E70F9F0002804A3 /* AdvertisingId.swift in Sources */,
 				5E15B63D1E5EBC9E00FE0671 /* SurveyonPartners.swift in Sources */,
 				5E3D9A221E9760F900AE9F88 /* ProfilingPointRule.swift in Sources */,
 				5E142E431E6F9F06002804A3 /* Authentication.swift in Sources */,
@@ -547,6 +546,7 @@
 				5EE33C651EA8A69D0051A341 /* SurveyListItem.swift in Sources */,
 				764EF3F71EC97EC700EF25EE /* SOPError.swift in Sources */,
 				5E38D3FD1E8E441300D00DB8 /* SOPLog.swift in Sources */,
+				523AED7C263546FE0043B8AA /* IDFA.swift in Sources */,
 				5E142E751E791E59002804A3 /* Config.swift in Sources */,
 				764EF3FB1EC9937600EF25EE /* Response.swift in Sources */,
 			);
