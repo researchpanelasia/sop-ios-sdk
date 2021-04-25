@@ -36,6 +36,27 @@ public class IDFA {
         return ASIdentifierManager.shared().advertisingIdentifier.uuidString
     }
     
+    public func requestAdTrackingEnableAndUpdateIdfa() {
+         if #available(iOS 14, *) {
+             ATTrackingManager.requestTrackingAuthorization { status in
+                 switch status {
+                     case .authorized:
+                         //用户允许
+                         self.updateIdfa() //允许之后，立马重新上传
+                     case .denied:
+                         //用户拒绝
+                         SOPLog.debug(message: "AdTrackingEnable denied")
+                     case .notDetermined:
+                         //未做选择
+                         SOPLog.debug(message: "AdTrackingEnable notDetermined")
+                     default: break
+                     }
+                 }
+             } else {
+                 updateIdfa()
+             }
+     }
+    
     public func updateIdfa(){
         guard let config = SurveyonPartners.getConfig() else {
             return
