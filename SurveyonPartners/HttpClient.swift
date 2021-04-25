@@ -80,8 +80,8 @@ extension HttpClient {
       HttpClient.KEY_APP_ID: self.appId,
       HttpClient.KEY_APP_MID: self.appMid,
       HttpClient.KEY_TIME: Utility.getPosixTime(),
-      HttpClient.KEY_IDENTIFIER: AdvertisingId.getAdvertisingIdentifier(),
-      HttpClient.KEY_IS_AD_TRACKING_ENABLED: AdvertisingId.getIsAdvertisingTrackingEnabled()
+      HttpClient.KEY_IDENTIFIER: IDFA.shared.identifier,
+      HttpClient.KEY_IS_AD_TRACKING_ENABLED: IDFA.shared.isAdvertisingTrackingEnabled
     ]
     
     let JSONData = try! JSONSerialization.data(withJSONObject: dictionary, options: JSONSerialization.WritingOptions.prettyPrinted)

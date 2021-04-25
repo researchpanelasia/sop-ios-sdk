@@ -52,10 +52,6 @@ extension SurveyonPartners {
                      idfaUpdateSpan: updateSpan,
                      useHttps: useHttps,
                      verifyHost: verifyHost))
-
-    if (isNeedAdIdUpdated(currentTimeMilles: Utility.currentTimeMillis())) {
-      updateIdfa()
-    }
   }
 
   public static func getSurveyList(completion: @escaping (RequestResult) -> Void ){
@@ -66,10 +62,6 @@ extension SurveyonPartners {
       return
     }
 
-    if (isNeedAdIdUpdated(currentTimeMilles: Utility.currentTimeMillis())) {
-      updateIdfa()
-    }
-    
     let httpClient = HttpClient(appId: config.appId,
                                 appMid: config.appMid,
                                 secretKey: config.secretKey,
@@ -107,31 +99,6 @@ extension SurveyonPartners {
     vc.present(viewController, animated: false, completion: nil)
   }
 
-  static func updateIdfa(){
-    guard let config = getConfig() else {
-      return
-    }
-
-    let httpClient = HttpClient(appId: config.appId,
-                                appMid: config.appMid,
-                                secretKey: config.secretKey,
-                                sopHost: config.sopHost,
-                                sopConsoleHost: config.sopConsoleHost,
-                                updateSpan: config.idfaUpdateSpan,
-                                useHttps: config.useHttps,
-                                verifyHost: config.verifyHost)
-    
-    httpClient.updateIdfa(completion: { (result) -> Void in
-      switch result {
-      case .success(let response):
-        SOPLog.debug(message: "statusCode = \(response)")
-        SurveyonPartners.adIdUpdatedAt(currentTimeMilles: Utility.currentTimeMillis())
-      case .failed(let error):
-        //do nothing
-        SOPLog.error(message: "error = \(error)")
-      }
-    })
-  }
 
   static func setConfig(_ config: Config){
     queue.async(flags: .barrier) {
@@ -167,25 +134,6 @@ extension SurveyonPartners {
 }
 
 extension SurveyonPartners {
-
-  static func adIdUpdatedAt(currentTimeMilles: Int64) {
-    PreferencesManager.writePreferences(value: currentTimeMilles, forKey: Constants.SURVEYON_PARTNERS)
-  }
-  
-  static func isNeedAdIdUpdated(currentTimeMilles: Int64) -> Bool {
-    if #available(iOS 10.0, *) {
-      if !AdvertisingId.getIsAdvertisingTrackingEnabled() {
-        return false
-      }
-    }
-    
-    guard let info = getConfig() else {
-      return false
-    }
-
-    let previousTimeMilles: Int64 = PreferencesManager.readIntPreferences(forKey: Constants.SURVEYON_PARTNERS)
-    return info.idfaUpdateSpan <= (currentTimeMilles - previousTimeMilles)
-  }
   
   static func getFromPlist<T>(key: String, defaultValue: T) -> T {
     guard let dict = Utility.getPlist(),
