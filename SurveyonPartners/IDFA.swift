@@ -15,7 +15,7 @@ public class IDFA {
     public static let shared = IDFA()
     
     var isAdvertisingTrackingEnabled : Bool {
-        if #available(iOS 14.5, *) {
+        if #available(iOS 14, *) {
             var tStatus: ATTrackingManager.AuthorizationStatus?
 
             ATTrackingManager.requestTrackingAuthorization { (status) in
@@ -26,8 +26,6 @@ public class IDFA {
                 return false
             }
 
-        } else {
-            return ASIdentifierManager.shared().isAdvertisingTrackingEnabled
         }
         return true
     }
@@ -36,27 +34,6 @@ public class IDFA {
     var identifier: String {
         guard isAdvertisingTrackingEnabled else { return "" }
         return ASIdentifierManager.shared().advertisingIdentifier.uuidString
-    }
-    
-    public func requestAdTrackingEnableAndUpdateIdfa() {
-        if #available(iOS 14, *) {
-            ATTrackingManager.requestTrackingAuthorization { status in
-                switch status {
-                    case .authorized:
-                        //用户允许
-                        self.updateIdfa() //允许之后，立马重新上传
-                    case .denied:
-                        //用户拒绝
-                        SOPLog.debug(message: "AdTrackingEnable denied")
-                    case .notDetermined:
-                        //未做选择
-                        SOPLog.debug(message: "AdTrackingEnable notDetermined")
-                    default: break
-                    }
-                }
-            } else {
-                updateIdfa()
-            }
     }
     
     public func updateIdfa(){
