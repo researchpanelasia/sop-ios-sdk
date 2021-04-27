@@ -15,7 +15,7 @@ public class IDFA {
     public static let shared = IDFA()
     
     var isAdvertisingTrackingEnabled : Bool {
-        if #available(iOS 14, *) {
+        if #available(iOS 14.5, *) {
             var tStatus: ATTrackingManager.AuthorizationStatus?
 
             ATTrackingManager.requestTrackingAuthorization { (status) in
@@ -37,7 +37,7 @@ public class IDFA {
     }
     
     public func requestAdTrackingEnableAndUpdateIdfa() {
-         if #available(iOS 14, *) {
+        if #available(iOS 14.5, *) {
              ATTrackingManager.requestTrackingAuthorization { status in
                  switch status {
                      case .authorized:
