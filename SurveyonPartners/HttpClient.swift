@@ -14,6 +14,8 @@ struct HttpClient {
   static let HTTP = "http://"
   
   static let PATH_GET_SURVEY = "/api/v1_1/surveys/json"
+    
+  static let PATH_GET_SYNC_SURVEY = "/api/v1_1/sync-surveys/json"
   
   static let PATH_POST_IDFA = "/api/v1_1/resource/app/member/identifier/apple_idfa"
   
@@ -101,13 +103,20 @@ extension HttpClient {
   }
   
   func getSurveyList(completion: @escaping (RequestResult) -> Void) {
+    getSurvey(with: HttpClient.PATH_GET_SURVEY, completion: completion)
+  }
     
+  func getSyncSurvey(completion: @escaping (RequestResult) -> Void) {
+    getSurvey(with: HttpClient.PATH_GET_SYNC_SURVEY, completion: completion)
+  }
+    
+  private func getSurvey(with path: String, completion: @escaping (RequestResult) -> Void) {
     if !Utility.isOnline() {
       completion(RequestResult.failed(error: SOPError(message: "Network not available", type: .NetworkNotAvailable, response: nil, error: nil)))
       return
     }
     
-    var apiUrl = getProtocol() + self.sopHost + HttpClient.PATH_GET_SURVEY
+    var apiUrl = getProtocol() + self.sopHost + path
     
     let populationDict: Dictionary<String,String>  = [
       HttpClient.KEY_APP_ID: self.appId,
@@ -139,5 +148,5 @@ extension HttpClient {
     }
     return HttpClient.HTTP
   }
-  
+
 }

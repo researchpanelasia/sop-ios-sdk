@@ -57,6 +57,7 @@
 		764EF3FD1EC994B900EF25EE /* ResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764EF3FC1EC994B900EF25EE /* ResponseTests.swift */; };
 		76DC6F891ECC55870013ACA4 /* UtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DC6F881ECC55870013ACA4 /* UtilityTests.swift */; };
 		76E99A461EAC4EC4001BEDB7 /* SOPLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E99A451EAC4EC4001BEDB7 /* SOPLogTests.swift */; };
+		D9BE4F3A587506E6BE53F96E /* Pods_SurveyonPartners.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7298454B63E2403FE1FA85DC /* Pods_SurveyonPartners.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E142E831E7A767A002804A3 /* SystemConfiguration.framework in Frameworks */,
+				D9BE4F3A587506E6BE53F96E /* Pods_SurveyonPartners.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,7 +328,6 @@
 				5E15B6181E5EBA5C00FE0671 /* Frameworks */,
 				5E15B6191E5EBA5C00FE0671 /* Headers */,
 				5E15B61A1E5EBA5C00FE0671 /* Resources */,
-				12EDD9F1BE3AAA0E1A7B205A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -346,7 +347,6 @@
 				5E15B6221E5EBA5C00FE0671 /* Frameworks */,
 				5E15B6231E5EBA5C00FE0671 /* Resources */,
 				F21A232FB6F27047A857E3F0 /* [CP] Embed Pods Frameworks */,
-				69E179D45AF83A048584AC9B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -449,28 +449,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SurveyonPartnersTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		12EDD9F1BE3AAA0E1A7B205A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SurveyonPartners/Pods-SurveyonPartners-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1F7F6E5FE5D5ACA8D0CE5004 /* [CP] Check Pods Manifest.lock */ = {
@@ -479,28 +467,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SurveyonPartners-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		69E179D45AF83A048584AC9B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SurveyonPartnersTests/Pods-SurveyonPartnersTests-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F21A232FB6F27047A857E3F0 /* [CP] Embed Pods Frameworks */ = {
@@ -509,13 +485,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SurveyonPartnersTests/Pods-SurveyonPartnersTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SurveyonPartnersTests/Pods-SurveyonPartnersTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SurveyonPartnersTests/Pods-SurveyonPartnersTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -735,7 +714,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6A363F58A00C5766183D992A /* Pods-SurveyonPartners.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
@@ -761,7 +739,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 65DEA104B3FBD8F43777E8DC /* Pods-SurveyonPartners.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
@@ -786,7 +763,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 99DAE776D8D05CB837992853 /* Pods-SurveyonPartnersTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 3FW7MXB78G;
 				INFOPLIST_FILE = SurveyonPartnersTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -800,7 +776,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2D0A00B679CE56530376A284 /* Pods-SurveyonPartnersTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 3FW7MXB78G;
 				INFOPLIST_FILE = SurveyonPartnersTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
