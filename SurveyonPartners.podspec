@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "SurveyonPartners"
-  s.version      = "0.0.16"
+  s.version      = "0.0.17"
   s.summary      = "SOP iOS SDK"
 
   s.description  = <<-DESC

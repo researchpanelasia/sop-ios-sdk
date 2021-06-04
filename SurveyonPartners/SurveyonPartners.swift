@@ -72,6 +72,25 @@ extension SurveyonPartners {
                                 verifyHost: config.verifyHost)
     httpClient.getSurveyList(completion: completion)
   }
+    
+  public static func getSyncSurveys(completion: @escaping (RequestResult) -> Void ){
+    guard let config = getConfig() else {
+        DispatchQueue.main.async {
+            completion(RequestResult.failed(error: SOPError(message: "Invalid configuration", type: .InvalidConfiguration, response: nil, error: nil)))
+        }
+        return
+    }
+
+    let httpClient = HttpClient(appId: config.appId,
+                                  appMid: config.appMid,
+                                  secretKey: config.secretKey,
+                                  sopHost: config.sopHost,
+                                  sopConsoleHost: config.sopConsoleHost,
+                                  updateSpan: config.idfaUpdateSpan,
+                                  useHttps: config.useHttps,
+                                  verifyHost: config.verifyHost)
+    httpClient.getSyncSurvey(completion: completion)
+ }
 
   public static func getSurveyList(completion: @escaping (Response?, SOPError?) -> Void ){
     getSurveyList(completion: { (result: RequestResult) in
@@ -82,6 +101,17 @@ extension SurveyonPartners {
         completion(error.response, error)
       }
     })
+  }
+    
+  public static func getSyncSurveys(completion: @escaping (Response?, SOPError?) -> Void ){
+      getSyncSurveys(completion: { (result: RequestResult) in
+        switch result {
+        case .success(let response):
+          completion(response, nil)
+        case .failed(let error):
+          completion(error.response, error)
+        }
+      })
   }
 
   public static func showSurveyList(vc: UIViewController, profilingPointRule: ProfilingPointRule, researchPointRule: ResearchPointRule) {
